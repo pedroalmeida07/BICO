@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="azul">#1F2F45</color>
+    <color name="saborBranco">#F8F6F7</color>
+    <color name="cinza">#686968</color>
+    <color name="laranjaClaro">#F8B769</color>
+    <color name="azulClaro">#E0E7FF</color>
+    <color name="cinzaClaro">#ECECEC</color>
+    <color name="laranjaEscuro">#C45F00</color>
 </resources>
