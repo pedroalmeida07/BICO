@@ -42,24 +42,27 @@
             android:gravity="center"
             android:layout_marginBottom="8dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:padding="12dp"
-                android:backgroundTint="@color/azul"
-                android:layout_marginRight="10dp"
+                app:backgroundTint="@color/azul"
+                app:cornerRadius="16dp"
+                android:layout_marginRight="15dp"
                 android:textColor="@color/saborBranco"
                 />
-            <Button
+
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:padding="12dp"
-                android:backgroundTint="@color/laranja"
-                android:textColor="@color/saborBranco"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/laranja"
+                android:textColor="@color/azul"
                 />
         </LinearLayout>
 
