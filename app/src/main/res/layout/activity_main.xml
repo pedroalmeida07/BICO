@@ -43,9 +43,9 @@
             android:layout_marginBottom="8dp">
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar"
+                android:text="Entrar"
                 android:textSize="24sp"
                 android:padding="12dp"
                 app:backgroundTint="@color/azul"
@@ -55,7 +55,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar"
                 android:textSize="24sp"
