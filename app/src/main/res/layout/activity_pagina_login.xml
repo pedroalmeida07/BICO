@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".PaginaLogin"
     android:background="@color/saborBranco">
-
+<!--sim-->
     <View
         android:id="@+id/circuloCheio"
         android:layout_width="280dp"
