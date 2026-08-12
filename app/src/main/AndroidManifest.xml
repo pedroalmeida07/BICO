@@ -12,7 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bico">
         <activity
-            android:name=".CadastroPrestador_nome"
+            android:name=".CadastroPrestadorEmail"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroPrestadorServico"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroPrestadorUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroPrestadorNome"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
