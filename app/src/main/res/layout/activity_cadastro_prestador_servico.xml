@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroPrestadorNome">
+    tools:context=".CadastroPrestadorServico">
 
     <!--Botão de Voltar-->
     <com.google.android.material.button.MaterialButton
@@ -23,31 +23,33 @@
     <!--Textos-->
     <TextView
         android:id="@+id/TopText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginStart="0dp"
-        android:text="Nos diga seu nome"
+        android:text="Nos diga seu serviço e onde trabalha"
         android:textColor="@color/azul"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
+        app:layout_constraintRight_toRightOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/sair" />
 
+    <!--Linhas de Guia-->
     <TextView
+        android:id="@+id/subtexto"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="14dp"
-        android:text="Adicione seu nome completo e CPF. Fique tranquilo, o CPF não será compartilhado."
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:text="Agora, selecione sua área de atuação e o local onde trabalha, para que nossos clientes saibam o serviço que você oferece e o local que você atua."
         android:textColor="@color/cinza"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/TopText"
-        android:id="@+id/subtexto"/>
+        app:layout_constraintTop_toBottomOf="@id/TopText" />
 
-    <!--Linhas de Guia-->
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,27 +66,28 @@
 
     <!--Inputs-->
     <EditText
-        android:id="@+id/editTextNome"
+        android:id="@+id/editTextTipo"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
-        android:hint="Nome Completo"
+        android:hint="Tipo de Serviço"
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/subtexto" />
 
     <EditText
-        android:id="@+id/editTextCPF"
+        android:id="@+id/editTextLocal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextNome"
+        app:layout_constraintTop_toBottomOf="@id/editTextTipo"
         android:inputType="text"
-        android:hint="CPF"
+        android:hint="Local de Atuação"
         />
+
 
     <!--Avançar-->
     <Button
@@ -97,7 +100,6 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCPF" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextLocal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

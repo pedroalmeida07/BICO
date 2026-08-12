@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroPrestadorNome">
+    tools:context=".CadastroPrestadorUsuario">
 
     <!--Botão de Voltar-->
     <com.google.android.material.button.MaterialButton
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginStart="0dp"
-        android:text="Nos diga seu nome"
+        android:text="Crie um nome de usuário"
         android:textColor="@color/azul"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -36,9 +36,9 @@
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginTop="14dp"
-        android:text="Adicione seu nome completo e CPF. Fique tranquilo, o CPF não será compartilhado."
+        android:text="Para começar a criar sua página de perfil, crie um nome de usuário para que os clientes possam achá-lo. Você pode editar quando quiser."
         android:textColor="@color/cinza"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -49,11 +49,11 @@
 
     <!--Linhas de Guia-->
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.1"
         android:orientation="vertical"
-        android:id="@+id/guideline1"/>
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
@@ -74,18 +74,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/subtexto" />
 
-    <EditText
-        android:id="@+id/editTextCPF"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextNome"
-        android:inputType="text"
-        android:hint="CPF"
-        />
-
     <!--Avançar-->
     <Button
         android:id="@+id/buttonAvancar"
@@ -97,7 +85,6 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCPF" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
