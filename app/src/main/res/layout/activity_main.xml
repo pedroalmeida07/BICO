@@ -43,6 +43,7 @@
             android:layout_marginBottom="8dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEntrar"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Entrar"
@@ -55,6 +56,7 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCadastrar"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar"
@@ -67,11 +69,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txtCadastrarPrestador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cadastrar como prestador"
             android:textColor="@color/azul"
             android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
             />
 
     </LinearLayout>

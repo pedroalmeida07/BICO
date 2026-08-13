@@ -25,5 +25,11 @@ class CadastroPrestadorNome : AppCompatActivity() {
             val intent = Intent(this, CadastroPrestadorUsuario::class.java)
             startActivity(intent) // Inicia a nova tela
         }
+
+        binding.sair.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
     }
 }
