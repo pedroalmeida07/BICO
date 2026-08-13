@@ -106,10 +106,12 @@
     <Button
         android:id="@+id/buttonAvancar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:backgroundTint="@color/azul"
         android:layout_marginTop="30dp"
         android:text="Avançar"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="20sp"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
