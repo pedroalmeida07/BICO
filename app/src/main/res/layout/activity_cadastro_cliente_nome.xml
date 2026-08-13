@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroPrestador_nome">
+    tools:context=".cadastro_usuario_nome">
 
     <!--Botão de Voltar-->
     <Button
@@ -13,10 +13,9 @@
         android:layout_height="40dp"
         android:backgroundTint="@color/white"
         android:background="@drawable/clear"
-        android:layout_marginTop="65dp"
         android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
         android:id="@+id/sair">
     </Button>
 
@@ -61,6 +60,19 @@
         app:layout_constraintGuide_percent="0.9"
         android:orientation="vertical"
         android:id="@+id/guideline2"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"
+        android:id="@+id/guideline4"/>
 
     <!--Inputs-->
     <EditText
