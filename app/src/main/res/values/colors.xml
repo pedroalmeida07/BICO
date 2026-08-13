@@ -10,4 +10,5 @@
     <color name="cinzaClaro">#ECECEC</color>
     <color name="laranjaEscuro">#C45F00</color>
     <color name="laranja">#F89F4B</color>
+    <color name="sombra">#80A8C0FF</color>
 </resources>

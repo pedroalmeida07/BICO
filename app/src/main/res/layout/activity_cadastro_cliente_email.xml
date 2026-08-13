@@ -132,6 +132,12 @@
         android:fontFamily="@font/roboto_bold"
         android:textSize="20sp"
         app:cornerRadius="8dp"
+        android:elevation="12dp"
+        android:outlineSpotShadowColor="@color/sombra"
+        android:outlineAmbientShadowColor="@color/sombra"
+
+        android:stateListAnimator="@null"
+
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/editTextConfirmarSenha" />
