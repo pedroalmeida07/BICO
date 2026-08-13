@@ -6,16 +6,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
+import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
 
 class CadastroPrestadorEmail : AppCompatActivity() {
-    private lateinit var binding: ActivityCadastroPrestadorNomeBinding
+    private lateinit var binding: ActivityCadastroPrestadorEmailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityCadastroPrestadorNomeBinding.inflate(layoutInflater)
+        binding = ActivityCadastroPrestadorEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Evento de clique
