@@ -24,6 +24,7 @@ class CadastroPrestadorEmail : AppCompatActivity() {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, CadastroPrestadorServico::class.java)
             startActivity(intent) // Inicia a nova tela
+            finish()
         }
     }
 }
