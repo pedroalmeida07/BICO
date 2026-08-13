@@ -104,14 +104,14 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/txtEntrar"
-        android:layout_marginTop="36px"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/roboto_medium"
         />
 
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:inputType="textEmailAddress"
         android:hint="Email"
         android:fontFamily="@font/inter"
@@ -126,7 +126,7 @@
     <EditText
         android:id="@+id/edtSenha"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:inputType="textPassword"
         android:hint="Senha"
         android:fontFamily="@font/inter"
@@ -151,7 +151,7 @@
         android:textSize="14sp"
         android:textColor="@color/azul"
         android:gravity="end"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="30dp"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -167,10 +167,10 @@
         android:textSize="17sp"
         android:textColor="@color/saborBranco"
         android:backgroundTint="@color/azul"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="30dp"
         app:cornerRadius="12dp"
         android:padding="12dp"
-        />
+    />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCriarConta"
@@ -185,7 +185,7 @@
         android:textSize="17sp"
         android:textColor="@color/azul"
         android:backgroundTint="@color/saborBranco"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="30dp"
         app:cornerRadius="12dp"
         android:padding="12dp"
         />
