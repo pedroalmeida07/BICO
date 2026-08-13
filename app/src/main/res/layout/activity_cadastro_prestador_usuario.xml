@@ -13,10 +13,9 @@
         android:layout_height="40dp"
         app:backgroundTint="@color/azul"
         android:background="@drawable/clear"
-        android:layout_marginTop="45dp"
         android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
         android:id="@+id/sair">
     </com.google.android.material.button.MaterialButton>
 
@@ -37,7 +36,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:text="Para começar a criar sua página de perfil, crie um nome de usuário para que os clientes possam achá-lo. Você pode editar quando quiser."
         android:textColor="@color/cinza"
         android:textSize="14sp"
@@ -61,6 +60,20 @@
         app:layout_constraintGuide_percent="0.9"
         android:orientation="vertical"
         android:id="@+id/guideline2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"
+        android:id="@+id/guideline4"/>
 
     <!--Inputs-->
     <EditText

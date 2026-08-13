@@ -13,10 +13,9 @@
         android:layout_height="40dp"
         app:backgroundTint="@color/azul"
         android:background="@drawable/clear"
-        android:layout_marginTop="45dp"
         android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
         android:id="@+id/sair">
     </com.google.android.material.button.MaterialButton>
 
@@ -30,17 +29,18 @@
         android:text="Nos diga seu nome"
         android:textColor="@color/azul"
         android:textSize="28sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/sair" />
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:text="Adicione seu nome completo e CPF. Fique tranquilo, o CPF não será compartilhado."
         android:textColor="@color/cinza"
         android:textSize="14sp"
+        android:fontFamily="@font/inter"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -62,22 +62,36 @@
         android:orientation="vertical"
         android:id="@+id/guideline2"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"
+        android:id="@+id/guideline4"/>
+
     <!--Inputs-->
     <EditText
         android:id="@+id/editTextNome"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:hint="Nome Completo"
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/subtexto" />
+        app:layout_constraintTop_toBottomOf="@id/subtexto"/>
 
     <EditText
         android:id="@+id/editTextCPF"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -94,6 +108,7 @@
         android:backgroundTint="@color/azul"
         android:layout_marginTop="30dp"
         android:text="Avançar"
+        android:fontFamily="@font/roboto_bold"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
