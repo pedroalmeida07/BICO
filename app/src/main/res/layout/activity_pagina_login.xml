@@ -31,11 +31,11 @@
         android:id="@+id/guideline3"/>
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.1"
         android:orientation="horizontal"
-        android:id="@+id/guideline4"/>
+        app:layout_constraintGuide_begin="73dp" />
 
 <!--sim-->
     <View
