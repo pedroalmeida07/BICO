@@ -1,8 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Bico" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- Desativar modo escuro automatico com Light ao inves de DayNight -->
+    <style name="Base.Theme.Bico" parent="Theme.Material3.Light.NoActionBar">
+
+        <!-- Cor da barra de status e dos icones dela -->
+        <item name="android:statusBarColor">@color/saborBranco</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Bico" parent="Base.Theme.Bico" />
