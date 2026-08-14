@@ -20,10 +20,19 @@ class CadastroPrestadorEmail : AppCompatActivity() {
 
         // Evento de clique
 
+        // Essa parte do código vai mandar pro home quando clicar em avançar
+        // e fechar as activities abertas. Deixei em comentários por que falta
+        // salvar os dados do cadastro antes de mandar pra outra tela
+
+        //binding.buttonAvancar.setOnClickListener {
+            // Vai para a Home e limpa as telas anteriores
+            //val intent = Intent(this, HomePrestador::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            //startActivity(intent)
+        //}
+
         binding.sair.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
-            val intent = Intent(this, CadastroPrestadorServico::class.java)
-            startActivity(intent) // Inicia a nova tela
+            //Fecha a tela atual e volta para a anterior
             finish()
         }
     }

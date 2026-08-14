@@ -22,19 +22,16 @@ class MainActivity : AppCompatActivity() {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, PaginaLogin::class.java)
             startActivity(intent) // Inicia a nova tela
-            finish()
         }
         binding.btnCadastrar.setOnClickListener {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, CadastroClienteNome::class.java)
             startActivity(intent) // Inicia a nova tela
-            finish()
         }
         binding.txtCadastrarPrestador.setOnClickListener {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, CadastroPrestadorNome::class.java)
             startActivity(intent) // Inicia a nova tela
-            finish()
         }
     }
 }

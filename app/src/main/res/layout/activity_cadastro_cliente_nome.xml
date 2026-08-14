@@ -8,16 +8,16 @@
     tools:context=".CadastroClienteNome">
 
     <!--Botão de Voltar-->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:backgroundTint="@color/white"
+        app:backgroundTint="@color/azul"
         android:background="@drawable/clear"
         android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/guideline4"
         android:id="@+id/sair">
-    </Button>
+    </com.google.android.material.button.MaterialButton>
 
     <!--Textos-->
     <TextView
