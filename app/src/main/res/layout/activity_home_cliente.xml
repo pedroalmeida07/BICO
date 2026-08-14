@@ -53,15 +53,27 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline4"/>
     
     <TextView
+        android:id="@+id/txtOla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Olá,"
         android:textSize="20sp"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/white"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuário"
+        android:textSize="25sp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/txtOla"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
