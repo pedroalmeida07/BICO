@@ -31,7 +31,7 @@
             android:text="Quem sabe faz, quem precisa encontra"
             android:textSize="35sp"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/azul"
             android:layout_marginBottom="30dp"
             />
 
