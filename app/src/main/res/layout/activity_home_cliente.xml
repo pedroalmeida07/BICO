@@ -75,5 +75,87 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/txtOla"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMelhorAvaliados"
+        android:text="Melhor Avaliados"
+        android:textSize="22sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textColor="@color/azul"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        android:layout_marginTop="30dp"/>
+
+    <View
+        android:id="@+id/linha1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sombra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMelhorAvaliados"
+        android:layout_marginTop="5dp"/>
+
+    <View
+        android:id="@+id/linha2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sombra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linha1"
+        android:layout_marginTop="120dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtFavoritos"
+        android:text="Favoritos"
+        android:textSize="22sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textColor="@color/azul"
+        app:layout_constraintTop_toBottomOf="@id/linha2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNomePrestador1"
+        android:text="Serjio Krüger - Encanador"
+        android:textSize="15sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textColor="@color/azul"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/txtFavoritos"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTelPrestador1"
+        android:text="(27) 94002-8922"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtNomePrestador1"
+        app:layout_constraintTop_toBottomOf="@id/txtNomePrestador1"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"/>
+
+
+
+
+    <View
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/barra_inferior_branca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
