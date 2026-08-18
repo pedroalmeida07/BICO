@@ -36,6 +36,7 @@
         android:orientation="horizontal"
         android:id="@+id/guideline4"/>
 
+    <!--Barra Superior-->
     <View
         android:id="@+id/barraSuperior"
         android:layout_width="match_parent"
@@ -45,6 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
+        android:id="@+id/imgUser"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/user"
@@ -65,6 +67,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline4"/>
 
     <TextView
+        android:id="@+id/txtNomeUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Usuário"
@@ -74,6 +77,7 @@
         android:layout_marginBottom="25dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/txtOla"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +108,7 @@
         android:background="@color/sombra"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linha1"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="135dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -119,6 +123,7 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         android:layout_marginTop="20dp"/>
 
+    <!--Prestado Favorito 1-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,7 +135,8 @@
         android:textColor="@color/azul"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/txtFavoritos"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -145,9 +151,168 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="5dp"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDescPrestador1"
+        android:text="Sou o melhor encanador da região, meu lema é que nunca irei te deixar na mão"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtTelPrestador1"
+        app:layout_constraintTop_toBottomOf="@id/txtTelPrestador1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAvaliacaoPrestador1"
+        android:text="★★★★ (41)"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtDescPrestador1"
+        app:layout_constraintTop_toBottomOf="@id/txtDescPrestador1"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLocPrestador1"
+        android:text="Serra - ES"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtAvaliacaoPrestador1"
+        app:layout_constraintTop_toBottomOf="@id/txtAvaliacaoPrestador1"
+        android:layout_marginTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/ic_favoritoPrestador1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_estrela_cheia"
+        app:layout_constraintEnd_toEndOf="@id/txtNomePrestador1"
+        app:layout_constraintTop_toTopOf="@id/txtLocPrestador1"
+        app:layout_constraintBottom_toBottomOf="@id/txtLocPrestador1"/>
+
+    <View
+        android:id="@+id/linha3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sombra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLocPrestador1"
+        android:layout_marginTop="10dp"/>
+
+
+    <!--Prestado Favorito 2-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNomePrestador2"
+        android:text="Ana Lyrio - Faxineira"
+        android:textSize="15sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtNomePrestador1"
+        app:layout_constraintTop_toBottomOf="@id/linha3"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTelPrestador2"
+        android:text="(27) 999189877"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtNomePrestador2"
+        app:layout_constraintTop_toBottomOf="@id/txtNomePrestador2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDescPrestador2"
+        android:text="Não é delírio, a melhor faxina é com Ana Lyrio!"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtTelPrestador2"
+        app:layout_constraintTop_toBottomOf="@id/txtTelPrestador2"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAvaliacaoPrestador2"
+        android:text="★★★★ (41)"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtDescPrestador2"
+        app:layout_constraintTop_toBottomOf="@id/txtDescPrestador2"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLocPrestador2"
+        android:text="Serra - ES"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toStartOf="@id/txtAvaliacaoPrestador2"
+        app:layout_constraintTop_toBottomOf="@id/txtAvaliacaoPrestador2"
+        android:layout_marginTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/ic_favoritoPrestador2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_estrela_cheia"
+        app:layout_constraintEnd_toEndOf="@id/txtNomePrestador2"
+        app:layout_constraintTop_toTopOf="@id/txtLocPrestador2"
+        app:layout_constraintBottom_toBottomOf="@id/txtLocPrestador2"/>
+
+    <View
+        android:id="@+id/linha4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sombra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLocPrestador2"
+        android:layout_marginTop="10dp"/>
 
 
 
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerTodos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ver Todos"
+        android:textSize="24sp"
+        android:padding="12dp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/laranja"
+        android:textColor="@color/azul"
+        app:layout_constraintBottom_toTopOf="@id/guideline3"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="@id/linha4"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/cinza"/>
+
+    <!--Barra Inferior-->
     <View
         android:id="@+id/barraInferior"
         android:layout_width="match_parent"
@@ -155,6 +320,46 @@
         android:background="@drawable/barra_inferior_branca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline3"/>
+
+    <ImageView
+        android:id="@+id/ic_home"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_home_laranja"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"/>
+
+    <ImageView
+        android:id="@+id/ic_pesquisa"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_pesquisa_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
+
+    <ImageView
+        android:id="@+id/ic_chat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_chat_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_config"/>
+
+    <ImageView
+        android:id="@+id/ic_config"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_config_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_chat"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
