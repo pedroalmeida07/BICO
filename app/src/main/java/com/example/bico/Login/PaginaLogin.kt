@@ -1,12 +1,18 @@
-package com.example.bico
+package com.example.bico.Login
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.Cadastro.Cliente.CadastroClienteNome
+import com.example.bico.HomeCliente
+import com.example.bico.HomePrestador
+import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
+import com.example.bico.model.User
 
 class PaginaLogin : AppCompatActivity() {
 
@@ -15,8 +21,8 @@ class PaginaLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         ))
         binding = ActivityPaginaLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -25,7 +31,7 @@ class PaginaLogin : AppCompatActivity() {
 
         binding.btnNaoTenhoConta.setOnClickListener {
             // Reinicia o usuário temporário ao iniciar um novo cadastro
-            UserRepository.tempUser = com.example.bico.model.User()
+            UserRepository.tempUser = User()
             startActivity(Intent(this, CadastroClienteNome::class.java))
         }
 

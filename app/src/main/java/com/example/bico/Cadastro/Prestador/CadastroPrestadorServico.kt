@@ -1,11 +1,13 @@
-package com.example.bico
+package com.example.bico.Cadastro.Prestador
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorServicoBinding
 
 class CadastroPrestadorServico : AppCompatActivity() {
@@ -14,8 +16,8 @@ class CadastroPrestadorServico : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroPrestadorServicoBinding.inflate(layoutInflater)

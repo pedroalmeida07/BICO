@@ -15,22 +15,22 @@
             android:name=".HomePrestador"
             android:exported="false" />
         <activity
-            android:name=".CadastroClienteEmail"
+            android:name=".Cadastro.Cliente.CadastroClienteEmail"
             android:exported="false" />
         <activity
-            android:name=".CadastroClienteNome"
+            android:name=".Cadastro.Cliente.CadastroClienteNome"
             android:exported="false" />
         <activity
-            android:name=".CadastroPrestadorEmail"
+            android:name=".Cadastro.Prestador.CadastroPrestadorEmail"
             android:exported="false" />
         <activity
-            android:name=".CadastroPrestadorServico"
+            android:name=".Cadastro.Prestador.CadastroPrestadorServico"
             android:exported="false" />
         <activity
-            android:name=".CadastroPrestadorUsuario"
+            android:name=".Cadastro.Prestador.CadastroPrestadorUsuario"
             android:exported="false" />
         <activity
-            android:name=".CadastroPrestadorNome"
+            android:name=".Cadastro.Prestador.CadastroPrestadorNome"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -42,11 +42,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PaginaLogin"
+            android:name=".Login.PaginaLogin"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".CadastroClienteLocal"
+            android:name=".Cadastro.Cliente.CadastroClienteLocal"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -54,15 +54,15 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".RecuperacaoSenhaCodigo"
+            android:name=".Login.RecuperacaoSenhaCodigo"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".RecuperacaoSenhaEmail"
+            android:name=".Login.RecuperacaoSenhaEmail"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".RecuperacaoSenhaTrocarSenha"
+            android:name=".Login.RecuperacaoSenhaTrocarSenha"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

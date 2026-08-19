@@ -1,24 +1,27 @@
-package com.example.bico
+package com.example.bico.Cadastro.Cliente
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
+import com.example.bico.HomeCliente
+import com.example.bico.UserRepository
+import com.example.bico.databinding.ActivityCadastroClienteEmailBinding
 
-class CadastroPrestadorEmail : AppCompatActivity() {
-    private lateinit var binding: ActivityCadastroPrestadorEmailBinding
+class CadastroClienteEmail : AppCompatActivity() {
+    private lateinit var binding: ActivityCadastroClienteEmailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         ))
 
-        binding = ActivityCadastroPrestadorEmailBinding.inflate(layoutInflater)
+        binding = ActivityCadastroClienteEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonAvancar.setOnClickListener {
@@ -49,7 +52,7 @@ class CadastroPrestadorEmail : AppCompatActivity() {
             Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
             // Vai para a Home e limpa as telas anteriores
-            val intent = Intent(this, HomePrestador::class.java)
+            val intent = Intent(this, HomeCliente::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }

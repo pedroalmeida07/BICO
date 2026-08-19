@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bico.CadastroClienteNome
-import com.example.bico.CadastroPrestadorNome
-import com.example.bico.PaginaLogin
+import com.example.bico.Cadastro.Cliente.CadastroClienteNome
+import com.example.bico.Cadastro.Prestador.CadastroPrestadorNome
+import com.example.bico.Login.PaginaLogin
 import com.example.bico.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

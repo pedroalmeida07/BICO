@@ -1,4 +1,4 @@
-package com.example.bico
+package com.example.bico.Login
 
 import android.content.Intent
 import android.graphics.Color
@@ -14,7 +14,7 @@ class RecuperacaoSenhaEmail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
             Color.TRANSPARENT,
             Color.TRANSPARENT
         ))

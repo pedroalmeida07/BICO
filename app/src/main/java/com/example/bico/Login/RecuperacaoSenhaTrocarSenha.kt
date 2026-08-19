@@ -1,4 +1,4 @@
-package com.example.bico
+package com.example.bico.Login
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.MainActivity
 import com.example.bico.databinding.ActivityRecuperacaoSenhaTrocarSenhaBinding
 
 class RecuperacaoSenhaTrocarSenha : AppCompatActivity() {
@@ -14,7 +15,7 @@ class RecuperacaoSenhaTrocarSenha : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
             Color.TRANSPARENT,
             Color.TRANSPARENT
         ))

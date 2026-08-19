@@ -1,11 +1,13 @@
-package com.example.bico
+package com.example.bico.Cadastro.Prestador
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
 
 class CadastroPrestadorNome : AppCompatActivity() {
@@ -15,8 +17,8 @@ class CadastroPrestadorNome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroPrestadorNomeBinding.inflate(layoutInflater)
@@ -30,7 +32,7 @@ class CadastroPrestadorNome : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, preencha o nome e o CPF", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
+
             // Salva no objeto temporário
             UserRepository.tempUser = UserRepository.tempUser.copy(
                 nome = nome,
