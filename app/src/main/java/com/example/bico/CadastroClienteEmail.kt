@@ -25,10 +25,6 @@ class CadastroClienteEmail : AppCompatActivity() {
 
         // Evento de clique
 
-        // Essa parte do código vai mandar pro home quando clicar em avançar
-        // e fechar as activities abertas. Deixei em comentários por que falta
-        // salvar os dados do cadastro antes de mandar pra outra tela
-
         binding.buttonAvancar.setOnClickListener {
         //Vai para a Home e limpa as telas anteriores
         val intent = Intent(this, HomeCliente::class.java)
