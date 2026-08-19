@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    //biblioteca GSON para salvamento em JSON
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
