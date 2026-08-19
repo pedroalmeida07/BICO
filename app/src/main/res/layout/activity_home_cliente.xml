@@ -92,6 +92,143 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         android:layout_marginTop="30dp"/>
 
+    <!-- HorizontalScrollView - barra de Melhor Avaliados -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="@id/linha1"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp">
+
+            <!-- CARD 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgFoto1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/user" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hugo Neves"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pedreiro"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Serra-ES"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5,0 ★ (59)"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CARD 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgFoto2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/user" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Takamasa N."
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ajudante"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vitória-ES"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,9 ★ (112)"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <View
         android:id="@+id/linha1"
         android:layout_width="match_parent"
@@ -278,7 +415,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/ic_estrela_cheia"
-        app:layout_constraintEnd_toEndOf="@id/txtNomePrestador2"
+        app:layout_constraintEnd_toEndOf="@id/ic_favoritoPrestador1"
         app:layout_constraintTop_toTopOf="@id/txtLocPrestador2"
         app:layout_constraintBottom_toBottomOf="@id/txtLocPrestador2"/>
 
@@ -319,45 +456,46 @@
         android:layout_height="wrap_content"
         android:background="@drawable/barra_inferior_branca"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3"/>
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        android:layout_marginTop="15dp"/>
 
     <ImageView
         android:id="@+id/ic_home"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/ic_home_laranja"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"/>
 
     <ImageView
         android:id="@+id/ic_pesquisa"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/ic_pesquisa_preto"
         app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
 
     <ImageView
         android:id="@+id/ic_chat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/ic_chat_preto"
         app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_config"/>
 
     <ImageView
         android:id="@+id/ic_config"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/ic_config_preto"
         app:layout_constraintStart_toEndOf="@id/ic_chat"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
