@@ -1,12 +1,11 @@
 package com.example.bico
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bico.CadastroPrestadorUsuario
 import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
 
 class CadastroPrestadorNome : AppCompatActivity() {
@@ -15,24 +14,35 @@ class CadastroPrestadorNome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
-            Color.TRANSPARENT,
-            Color.TRANSPARENT
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
+            android.graphics.Color.TRANSPARENT,
+            android.graphics.Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroPrestadorNomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Evento de clique
         binding.buttonAvancar.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
+            val nome = binding.editTextNome.text.toString()
+            val cpf = binding.editTextCPF.text.toString()
+
+            if (nome.isEmpty() || cpf.isEmpty()) {
+                Toast.makeText(this, "Por favor, preencha o nome e o CPF", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            // Salva no objeto temporário
+            UserRepository.tempUser = UserRepository.tempUser.copy(
+                nome = nome,
+                cpf = cpf,
+                tipo = "PRESTADOR"
+            )
+
             val intent = Intent(this, CadastroPrestadorUsuario::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.sair.setOnClickListener {
-            //Fecha a tela atual e volta para a anterior
             finish()
         }
     }

@@ -1,8 +1,8 @@
 package com.example.bico
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,24 +13,34 @@ class CadastroClienteLocal : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
-            Color.TRANSPARENT,
-            Color.TRANSPARENT
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
+            android.graphics.Color.TRANSPARENT,
+            android.graphics.Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroClienteLocalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Evento de clique
         binding.buttonAvancar.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
+            val cep = binding.editTextCEP.text.toString()
+            val numero = binding.editTextNumero.text.toString()
+            val complemento = binding.editTextComplemento.text.toString()
+
+            if (cep.isEmpty() || numero.isEmpty()) {
+                Toast.makeText(this, "Por favor, preencha o CEP e o número", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Salva no objeto temporário
+            UserRepository.tempUser = UserRepository.tempUser.copy(
+                local = "$cep, $numero - $complemento"
+            )
+
             val intent = Intent(this, CadastroClienteEmail::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.sair.setOnClickListener {
-            //Fecha a tela atual e volta para a anterior
             finish()
         }
     }

@@ -1,8 +1,8 @@
 package com.example.bico
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,24 +13,32 @@ class CadastroPrestadorUsuario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
-            Color.TRANSPARENT,
-            Color.TRANSPARENT
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
+            android.graphics.Color.TRANSPARENT,
+            android.graphics.Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroPrestadorUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Evento de clique
         binding.buttonAvancar.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
+            val usuario = binding.editTextNome.text.toString()
+
+            if (usuario.isEmpty()) {
+                Toast.makeText(this, "Por favor, informe um nome de usuário", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Salva no objeto temporário
+            UserRepository.tempUser = UserRepository.tempUser.copy(
+                usuario = usuario
+            )
+
             val intent = Intent(this, CadastroPrestadorServico::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.sair.setOnClickListener {
-            //Fecha a tela atual e volta para a anterior
             finish()
         }
     }
