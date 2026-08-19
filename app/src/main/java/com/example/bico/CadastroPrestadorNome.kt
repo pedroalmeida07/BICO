@@ -1,12 +1,12 @@
 package com.example.bico
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.bico.CadastroPrestadorUsuario
 import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
 
 class CadastroPrestadorNome : AppCompatActivity() {
@@ -16,9 +16,9 @@ class CadastroPrestadorNome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.Companion.light(
+            Color.TRANSPARENT,
+            Color.TRANSPARENT
         ))
 
         binding = ActivityCadastroPrestadorNomeBinding.inflate(layoutInflater)
