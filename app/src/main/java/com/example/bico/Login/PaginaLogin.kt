@@ -35,6 +35,12 @@ class PaginaLogin : AppCompatActivity() {
             startActivity(Intent(this, CadastroClienteNome::class.java))
         }
 
+        binding.txtEsqueceuSenha.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, RecuperacaoSenhaEmail::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+
         binding.btnEntrar.setOnClickListener {
             val email = binding.edtEmail.text.toString()
             val senha = binding.edtSenha.text.toString()
