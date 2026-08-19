@@ -37,7 +37,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.12" />
 
-<!--sim-->
+    <!--sim-->
     <View
         android:id="@+id/circuloCheio"
         android:layout_width="280dp"
