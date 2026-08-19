@@ -28,5 +28,10 @@ class PaginaLogin : AppCompatActivity() {
             startActivity(Intent(this, CadastroClienteNome::class.java))
             finish()
         }
+
+        binding.btnEntrar.setOnClickListener {
+            startActivity(Intent(this, HomeCliente::class.java))
+            finish()
+        }
     }
 }
