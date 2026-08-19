@@ -216,7 +216,149 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         android:layout_marginTop="30dp"/>
 
+    <!-- CARD VIEW PRÓXIMO SERVIÇO -->
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardProximoServico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="3dp"
+        app:layout_constraintTop_toBottomOf="@id/txtProximosServiços"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <!-- Foto de Perfil -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgFotoPerfil"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user"
+                app:layout_bottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Nome do Cliente -->
+            <TextView
+                android:id="@+id/txtNome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="Ednaldo Pereira"
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter"
+                app:layout_constraintEnd_toStartOf="@id/layoutDataHora"
+                app:layout_constraintStart_toEndOf="@id/imgFotoPerfil"
+                app:layout_constraintTop_toTopOf="@id/imgFotoPerfil" />
+
+            <!-- Descrição do Serviço -->
+            <TextView
+                android:id="@+id/txtServico"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Reparo de disjuntor"
+                android:textColor="@color/cinza"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@id/txtNome"
+                app:layout_constraintStart_toStartOf="@id/txtNome"
+                app:layout_constraintTop_toBottomOf="@id/txtNome" />
+
+            <!-- Localização (Ícone + Texto) -->
+            <LinearLayout
+                android:id="@+id/layoutLocalizacao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/imgFotoPerfil"
+                app:layout_constraintEnd_toStartOf="@id/btnConcluir"
+                app:layout_constraintStart_toStartOf="@id/txtNome"
+                app:layout_constraintTop_toBottomOf="@id/txtServico">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_localizacao"
+                    app:tint="#757575" />
+
+                <TextView
+                    android:id="@+id/txtLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="José de Anchieta - Serra"
+                    android:textColor="@color/cinza"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Data e Hora (Topo Direito) -->
+            <LinearLayout
+                android:id="@+id/layoutDataHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtNome">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_relogio" />
+
+                <TextView
+                    android:id="@+id/txtData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="06/07,"
+                    android:textColor="@color/laranjaClaro"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/txtHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="06:07"
+                    android:textColor="@color/laranjaClaro"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Botão Concluir -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConcluir"
+                android:layout_width="90dp"
+                android:layout_height="32dp"
+                android:text="Concluir"
+                android:textSize="12sp"
+                android:textColor="@color/saborBranco"
+                android:gravity="center"
+                android:padding="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/laranjaClaro"
+                app:layout_constraintBottom_toBottomOf="@id/imgFotoPerfil"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 
@@ -229,10 +371,13 @@
         android:fontFamily="@font/inter"
         android:textStyle="bold"
         android:textSize="22sp"
-        app:layout_constraintTop_toBottomOf="@id/txtProximosServiços"
+        app:layout_constraintTop_toBottomOf="@id/cardProximoServico"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         android:layout_marginTop="100dp"/>
 
+
+
+    <!-- CARD AGENDA -->
     <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
