@@ -1,5 +1,6 @@
 package com.example.bico
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -12,10 +13,15 @@ class HomePrestador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            ContextCompat.getColor(this, R.color.azul),
-            android.graphics.Color.TRANSPARENT
-        )
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                ContextCompat.getColor(this, R.color.azul),
+                Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
+            )
         )
         setContentView(R.layout.activity_home_prestador)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

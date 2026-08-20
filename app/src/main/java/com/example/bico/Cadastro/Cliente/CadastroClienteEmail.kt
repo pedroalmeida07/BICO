@@ -17,10 +17,16 @@ class CadastroClienteEmail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            Color.TRANSPARENT,
-            Color.TRANSPARENT
-        ))
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                Color.TRANSPARENT,
+                Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
+            )
+        )
 
         binding = ActivityCadastroClienteEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)

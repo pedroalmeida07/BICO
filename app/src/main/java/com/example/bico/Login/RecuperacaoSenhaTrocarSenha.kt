@@ -16,10 +16,16 @@ class RecuperacaoSenhaTrocarSenha : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            Color.TRANSPARENT,
-            Color.TRANSPARENT
-        ))
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                Color.TRANSPARENT,
+                Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
+            )
+        )
 
         binding = ActivityRecuperacaoSenhaTrocarSenhaBinding.inflate(layoutInflater)
         setContentView(binding.root)

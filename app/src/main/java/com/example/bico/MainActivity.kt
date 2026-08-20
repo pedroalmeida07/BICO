@@ -1,6 +1,7 @@
 package com.example.bico
 
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -38,10 +39,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            android.graphics.Color.TRANSPARENT,
-            android.graphics.Color.TRANSPARENT
-        ))
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                Color.TRANSPARENT,
+                Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
+            )
+        )
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

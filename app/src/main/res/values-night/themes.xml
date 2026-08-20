@@ -7,6 +7,10 @@
         <!-- Cor da barra de status e dos icones dela -->
         <item name="android:statusBarColor">@color/saborBranco</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Cor da barra de navegação inferior (botões nativos) -->
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
     <!-- Theme for Splash Screen -->

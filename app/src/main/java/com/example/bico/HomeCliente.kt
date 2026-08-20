@@ -1,6 +1,7 @@
 package com.example.bico
 
 import android.content.Context
+import android.graphics.Color
 import android.hardware.lights.Light
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -18,9 +19,14 @@ class HomeCliente : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.light(
-            ContextCompat.getColor(this, R.color.azul),
-            android.graphics.Color.TRANSPARENT
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                ContextCompat.getColor(this, R.color.azul),
+                Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                Color.WHITE,
+                Color.WHITE
             )
         )
         setContentView(R.layout.activity_home_cliente)
