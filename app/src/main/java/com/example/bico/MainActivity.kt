@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnticipateInterpolator
+import android.view.animation.AccelerateInterpolator
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,19 +23,19 @@ class MainActivity : AppCompatActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        // Animação de saída: desce um pouco e sobe
+        // Animação de saída: sobe
         splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
             val splashScreenView = splashScreenViewProvider.view
-            val slideDownUp = ObjectAnimator.ofFloat(
+            val slideUp = ObjectAnimator.ofFloat(
                 splashScreenView,
                 View.TRANSLATION_Y,
-                0f, 800f, -splashScreenView.height.toFloat()
+                0f, -splashScreenView.height.toFloat()
             )
-            slideDownUp.interpolator = AnticipateInterpolator(1.5f)
-            slideDownUp.duration = 1000L
+            slideUp.interpolator = AccelerateInterpolator()
+            slideUp.duration = 300L
 
-            slideDownUp.doOnEnd { splashScreenViewProvider.remove() }
-            slideDownUp.start()
+            slideUp.doOnEnd { splashScreenViewProvider.remove() }
+            slideUp.start()
         }
 
         //deixa a barra de status com icones pretos
