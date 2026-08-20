@@ -66,6 +66,10 @@
             android:name=".Login.RecuperacaoSenhaTrocarSenha"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity_editar_prestador"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

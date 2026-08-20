@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_editar_prestador">
+
+    <!--Linhas de Guia-->
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"
+        android:id="@+id/guideline1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"
+        android:id="@+id/guideline2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"
+        android:id="@+id/guideline4"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_seta_esquerda_branco"
+        app:iconTint="#FFFFFF"
+        app:backgroundTint="@color/azul"
+        app:cornerRadius="24dp"
+        app:iconGravity="textStart"
+        android:padding="0dp"
+        app:iconPadding="0dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/guideline4"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:icon="@drawable/ic_lapis"
+        app:iconTint="@color/azul"
+        app:iconSize="24dp"
+        app:backgroundTint="@color/laranjaClaro"
+        android:text="Editar Foto"
+        android:textColor="@color/azul"
+        android:textSize="14sp"
+        app:cornerRadius="24dp"
+        app:iconGravity="textEnd"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="@id/guideline4"/>
+
+
+
+
+
+
+
+
+
+
+    <!--Barra Inferior-->
+    <View
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/barra_inferior_branca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/ic_home"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_home_laranja"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
+
+    <ImageView
+        android:id="@+id/ic_chat"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_chat_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_config"/>
+
+    <ImageView
+        android:id="@+id/ic_config"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_config_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_chat"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_user_barra"/>
+
+    <ImageView
+        android:id="@+id/ic_user_barra"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ic_config"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
