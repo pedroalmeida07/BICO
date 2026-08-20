@@ -30,7 +30,23 @@ class UserRepository(private val context: Context) {
         return gson.fromJson(file.readText(), type)
     }
 
-    fun realizarLogin(email: String, senha: String): User? {
-        return listarUsuarios().find { it.email == email && it.senha == senha }
+    // Em UserRepository.kt
+
+
+    //valida o email e senha e salva o email do usuário logado
+    fun realizarLogin(email: String, senha: String): User? {val user = listarUsuarios().find { it.email == email && it.senha == senha }
+        if (user != null) {
+            // Salva o e-mail do usuário logado
+            val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
+            sharedPref.edit().putString("email_logado", email).apply()
+        }
+        return user
+    }
+
+    //retorna o usuário logado
+    fun getUsuarioLogado(): User? {
+        val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
+        val email = sharedPref.getString("email_logado", null)
+        return listarUsuarios().find { it.email == email }
     }
 }
