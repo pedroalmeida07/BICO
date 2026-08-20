@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
             val slideDownUp = ObjectAnimator.ofFloat(
                 splashScreenView,
                 View.TRANSLATION_Y,
-                0f, 200f, -splashScreenView.height.toFloat()
+                0f, 800f, -splashScreenView.height.toFloat()
             )
             slideDownUp.interpolator = AnticipateInterpolator(1.5f)
-            slideDownUp.duration = 800L
+            slideDownUp.duration = 1000L
 
             slideDownUp.doOnEnd { splashScreenViewProvider.remove() }
             slideDownUp.start()
