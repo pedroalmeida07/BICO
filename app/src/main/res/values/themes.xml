@@ -20,4 +20,9 @@
         <item name="android:statusBarColor">@color/corSplash</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <!-- Tema para botão arredondado (Floating Button) -->
+    <style name="FAB_Arredondado">
+        <item name="cornerSize">50dp</item>
+    </style>
 </resources>
