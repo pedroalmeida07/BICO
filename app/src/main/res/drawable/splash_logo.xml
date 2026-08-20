@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ajustamos o tamanho para 192dp, que é o máximo permitido sem corte circular no Android 12+ -->
+    <item
+        android:drawable="@drawable/tucano_bico"
+        android:gravity="center"
+        android:width="100dp"
+        android:height="67.55dp" />
+</layer-list>

@@ -8,4 +8,14 @@
         <item name="android:statusBarColor">@color/saborBranco</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <!-- Theme for Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/corSplash</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/corSplash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Bico</item>
+        <item name="android:statusBarColor">@color/corSplash</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>

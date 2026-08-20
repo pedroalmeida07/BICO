@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="azul">#1F2F45</color>
+    <color name="corSplash">#0166A2</color>
     <color name="azulClaro">#E0E7FF</color>
     <color name="saborBranco">#F8F6F7</color>
     <color name="cinza">#686968</color>
