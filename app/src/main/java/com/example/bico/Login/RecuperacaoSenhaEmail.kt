@@ -25,9 +25,16 @@ class RecuperacaoSenhaEmail : AppCompatActivity() {
         // Evento de clique
 
         binding.buttonAvancar.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
-            val intent = Intent(this, RecuperacaoSenhaCodigo::class.java)
-            startActivity(intent) // Inicia a nova tela
+            val email = binding.edtEmail.text.toString()
+
+            if (email.isNotEmpty()) {
+                // Criar o Intent para abrir a outra Activity
+                val intent = Intent(this, RecuperacaoSenhaCodigo::class.java)
+                intent.putExtra("EMAIL_RECUPERACAO", email)
+                startActivity(intent) // Inicia a nova tela
+            } else {
+                binding.edtEmail.error = "Por favor, insira seu e-mail"
+            }
         }
     }
 }

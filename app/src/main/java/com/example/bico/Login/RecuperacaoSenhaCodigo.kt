@@ -22,11 +22,15 @@ class RecuperacaoSenhaCodigo : AppCompatActivity() {
         binding = ActivityRecuperacaoSenhaCodigoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Cria uma variável com o email inserido na última tela pra repassar pra próxima
+        val email = intent.getStringExtra("EMAIL_RECUPERACAO")
+
         // Evento de clique
 
         binding.buttonAvancar.setOnClickListener {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, RecuperacaoSenhaTrocarSenha::class.java)
+            intent.putExtra("EMAIL_RECUPERACAO", email)
             startActivity(intent) // Inicia a nova tela
         }
     }

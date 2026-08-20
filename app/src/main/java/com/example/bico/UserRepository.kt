@@ -49,4 +49,18 @@ class UserRepository(private val context: Context) {
         val email = sharedPref.getString("email_logado", null)
         return listarUsuarios().find { it.email == email }
     }
+
+    // Atualiza a senha de um usuário pelo e-mail
+    fun atualizarSenha(email: String, novaSenha: String): Boolean {
+        val lista = listarUsuarios().toMutableList()
+        val index = lista.indexOfFirst { it.email == email }
+
+        if (index != -1) {
+            val userAtualizado = lista[index].copy(senha = novaSenha)
+            lista[index] = userAtualizado
+            getFile().writeText(gson.toJson(lista))
+            return true
+        }
+        return false
+    }
 }
