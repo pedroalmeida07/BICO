@@ -1,29 +1,22 @@
 package com.example.bico
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.hardware.lights.Light
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.activity.SystemBarStyle
-import androidx.activity.SystemBarStyle.Companion.dark
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.widget.TextView
-import com.example.bico.UserRepository
 
+import androidx.activity.SystemBarStyle
+import android.graphics.Color
 
-class HomeCliente : AppCompatActivity() {
+class activity_pesquisa_cliente : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //deixa a barra de status com icones pretos
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(
-                ContextCompat.getColor(this, R.color.azul),
+                Color.TRANSPARENT,
                 Color.TRANSPARENT
             ),
             navigationBarStyle = SystemBarStyle.light(
@@ -31,13 +24,7 @@ class HomeCliente : AppCompatActivity() {
                 Color.WHITE
             )
         )
-        setContentView(R.layout.activity_home_cliente)
-
-        //Mostra o nome do cliente na pagina home
-        val repository = UserRepository(this)
-        val usuario = repository.getUsuarioLogado()
-        val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
-        txtNomeUsuario.text = usuario?.nome ?: "Usuário"
+        setContentView(R.layout.activity_pesquisa_cliente)
 
         findViewById<ImageView>(R.id.ic_pesquisa).setOnClickListener {
             if (this !is activity_pesquisa_cliente) {
@@ -46,7 +33,7 @@ class HomeCliente : AppCompatActivity() {
             }
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.parentMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

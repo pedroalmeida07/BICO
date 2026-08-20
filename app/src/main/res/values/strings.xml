@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bico</string>
+    <string name="hint_pesquisar">Pesquisar...</string>
 </resources>
