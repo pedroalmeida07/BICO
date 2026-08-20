@@ -107,35 +107,71 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/txtTrocarSenha" />
 
-    <EditText
-        android:id="@+id/edtNovaSenha"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNovaSenha"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/txtCrieSenha"
         android:layout_marginTop="45dp"
-        android:fontFamily="@font/inter"
-        android:hint="Nova Senha"
-        android:inputType="textPassword"
-        android:textColor="@color/cinza"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/txtCrieSenha" />
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_senha_visibilidade"
+        app:passwordToggleTint="@null"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
 
-    <EditText
-        android:id="@+id/edtConfirmarSenha"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNovaSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:inputType="textPassword"
+            android:hint="Nova Senha"
+            android:textColor="@color/cinza"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConfirmarSenha"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/inter"
-        android:hint="Confirmar Senha"
-        android:inputType="textPassword"
-        android:textColor="@color/cinza"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/edtNovaSenha" />
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/tilNovaSenha"
+        android:layout_marginTop="20dp"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_senha_visibilidade"
+        app:passwordToggleTint="@null"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtConfirmarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:inputType="textPassword"
+            android:hint="Confirmar Senha"
+            android:textColor="@color/cinza"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonAvancar"
@@ -153,7 +189,7 @@
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/edtConfirmarSenha" />
+        app:layout_constraintTop_toBottomOf="@id/tilConfirmarSenha" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

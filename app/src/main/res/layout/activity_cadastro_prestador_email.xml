@@ -77,40 +77,92 @@
         android:orientation="horizontal"
         android:id="@+id/guideline4"/>
 
-    <!--Inputs-->
-    <EditText
-        android:id="@+id/editTextEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/subtexto"
         android:layout_marginTop="30dp"
-        android:hint="E-Mail"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/subtexto" />
+        app:hintEnabled="false"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
 
-    <EditText
-        android:id="@+id/editTextSenha"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textEmailAddress"
+            android:hint="E-Mail"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/tilEmail"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextEmail"
-        android:inputType="textPassword"
-        android:hint="Senha"
-        />
-    <EditText
-        android:id="@+id/editTextConfirmarSenha"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_senha_visibilidade"
+        app:passwordToggleTint="@null"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textPassword"
+            android:hint="Senha"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConfirmarSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/tilSenha"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextSenha"
-        android:inputType="textPassword"
-        android:hint="Confirmar Senha"
-        />
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_senha_visibilidade"
+        app:passwordToggleTint="@null"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextConfirmarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textPassword"
+            android:hint="Confirmar Senha"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -127,6 +179,6 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmarSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/tilConfirmarSenha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,35 +108,68 @@
         android:fontFamily="@font/roboto_medium"
         />
 
-    <EditText
-        android:id="@+id/edtEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        android:fontFamily="@font/inter"
-        android:textSize="16sp"
-        android:textColor="@color/cinza"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/txtBoasVindas"
         android:layout_marginTop="100dp"
-        />
+        app:hintEnabled="false"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
 
-    <EditText
-        android:id="@+id/edtSenha"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:fontFamily="@font/inter"
+            android:textSize="16sp"
+            android:textColor="@color/cinza"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSenha"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:inputType="textPassword"
-        android:hint="Senha"
-        android:fontFamily="@font/inter"
-        android:textSize="16sp"
-        android:textColor="@color/cinza"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@id/tilEmail"
         android:layout_marginTop="50dp"
-        />
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/selector_senha_visibilidade"
+        app:passwordToggleTint="@null"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textPassword"
+            android:hint="Senha"
+            android:fontFamily="@font/inter"
+            android:textSize="16sp"
+            android:textColor="@color/cinza"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtEsqueceuSenha"
@@ -144,7 +177,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/edtSenha"
+        app:layout_constraintTop_toBottomOf="@id/tilSenha"
         android:text="Esqueceu sua senha?"
         android:fontFamily="@font/inter"
         android:textStyle="bold"
