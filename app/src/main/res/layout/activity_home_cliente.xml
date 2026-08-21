@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context=".HomeCliente">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -466,15 +472,17 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:paddingBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3">
 
         <View
             android:id="@+id/barraInferior"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="90dp"
             android:background="@drawable/barra_inferior_branca"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp"/>
 
         <ImageView
             android:id="@+id/ic_home"

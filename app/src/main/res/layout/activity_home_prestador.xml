@@ -447,16 +447,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"/>
-
-    <ImageView
-        android:id="@+id/ic_pesquisa"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_pesquisa_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
 
     <ImageView
@@ -464,10 +454,11 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_chat_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
         app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_config"/>
+
 
     <ImageView
         android:id="@+id/ic_config"
