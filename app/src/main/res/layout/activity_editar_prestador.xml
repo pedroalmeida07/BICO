@@ -2,272 +2,334 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/parentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".activity_editar_prestador">
 
-    <!--Linhas de Guia-->
     <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.1"
-        android:orientation="vertical"
-        android:id="@+id/guideline1"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.9"
-        android:orientation="vertical"
-        android:id="@+id/guideline2"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.9"
-        android:orientation="horizontal"
-        android:id="@+id/guideline3"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.1"
-        android:orientation="horizontal"
-        android:id="@+id/guideline4"/>
-
-
-    <ImageView
-        android:id="@+id/imgFotoPerfilPrestador"
+        android:id="@+id/guideline3"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ditador"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:icon="@drawable/ic_seta_esquerda_branco"
-        app:iconTint="#FFFFFF"
-        app:backgroundTint="@color/azul"
-        app:cornerRadius="24dp"
-        app:iconGravity="textStart"
-        android:padding="0dp"
-        app:iconPadding="0dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/guideline4"/>
+    <!-- ScrollView contendo o conteúdo rolável -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEditarFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:icon="@drawable/ic_lapis"
-        app:iconTint="@color/azul"
-        app:iconSize="24dp"
-        app:backgroundTint="@color/laranjaClaro"
-        android:text="Editar Foto"
-        android:textColor="@color/azul"
-        android:textSize="14sp"
-        app:cornerRadius="24dp"
-        app:iconGravity="textEnd"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/guideline4"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtNomePrestador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welington Matos - Eletricista"
-        android:textSize="18sp"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador"
-        android:layout_marginTop="16dp"/>
+            <!-- Linhas de Guia internas -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
 
-    <ImageView
-        android:id="@+id/ic_lapisNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtNomePrestador"
-        app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
-        android:layout_marginStart="10dp"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
 
-    <TextView
-        android:id="@+id/txtTituloDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sobre"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/txtNomePrestador"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        android:layout_marginTop="30dp"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1" />
 
-    <ImageView
-        android:id="@+id/ic_lapisSobre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtTituloDesc"
-        app:layout_constraintStart_toEndOf="@id/txtTituloDesc"
-        android:layout_marginStart="10dp"/>
+            <ImageView
+                android:id="@+id/imgFotoPerfilPrestador"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ditador" />
 
-    <TextView
-        android:id="@+id/txtDesc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat dolor fugiat reprehenderit aute mollit ipsum occaecat nisi esse voluptate dolor laborum dolor. Qui pariatur sunt dolore cupidatat elit aute dolore ex minim labore ut nisi."
-        android:textColor="@color/azul"
-        android:fontFamily="@font/inter"
-        android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/txtTituloDesc"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        android:layout_marginTop="10dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVoltar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                app:backgroundTint="@color/azul"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_seta_esquerda_branco"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="#FFFFFF"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/guideline4" />
 
-    <TextView
-        android:id="@+id/txtTituloServicos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Serviços Oferecidos"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/txtDesc"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        android:layout_marginTop="30dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="15dp"
+                android:text="Editar Foto"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:backgroundTint="@color/laranjaClaro"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_lapis"
+                app:iconGravity="textEnd"
+                app:iconSize="24dp"
+                app:iconTint="@color/azul"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/guideline4" />
 
-    <ImageView
-        android:id="@+id/ic_lapisServicos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtTituloServicos"
-        app:layout_constraintStart_toEndOf="@id/txtTituloServicos"
-        android:layout_marginStart="10dp"/>
+            <TextView
+                android:id="@+id/txtNomePrestador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Welington Matos - Eletricista"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador" />
 
-    <TextView
-        android:id="@+id/txtServico1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Instalação Elétrica"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:background="@drawable/bg_tag_servico"
-        android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/txtTituloServicos"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintEnd_toStartOf="@id/txtServico2"
-        android:layout_marginTop="10dp"/>
+            <ImageView
+                android:id="@+id/ic_lapisNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
+                app:layout_constraintTop_toTopOf="@id/txtNomePrestador" />
 
-    <TextView
-        android:id="@+id/txtServico2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Quadros Elétricos"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:background="@drawable/bg_tag_servico"
-        android:padding="5dp"
-        app:layout_constraintTop_toTopOf="@id/txtServico1"
-        app:layout_constraintStart_toEndOf="@id/txtServico1"
-        app:layout_constraintEnd_toStartOf="@id/txtServico3"
-        />
+            <TextView
+                android:id="@+id/txtTituloDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Sobre"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtNomePrestador" />
 
-    <TextView
-        android:id="@+id/txtServico3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Manutenção Elétrica"
-        android:gravity="center"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="15sp"
-        android:background="@drawable/bg_tag_servico"
-        android:padding="5dp"
-        app:layout_constraintTop_toTopOf="@id/txtServico2"
-        app:layout_constraintStart_toEndOf="@id/txtServico2"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        />
+            <ImageView
+                android:id="@+id/ic_lapisSobre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloDesc"
+                app:layout_constraintTop_toTopOf="@id/txtTituloDesc" />
 
-    <TextView
-        android:id="@+id/txtTituloLoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Local de Atuação"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/txtServico1"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        android:layout_marginTop="30dp"/>
+            <TextView
+                android:id="@+id/txtDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat dolor fugiat reprehenderit aute mollit ipsum occaecat nisi esse voluptate dolor laborum dolor. Qui pariatur sunt dolore cupidatat elit aute dolore ex minim labore ut nisi."
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloDesc" />
 
-    <ImageView
-        android:id="@+id/ic_lapisLocal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtTituloLoc"
-        app:layout_constraintStart_toEndOf="@id/txtTituloLoc"
-        android:layout_marginStart="10dp"/>
+            <TextView
+                android:id="@+id/txtTituloServicos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Serviços Oferecidos"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtDesc" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_localizacao_laranja"
-        android:id="@+id/imgLocLaranja"
-        app:layout_constraintTop_toBottomOf="@id/txtTituloLoc"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        android:layout_marginTop="10dp"/>
+            <ImageView
+                android:id="@+id/ic_lapisServicos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloServicos"
+                app:layout_constraintTop_toTopOf="@id/txtTituloServicos" />
 
-    <TextView
-        android:id="@+id/txtCidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Serra - ES"
-        android:fontFamily="@font/inter"
-        android:textColor="@color/azul"
-        app:layout_constraintTop_toTopOf="@id/imgLocLaranja"
-        app:layout_constraintBottom_toBottomOf="@id/imgLocLaranja"
-        app:layout_constraintStart_toEndOf="@id/imgLocLaranja"
-        android:layout_marginStart="5dp"/>
+            <TextView
+                android:id="@+id/txtServico1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_tag_servico"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Instalação Elétrica"
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/txtServico2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloServicos" />
 
-    <TextView
-        android:id="@+id/txtTituloFotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fotos"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/imgLocLaranja"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        android:layout_marginTop="30dp"/>
+            <TextView
+                android:id="@+id/txtServico2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tag_servico"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Quadros Elétricos"
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/txtServico3"
+                app:layout_constraintStart_toEndOf="@id/txtServico1"
+                app:layout_constraintTop_toTopOf="@id/txtServico1" />
 
-    <ImageView
-        android:id="@+id/ic_lapisFotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtTituloFotos"
-        app:layout_constraintStart_toEndOf="@id/txtTituloFotos"
-        android:layout_marginStart="10dp"/>
+            <TextView
+                android:id="@+id/txtServico3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tag_servico"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Manutenção Elétrica"
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@id/txtServico2"
+                app:layout_constraintTop_toTopOf="@id/txtServico2" />
+
+            <TextView
+                android:id="@+id/txtTituloLoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Local de Atuação"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtServico1" />
+
+            <ImageView
+                android:id="@+id/ic_lapisLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloLoc"
+                app:layout_constraintTop_toTopOf="@id/txtTituloLoc" />
+
+            <ImageView
+                android:id="@+id/imgLocLaranja"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_localizacao_laranja"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloLoc" />
+
+            <TextView
+                android:id="@+id/txtCidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/inter"
+                android:text="Serra - ES"
+                android:textColor="@color/azul"
+                app:layout_constraintBottom_toBottomOf="@id/imgLocLaranja"
+                app:layout_constraintStart_toEndOf="@id/imgLocLaranja"
+                app:layout_constraintTop_toTopOf="@id/imgLocLaranja" />
+
+            <TextView
+                android:id="@+id/txtTituloFotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Fotos"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/imgLocLaranja" />
+
+            <ImageView
+                android:id="@+id/ic_lapisFotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloFotos"
+                app:layout_constraintTop_toTopOf="@id/txtTituloFotos" />
+
+            <ImageView
+                android:id="@+id/imgFoto1"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloFotos"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto2"
+                android:scaleType="centerInside"
+                android:layout_margin="10dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toTopOf="@id/imgFoto1"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto1"
+                app:layout_constraintStart_toEndOf="@id/imgFoto1"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:scaleType="centerInside"
+                android:layout_margin="10dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toBottomOf="@id/imgFoto1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto4"
+                android:scaleType="centerInside"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="20dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto4"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toTopOf="@id/imgFoto3"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto3"
+                app:layout_constraintStart_toEndOf="@id/imgFoto3"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:scaleType="centerInside"
+                android:layout_margin="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 
@@ -275,62 +337,66 @@
 
 
 
-
-
-
-
-    <!--Barra Inferior-->
-    <View
-        android:id="@+id/barraInferior"
+    <!-- Barra Inferior Fixa -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBarra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/barra_inferior_branca"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
-        android:layout_marginTop="15dp"/>
-
-    <ImageView
-        android:id="@+id/ic_home"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_home_laranja"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
+        app:layout_constraintTop_toTopOf="@id/guideline3">
 
+        <View
+            android:id="@+id/barraInferior"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/barra_inferior_branca"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp"/>
 
-    <ImageView
-        android:id="@+id/ic_chat"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_chat_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_config"/>
+        <ImageView
+            android:id="@+id/ic_home"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_home_laranja"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_chat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
-    <ImageView
-        android:id="@+id/ic_config"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_config_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_chat"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_user_barra"/>
+        <ImageView
+            android:id="@+id/ic_chat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_chat_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_config"
+            app:layout_constraintStart_toEndOf="@id/ic_home"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
-    <ImageView
-        android:id="@+id/ic_user_barra"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ic_config"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/ic_config"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_config_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_user_barra"
+            app:layout_constraintStart_toEndOf="@id/ic_chat"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
+        <ImageView
+            android:id="@+id/ic_user_barra"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_config"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
