@@ -23,19 +23,19 @@ class MainActivity : AppCompatActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        // Animação de saída: sobe
+        // Animação de saída: fade out
         splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
             val splashScreenView = splashScreenViewProvider.view
-            val slideUp = ObjectAnimator.ofFloat(
+            val fadeOut = ObjectAnimator.ofFloat(
                 splashScreenView,
-                View.TRANSLATION_Y,
-                0f, -splashScreenView.height.toFloat()
+                View.ALPHA,
+                1f, 0f
             )
-            slideUp.interpolator = AccelerateInterpolator()
-            slideUp.duration = 300L
+            fadeOut.interpolator = AccelerateInterpolator()
+            fadeOut.duration = 300L
 
-            slideUp.doOnEnd { splashScreenViewProvider.remove() }
-            slideUp.start()
+            fadeOut.doOnEnd { splashScreenViewProvider.remove() }
+            fadeOut.start()
         }
 
         //deixa a barra de status com icones pretos
