@@ -36,6 +36,40 @@
         android:orientation="horizontal"
         android:id="@+id/guideline4"/>
 
+    <ImageView
+        android:id="@+id/imgFotoPerfilPrestador"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ditador"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtNomePrestador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welington Matos - Eletricista"
+        android:textSize="18sp"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador"
+        android:layout_marginTop="16dp"/>
+
+    <ImageView
+        android:id="@+id/ic_lapisNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lapis"
+        app:layout_constraintTop_toTopOf="@id/txtNomePrestador"
+        app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
+        android:layout_marginStart="10dp"/>
+
+
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnVoltar"
@@ -99,24 +133,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"/>
-
-    <ImageView
-        android:id="@+id/ic_pesquisa"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_pesquisa_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/barraInferior"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
+
 
     <ImageView
         android:id="@+id/ic_chat"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_chat_preto"
-        app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
         app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ic_config"/>
@@ -140,6 +165,7 @@
         app:layout_constraintStart_toEndOf="@id/ic_config"
         app:layout_constraintTop_toTopOf="@id/barraInferior"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
 
