@@ -31,29 +31,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="92dp" />
+        app:layout_constraintGuide_end="639dp" />
 
 
-
-    <EditText
-        android:id="@+id/editTextPesquisar"
-        android:layout_width="0dp"
-        android:layout_height="47sp"
-        android:background="@drawable/barra_pesquisa"
-        android:textSize="16sp"
-        android:hint="@string/hint_pesquisar"
-        android:paddingStart="16sp"
-        android:paddingEnd="16sp"
-        android:drawableEnd="@drawable/ic_pesquisa_preto"
-        android:drawablePadding="8sp"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/guideline4" />
-
+        <EditText
+            android:id="@+id/editTextPesquisar"
+            android:layout_width="0dp"
+            android:layout_height="47sp"
+            android:background="@drawable/barra_pesquisa"
+            android:textSize="16sp"
+            android:hint="@string/hint_pesquisar"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp"
+            android:drawableEnd="@drawable/ic_pesquisa_preto"
+            android:drawablePadding="8sp"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/guideline4"/>
 
 
     <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_filters"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="153dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerBarra"
         android:layout_width="match_parent"
