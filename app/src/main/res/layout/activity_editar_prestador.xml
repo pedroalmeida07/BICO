@@ -46,31 +46,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/txtNomePrestador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welington Matos - Eletricista"
-        android:textSize="18sp"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador"
-        android:layout_marginTop="16dp"/>
-
-    <ImageView
-        android:id="@+id/ic_lapisNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_lapis"
-        app:layout_constraintTop_toTopOf="@id/txtNomePrestador"
-        app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
-        android:layout_marginStart="10dp"/>
-
-
-
-
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnVoltar"
         android:layout_width="48dp"
@@ -105,6 +80,135 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/guideline4"/>
+
+    <TextView
+        android:id="@+id/txtNomePrestador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welington Matos - Eletricista"
+        android:textSize="18sp"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador"
+        android:layout_marginTop="16dp"/>
+
+    <ImageView
+        android:id="@+id/ic_lapisNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lapis"
+        app:layout_constraintTop_toTopOf="@id/txtNomePrestador"
+        app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/txtTituloDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sobre"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txtNomePrestador"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/ic_lapisSobre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lapis"
+        app:layout_constraintTop_toTopOf="@id/txtTituloDesc"
+        app:layout_constraintStart_toEndOf="@id/txtTituloDesc"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat dolor fugiat reprehenderit aute mollit ipsum occaecat nisi esse voluptate dolor laborum dolor. Qui pariatur sunt dolore cupidatat elit aute dolore ex minim labore ut nisi."
+        android:textColor="@color/azul"
+        android:fontFamily="@font/inter"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/txtTituloDesc"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtTituloServicos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Serviços Oferecidos"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txtDesc"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/ic_lapisServicos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lapis"
+        app:layout_constraintTop_toTopOf="@id/txtTituloServicos"
+        app:layout_constraintStart_toEndOf="@id/txtTituloServicos"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/txtServico1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Instalação Elétrica"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/bg_tag_servico"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTituloServicos"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/txtServico2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtServico2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Quadros Elétricos"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/bg_tag_servico"
+        android:padding="5dp"
+        app:layout_constraintTop_toTopOf="@id/txtServico1"
+        app:layout_constraintStart_toEndOf="@id/txtServico1"
+        app:layout_constraintEnd_toStartOf="@id/txtServico3"
+        />
+
+    <TextView
+        android:id="@+id/txtServico3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Manutenção Elétrica"
+        android:gravity="center"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="15sp"
+        android:background="@drawable/bg_tag_servico"
+        android:padding="5dp"
+        app:layout_constraintTop_toTopOf="@id/txtServico2"
+        app:layout_constraintStart_toEndOf="@id/txtServico2"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        />
+
+
+
+
+
 
 
 
