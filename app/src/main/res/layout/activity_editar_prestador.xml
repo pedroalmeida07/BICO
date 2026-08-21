@@ -36,6 +36,13 @@
         android:orientation="horizontal"
         android:id="@+id/guideline4"/>
 
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <ImageView
         android:id="@+id/imgFotoPerfilPrestador"
         android:layout_width="match_parent"
@@ -204,6 +211,27 @@
         app:layout_constraintStart_toEndOf="@id/txtServico2"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         />
+
+    <TextView
+        android:id="@+id/txtTituloLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local de Atuação"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txtServico1"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/ic_lapisLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lapis"
+        app:layout_constraintTop_toTopOf="@id/txtTituloLoc"
+        app:layout_constraintStart_toEndOf="@id/txtTituloLoc"
+        android:layout_marginStart="10dp"/>
 
 
 
