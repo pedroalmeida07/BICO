@@ -41,7 +41,10 @@ class CadastroClienteLocal : AppCompatActivity() {
 
             // Salva no objeto temporário
             UserRepository.tempUser = UserRepository.tempUser.copy(
-                local = "$cep, $numero - $complemento"
+                local = "$cep, $numero - $complemento",
+                cep = cep,
+                numero = numero,
+                complemento = complemento
             )
 
             val intent = Intent(this, CadastroClienteEmail::class.java)

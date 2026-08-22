@@ -355,7 +355,7 @@
             android:background="@drawable/barra_inferior_branca"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginBottom="15dp"/>
 
         <ImageView
             android:id="@+id/ic_home"
@@ -395,7 +395,8 @@
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ic_config"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/black"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

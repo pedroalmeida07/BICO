@@ -58,7 +58,7 @@ class CadastroClienteEmail : AppCompatActivity() {
 
             Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
-            // Vai para a Home e limpa as telas anteriores
+            // Vai para a tela inicial e limpa as telas anteriores
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

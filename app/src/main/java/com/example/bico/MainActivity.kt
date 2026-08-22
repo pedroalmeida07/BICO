@@ -60,11 +60,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent) // Inicia a nova tela
         }
         binding.btnCadastrar.setOnClickListener {
+            UserRepository.resetTempUser()
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, CadastroClienteNome::class.java)
             startActivity(intent) // Inicia a nova tela
         }
         binding.txtCadastrarPrestador.setOnClickListener {
+            UserRepository.resetTempUser()
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, CadastroPrestadorNome::class.java)
             startActivity(intent) // Inicia a nova tela

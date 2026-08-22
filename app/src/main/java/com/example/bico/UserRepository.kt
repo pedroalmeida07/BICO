@@ -13,6 +13,10 @@ class UserRepository(private val context: Context) {
     // Dados temporários para o fluxo de telas de cadastro
     companion object {
         var tempUser = User()
+
+        fun resetTempUser() {
+            tempUser = User()
+        }
     }
 
     private fun getFile(): File = File(context.filesDir, fileName)

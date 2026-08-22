@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,17 +28,26 @@ class HomePrestador : AppCompatActivity() {
         )
         setContentView(R.layout.activity_home_prestador)
 
-        findViewById<ImageView>(R.id.ic_pesquisa).setOnClickListener {
-            if (this !is activity_pesquisa_cliente) {
-                val intent = Intent(this, activity_pesquisa_cliente::class.java)
-                startActivity(intent)
-            }
-        }
+        //Mostra o primeiro nome do prestador na pagina home
+        val repository = UserRepository(this)
+        val usuario = repository.getUsuarioLogado()
+        val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
+        txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        findViewById<ImageView>(R.id.ic_user_barra).setOnClickListener {
+            val intent = Intent(this, EditarPrestador::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<ImageView>(R.id.imgUser).setOnClickListener {
+            val intent = Intent(this, EditarPrestador::class.java)
+            startActivity(intent)
         }
     }
 }

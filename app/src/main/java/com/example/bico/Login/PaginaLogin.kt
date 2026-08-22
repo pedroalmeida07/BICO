@@ -37,7 +37,7 @@ class PaginaLogin : AppCompatActivity() {
 
         binding.btnNaoTenhoConta.setOnClickListener {
             // Reinicia o usuário temporário ao iniciar um novo cadastro
-            UserRepository.tempUser = User()
+            UserRepository.resetTempUser()
             startActivity(Intent(this, CadastroClienteNome::class.java))
         }
 

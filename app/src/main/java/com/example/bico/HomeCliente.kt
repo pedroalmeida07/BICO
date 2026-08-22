@@ -1,20 +1,16 @@
 package com.example.bico
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.hardware.lights.Light
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.SystemBarStyle
-import androidx.activity.SystemBarStyle.Companion.dark
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
-import com.example.bico.UserRepository
 
 
 class HomeCliente : AppCompatActivity() {
@@ -33,17 +29,15 @@ class HomeCliente : AppCompatActivity() {
         )
         setContentView(R.layout.activity_home_cliente)
 
-        //Mostra o nome do cliente na pagina home
+        //Mostra o primeiro nome do cliente na pagina home
         val repository = UserRepository(this)
         val usuario = repository.getUsuarioLogado()
         val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
-        txtNomeUsuario.text = usuario?.nome ?: "Usuário"
+        txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
 
         findViewById<ImageView>(R.id.ic_pesquisa).setOnClickListener {
-            if (this !is activity_pesquisa_cliente) {
-                val intent = Intent(this, activity_pesquisa_cliente::class.java)
-                startActivity(intent)
-            }
+            val intent = Intent(this, PesquisaCliente::class.java)
+            startActivity(intent)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.parentMain)) { v, insets ->

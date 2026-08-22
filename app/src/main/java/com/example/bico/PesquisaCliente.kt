@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.activity.SystemBarStyle
 import android.graphics.Color
 
-class activity_pesquisa_cliente : AppCompatActivity() {
+class PesquisaCliente : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -25,13 +25,6 @@ class activity_pesquisa_cliente : AppCompatActivity() {
             )
         )
         setContentView(R.layout.activity_pesquisa_cliente)
-
-        findViewById<ImageView>(R.id.ic_pesquisa).setOnClickListener {
-            if (this !is activity_pesquisa_cliente) {
-                val intent = Intent(this, activity_pesquisa_cliente::class.java)
-                startActivity(intent)
-            }
-        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

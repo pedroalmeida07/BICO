@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class activity_editar_prestador : AppCompatActivity() {
+class EditarPrestador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -25,11 +25,8 @@ class activity_editar_prestador : AppCompatActivity() {
         )
         setContentView(R.layout.activity_editar_prestador)
 
-        findViewById<ImageView>(R.id.ic_pesquisa).setOnClickListener {
-            if (this !is activity_pesquisa_cliente) {
-                val intent = Intent(this, activity_pesquisa_cliente::class.java)
-                startActivity(intent)
-            }
+        findViewById<ImageView>(R.id.ic_home).setOnClickListener {
+            finish()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
