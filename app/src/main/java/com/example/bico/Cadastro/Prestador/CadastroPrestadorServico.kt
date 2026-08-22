@@ -40,7 +40,7 @@ class CadastroPrestadorServico : AppCompatActivity() {
 
             // Salva no objeto temporário
             UserRepository.tempUser = UserRepository.tempUser.copy(
-                servico = tipo,
+                servicos = listOf(tipo),
                 local = local
             )
 

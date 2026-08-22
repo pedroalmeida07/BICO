@@ -46,6 +46,11 @@ class EditarPrestador : AppCompatActivity() {
         val txtLocal = findViewById<TextView>(R.id.txtCidade)
         txtLocal.text = usuario?.local ?: "Local"
 
+        // Lógica para mostrar serviços com RecyclerView
+        val rvServicos = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvServicos)
+        val servicos = usuario?.servicos ?: emptyList()
+        rvServicos.adapter = ServicoAdapter(servicos)
+
         // implementar funcao pra checar true/false, se tem fotos ou nao
         val temFotos = false // retonar false -> Nao mostra fotos | retornar true -> mostra fotos
 

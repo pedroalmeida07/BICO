@@ -9,7 +9,7 @@ data class User(
     val email: String = "",
     val senha: String = "",
     val usuario: String = "",
-    val servico: String = "",
+    val servicos: List<String> = emptyList(),
     val local: String = "",
     val cep: String = "",
     val numero: String = "",

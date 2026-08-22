@@ -171,51 +171,17 @@
                 app:layout_constraintStart_toEndOf="@id/txtTituloServicos"
                 app:layout_constraintTop_toTopOf="@id/txtTituloServicos" />
 
-            <TextView
-                android:id="@+id/txtServico1"
-                android:layout_width="100dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvServicos"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_tag_servico"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Instalação Elétrica"
-                android:textColor="@color/azul"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/txtServico2"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/txtTituloServicos" />
-
-            <TextView
-                android:id="@+id/txtServico2"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_tag_servico"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Quadros Elétricos"
-                android:textColor="@color/azul"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/txtServico3"
-                app:layout_constraintStart_toEndOf="@id/txtServico1"
-                app:layout_constraintTop_toTopOf="@id/txtServico1" />
-
-            <TextView
-                android:id="@+id/txtServico3"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_tag_servico"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Manutenção Elétrica"
-                android:textColor="@color/azul"
-                android:textSize="15sp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintStart_toEndOf="@id/txtServico2"
-                app:layout_constraintTop_toTopOf="@id/txtServico2" />
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloServicos"
+                tools:listitem="@layout/item_servico_tag" />
 
             <TextView
                 android:id="@+id/txtTituloLoc"
@@ -227,7 +193,7 @@
                 android:textColor="@color/azul"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/txtServico1" />
+                app:layout_constraintTop_toBottomOf="@id/rvServicos" />
 
             <ImageView
                 android:id="@+id/ic_lapisLocal"
