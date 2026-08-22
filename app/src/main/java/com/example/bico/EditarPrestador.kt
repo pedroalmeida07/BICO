@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,15 @@ class EditarPrestador : AppCompatActivity() {
         findViewById<ImageView>(R.id.ic_home).setOnClickListener {
             finish()
         }
+
+        //Mostra o UserName do prestador
+        val repository = UserRepository(this)
+        val usuario = repository.getUsuarioLogado()
+        val txtNomeUsuario = findViewById<TextView>(R.id.txtNomePrestador)
+        txtNomeUsuario.text = usuario?.usuario ?: "UserName"
+
+        val txtLocal = findViewById<TextView>(R.id.txtCidade)
+        txtLocal.text = usuario?.local ?: "Local"
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
