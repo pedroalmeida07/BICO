@@ -36,8 +36,32 @@ class EditarPrestador : AppCompatActivity() {
         val txtNomeUsuario = findViewById<TextView>(R.id.txtNomePrestador)
         txtNomeUsuario.text = usuario?.usuario ?: "UserName"
 
+        // Lógica para mostrar/esconder o card de serviços
+        val foto1 = findViewById<ImageView>(R.id.imgFoto1)
+        val foto2 = findViewById<ImageView>(R.id.imgFoto2)
+        val foto3 = findViewById<ImageView>(R.id.imgFoto3)
+        val foto4 = findViewById<ImageView>(R.id.imgFoto4)
+        val txtSemFoto = findViewById<TextView>(R.id.txtSemFotos)
+
         val txtLocal = findViewById<TextView>(R.id.txtCidade)
         txtLocal.text = usuario?.local ?: "Local"
+
+        // implementar funcao pra checar true/false, se tem fotos ou nao
+        val temFotos = false // retonar false -> Nao mostra fotos | retornar true -> mostra fotos
+
+        if (temFotos) {
+            foto1.visibility = android.view.View.VISIBLE
+            foto2.visibility = android.view.View.VISIBLE
+            foto3.visibility = android.view.View.VISIBLE
+            foto4.visibility = android.view.View.VISIBLE
+            txtSemFoto.visibility = android.view.View.GONE
+        } else {
+            foto1.visibility = android.view.View.GONE
+            foto2.visibility = android.view.View.GONE
+            foto3.visibility = android.view.View.GONE
+            foto4.visibility = android.view.View.GONE
+            txtSemFoto.visibility = android.view.View.VISIBLE
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
