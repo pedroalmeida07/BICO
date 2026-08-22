@@ -34,6 +34,21 @@ class HomePrestador : AppCompatActivity() {
         val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
         txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
 
+        // Lógica para mostrar/esconder o card de serviços
+        val cardServico = findViewById<androidx.cardview.widget.CardView>(R.id.cardProximoServico)
+        val txtSemServicos = findViewById<TextView>(R.id.txtSemServicos)
+
+        // implementar funcao pra checar true/false, se tem serviços marcados ou nao
+        val temServicos = false // retonar false -> Nao mostra servicos | retornar true -> mostra card de servico
+
+        if (temServicos) {
+            cardServico.visibility = android.view.View.VISIBLE
+            txtSemServicos.visibility = android.view.View.GONE
+        } else {
+            cardServico.visibility = android.view.View.GONE
+            txtSemServicos.visibility = android.view.View.VISIBLE
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
