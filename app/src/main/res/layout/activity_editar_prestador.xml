@@ -60,6 +60,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ditador" />
 
+            <!--
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVoltar"
                 android:layout_width="48dp"
@@ -75,6 +76,7 @@
                 app:iconTint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4" />
+            -->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarFoto"
