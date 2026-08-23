@@ -5,9 +5,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.EditText
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -35,6 +39,41 @@ class EditarPrestador : AppCompatActivity() {
         val usuario = repository.getUsuarioLogado()
         val txtNomeUsuario = findViewById<TextView>(R.id.txtNomePrestador)
         txtNomeUsuario.text = usuario?.usuario ?: "UserName"
+
+        // Mostra a descrição do prestador
+        val txtDesc = findViewById<TextView>(R.id.txtDesc)
+        txtDesc.text = if (usuario?.descricao?.isNotEmpty() == true) {
+            usuario.descricao
+        } else {
+            "Adicione mais informações sobre você e seus serviços."
+        }
+
+        // Clique para editar a descrição
+        findViewById<ImageView>(R.id.ic_lapisSobre).setOnClickListener {
+            val view = layoutInflater.inflate(R.layout.dialog_editar_descricao, null)
+            val input = view.findViewById<TextInputEditText>(R.id.editDescricao)
+            input.setText(usuario?.descricao ?: "")
+
+            MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+                .setTitle("Editar Sobre")
+                .setView(view)
+                .setPositiveButton("Salvar") { _, _ ->
+                    val novaDesc = input.text.toString()
+                    txtDesc.text = if (novaDesc.isNotEmpty()) {
+                        novaDesc
+                    } else {
+                        "Adicione mais informações sobre você e seus serviços."
+                    }
+                    
+                    val userLogado = repository.getUsuarioLogado()
+                    userLogado?.let { u ->
+                        val userAtualizado = u.copy(descricao = novaDesc)
+                        repository.atualizarUsuario(userAtualizado)
+                    }
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+        }
 
         // Lógica para mostrar/esconder o card de serviços
         val foto1 = findViewById<ImageView>(R.id.imgFoto1)

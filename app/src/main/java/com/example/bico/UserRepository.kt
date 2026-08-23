@@ -54,6 +54,19 @@ class UserRepository(private val context: Context) {
         return listarUsuarios().find { it.email == email }
     }
 
+    // Atualiza os dados de um usuário
+    fun atualizarUsuario(user: User): Boolean {
+        val lista = listarUsuarios().toMutableList()
+        val index = lista.indexOfFirst { it.id == user.id }
+
+        if (index != -1) {
+            lista[index] = user
+            getFile().writeText(gson.toJson(lista))
+            return true
+        }
+        return false
+    }
+
     // Atualiza a senha de um usuário pelo e-mail
     fun atualizarSenha(email: String, novaSenha: String): Boolean {
         val lista = listarUsuarios().toMutableList()

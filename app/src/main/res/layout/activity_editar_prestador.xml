@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/inter"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat dolor fugiat reprehenderit aute mollit ipsum occaecat nisi esse voluptate dolor laborum dolor. Qui pariatur sunt dolore cupidatat elit aute dolore ex minim labore ut nisi."
+                android:text="Adicione mais informações sobre você e seus serviços."
                 android:textColor="@color/azul"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
