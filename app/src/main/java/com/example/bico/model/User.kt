@@ -9,6 +9,7 @@ data class User(
     val email: String = "",
     val senha: String = "",
     val usuario: String = "",
+    val fotoPerfil: String? = null,
     val servicos: List<String> = emptyList(),
     val descricao: String = "",
     val local: String = "",

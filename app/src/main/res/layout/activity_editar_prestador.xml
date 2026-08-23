@@ -58,7 +58,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ditador" />
+                app:srcCompat="@drawable/nenuma_imagem_selecionada"
+                />
 
             <!--
             <com.google.android.material.button.MaterialButton
@@ -88,7 +89,7 @@
                 android:text="Editar Foto"
                 android:textColor="@color/azul"
                 android:textSize="14sp"
-                app:backgroundTint="@color/laranjaClaro"
+                app:backgroundTint="@color/laranja"
                 app:cornerRadius="24dp"
                 app:icon="@drawable/ic_lapis"
                 app:iconGravity="textEnd"

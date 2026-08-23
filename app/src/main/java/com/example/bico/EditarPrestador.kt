@@ -2,20 +2,45 @@ package com.example.bico
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.EditText
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class EditarPrestador : AppCompatActivity() {
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            val imgPerfil = findViewById<ImageView>(R.id.imgFotoPerfilPrestador)
+            imgPerfil.setImageURI(uri)
+
+            // Persiste a permissão para acessar a URI após reiniciar o app
+            val contentResolver = applicationContext.contentResolver
+            val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            contentResolver.takePersistableUriPermission(uri, takeFlags)
+
+            // Salva no banco de dados
+            val repository = UserRepository(this)
+            val userLogado = repository.getUsuarioLogado()
+            userLogado?.let { u ->
+                val userAtualizado = u.copy(fotoPerfil = uri.toString())
+                repository.atualizarUsuario(userAtualizado)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -39,6 +64,17 @@ class EditarPrestador : AppCompatActivity() {
         val usuario = repository.getUsuarioLogado()
         val txtNomeUsuario = findViewById<TextView>(R.id.txtNomePrestador)
         txtNomeUsuario.text = usuario?.usuario ?: "UserName"
+
+        // Carrega a foto de perfil se existir
+        val imgPerfil = findViewById<ImageView>(R.id.imgFotoPerfilPrestador)
+        usuario?.fotoPerfil?.let { uriString ->
+            imgPerfil.setImageURI(Uri.parse(uriString))
+        }
+
+        // Clique para editar a foto
+        findViewById<MaterialButton>(R.id.btnEditarFoto).setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
 
         // Mostra a descrição do prestador
         val txtDesc = findViewById<TextView>(R.id.txtDesc)
