@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ServicoAdapter(private val servicos: List<String>) :
-    RecyclerView.Adapter<ServicoAdapter.ServicoViewHolder>() {
+class ServicoAdapter(
+    private val servicos: List<String>,
+    private val onLongClick: (Int) -> Unit
+) : RecyclerView.Adapter<ServicoAdapter.ServicoViewHolder>() {
 
     class ServicoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtServico: TextView = view.findViewById(R.id.txtServicoTag)
@@ -21,6 +23,10 @@ class ServicoAdapter(private val servicos: List<String>) :
 
     override fun onBindViewHolder(holder: ServicoViewHolder, position: Int) {
         holder.txtServico.text = servicos[position]
+        holder.itemView.setOnLongClickListener {
+            onLongClick(position)
+            true
+        }
     }
 
     override fun getItemCount() = servicos.size

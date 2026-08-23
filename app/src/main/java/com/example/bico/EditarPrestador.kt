@@ -87,8 +87,56 @@ class EditarPrestador : AppCompatActivity() {
 
         // Lógica para mostrar serviços com RecyclerView
         val rvServicos = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvServicos)
-        val servicos = usuario?.servicos ?: emptyList()
-        rvServicos.adapter = ServicoAdapter(servicos)
+        val listaServicos = usuario?.servicos?.toMutableList() ?: mutableListOf()
+        
+        lateinit var adapter: ServicoAdapter
+        adapter = ServicoAdapter(listaServicos) { position ->
+            // Clique longo para remover
+            MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+                .setTitle("Remover Serviço")
+                .setMessage("Deseja remover \"${listaServicos[position]}\" dos seus serviços?")
+                .setPositiveButton("Remover") { _, _ ->
+                    listaServicos.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                    adapter.notifyItemRangeChanged(position, listaServicos.size)
+
+                    // Atualiza no banco de dados
+                    val userLogado = repository.getUsuarioLogado()
+                    userLogado?.let { u ->
+                        val userAtualizado = u.copy(servicos = listaServicos.toList())
+                        repository.atualizarUsuario(userAtualizado)
+                    }
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+        }
+        rvServicos.adapter = adapter
+
+        // Clique para adicionar novo serviço
+        findViewById<ImageView>(R.id.ic_lapisServicos).setOnClickListener {
+            val view = layoutInflater.inflate(R.layout.dialog_adicionar_servico, null)
+            val input = view.findViewById<TextInputEditText>(R.id.editServico)
+
+            MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+                .setTitle("Adicionar Serviço")
+                .setView(view)
+                .setPositiveButton("Adicionar") { _, _ ->
+                    val novoServico = input.text.toString()
+                    if (novoServico.isNotEmpty()) {
+                        listaServicos.add(novoServico)
+                        adapter.notifyItemInserted(listaServicos.size - 1)
+
+                        // Atualiza no banco de dados
+                        val userLogado = repository.getUsuarioLogado()
+                        userLogado?.let { u ->
+                            val userAtualizado = u.copy(servicos = listaServicos.toList())
+                            repository.atualizarUsuario(userAtualizado)
+                        }
+                    }
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+        }
 
         // implementar funcao pra checar true/false, se tem fotos ou nao
         val temFotos = false // retonar false -> Nao mostra fotos | retornar true -> mostra fotos
