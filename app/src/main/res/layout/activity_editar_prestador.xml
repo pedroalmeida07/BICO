@@ -51,7 +51,7 @@
                 app:layout_constraintGuide_percent="0.1" />
 
             <ImageView
-                android:id="@+id/imgFotoPerfilPrestador"
+                android:id="@+id/imgFotoHorizontalPrestador"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="50dp"
@@ -108,7 +108,7 @@
                 android:textColor="@color/azul"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/imgFotoPerfilPrestador" />
+                app:layout_constraintTop_toBottomOf="@id/imgFotoHorizontalPrestador" />
 
             <ImageView
                 android:id="@+id/ic_lapisNome"
