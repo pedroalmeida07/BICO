@@ -78,8 +78,8 @@
         android:id="@+id/guideline4"/>
 
     <!--Inputs-->
-    <EditText
-        android:id="@+id/editTextTipo"
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteServico"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
@@ -96,7 +96,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextTipo"
+        app:layout_constraintTop_toBottomOf="@id/autoCompleteServico"
         android:inputType="text"
         android:hint="Local de Atuação"
         />

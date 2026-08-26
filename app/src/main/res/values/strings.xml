@@ -1,4 +1,87 @@
 <resources>
     <string name="app_name">Bico</string>
     <string name="hint_pesquisar">Pesquisar...</string>
+
+    <string-array name="servicos">
+        <item>Advogado</item>
+        <item>Agente de viagens</item>
+        <item>Animador de eventos</item>
+        <item>Arquiteto</item>
+        <item>Assistente administrativo</item>
+        <item>Assistência técnica</item>
+        <item>Babá</item>
+        <item>Barbeiro</item>
+        <item>Barista</item>
+        <item>Beleza e estética</item>
+        <item>Bombeiro hidráulico</item>
+        <item>Chaveiro</item>
+        <item>Chef de cozinha</item>
+        <item>Coaching e mentoria</item>
+        <item>Confeiteiro</item>
+        <item>Consultor</item>
+        <item>Consultor financeiro</item><item>Consultor de imagem</item>
+        <item>Contador</item>
+        <item>Costureiro</item>
+        <item>Cuidado de idosos</item><item>Cuidado de crianças</item><item>Cuidado de pets</item>
+        <item>Cuidador</item>
+        <item>Decoração</item>
+        <item>Dedetização</item>
+        <item>Design gráfico</item><item>Design de interiores</item>
+        <item>Desenvolvedor de software</item>
+        <item>Eletricista</item><item>Eletricista automotivo</item>
+        <item>Eletrônica</item>
+        <item>Encanador</item>
+        <item>Engenheiro</item>
+        <item>Entregador</item>
+        <item>Eventos</item>
+        <item>Faxineiro</item>
+        <item>Fotógrafo</item>
+        <item>Funileiro</item>
+        <item>Garçom</item><item>Garçom para eventos</item>
+        <item>Gesseiro</item>
+        <item>Guincho e reboque</item>
+        <item>Instalação de ar-condicionado</item><item>Instalação de câmeras</item>
+        <item>Instalação de internet</item><item>Instalação de móveis</item><item>Instalação elétrica</item>
+        <item>Instalação hidráulica</item><item>Instalação de equipamentos</item><item>Instalação de antenas</item>
+        <item>Jardinagem</item>
+        <item>Manutenção de computadores</item><item>Manutenção de eletrodomésticos</item>
+        <item>Manutenção de ar-condicionado</item><item>Manutenção predial</item>
+        <item>Manutenção residencial</item><item>Manutenção industrial</item><item>Manutenção automotiva</item>
+        <item>Manutenção de piscinas</item><item>Manutenção de máquinas</item><item>Manutenção de equipamentos</item>
+        <item>Manicure</item>
+        <item>Marceneiro</item>
+        <item>Massagista</item>
+        <item>Mecânico</item><item>Mecânico de motos</item><item>Mecânico de máquinas</item>
+        <item>Montador de móveis</item>
+        <item>Motoboy</item>
+        <item>Motorista</item><item>Motorista particular</item>
+        <item>Mudanças</item>
+        <item>Organização residencial</item><item>Organizador de eventos</item>
+        <item>Outros Serviços</item>
+        <item>Paisagismo</item>
+        <item>Pedreiro</item>
+        <item>Personal trainer</item>
+        <item>Pet sitter</item>
+        <item>Pintor</item>
+        <item>Pintor automotivo</item>
+        <item>Piscineiro</item>
+        <item>Podador de árvores</item>
+        <item>Podólogo</item>
+        <item>Professor particular</item><item>Professor de idiomas</item><item>Professor de música</item>
+        <item>Programador</item>
+        <item>Redator</item>
+        <item>Reformas</item>
+        <item>Refrigeração</item>
+        <item>Reparos residenciais</item><item>Reparos de eletrônicos</item><item>Reparos automotivos</item>
+        <item>Salão de beleza</item>
+        <item>Segurança</item><item>Segurança eletrônica</item>
+        <item>Serralheiro</item>
+        <item>Serviços de limpeza</item><item>Serviços de transporte</item>
+        <item>Soldador</item>
+        <item>Técnico de informática</item><item>Técnico de celulares</item><item>Técnico de eletrônicos</item><item>Técnico de eletrodomésticos</item>
+        <item>Tradutor</item>
+        <item>Veterinário</item>
+        <item>Vidraceiro</item>
+        <item>Web designer</item>
+    </string-array>
 </resources>
