@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroClienteNomeBinding
+import com.example.bico.utils.CpfMaskWatcher
 
 class CadastroClienteNome : AppCompatActivity() {
     private lateinit var binding: ActivityCadastroClienteNomeBinding
@@ -29,6 +30,8 @@ class CadastroClienteNome : AppCompatActivity() {
         binding = ActivityCadastroClienteNomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.editTextCPF.addTextChangedListener(CpfMaskWatcher(binding.editTextCPF))
+
         binding.buttonAvancar.setOnClickListener {
             val nome = binding.editTextNome.text.toString()
             val cpf = binding.editTextCPF.text.toString()
@@ -41,7 +44,7 @@ class CadastroClienteNome : AppCompatActivity() {
             // Salva no objeto temporário
             UserRepository.tempUser = UserRepository.tempUser.copy(
                 nome = nome,
-                cpf = cpf,
+                cpf = CpfMaskWatcher.unmask(cpf),
                 tipo = "CLIENTE"
             )
 
