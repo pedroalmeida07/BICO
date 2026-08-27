@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
 import com.example.bico.utils.CpfMaskWatcher
+import com.example.bico.utils.CpfValidator
 
 class CadastroPrestadorNome : AppCompatActivity() {
 
@@ -39,6 +40,11 @@ class CadastroPrestadorNome : AppCompatActivity() {
 
             if (nome.isEmpty() || cpf.isEmpty()) {
                 Toast.makeText(this, "Por favor, preencha o nome e o CPF", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!CpfValidator.isValid(cpf)) {
+                Toast.makeText(this, "CPF inválido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
