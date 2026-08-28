@@ -1,16 +1,14 @@
-package com.example.bico
+package com.example.bico.Prestador
 
-import android.content.Intent
- import android.graphics.Color
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.ViewGroup
+import android.view.View
 import android.widget.ImageView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
@@ -21,6 +19,9 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.example.bico.R
+import com.example.bico.ServicoAdapter
+import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -31,7 +32,7 @@ class EditarPrestador : AppCompatActivity() {
     private lateinit var binding: ActivityEditarPrestadorBinding
     private lateinit var repository: UserRepository
     private var currentUser: User? = null
-    
+
     private var fotoAlvo: Int = 0 // 0: Horizontal, 1-4: Fotos Inferiores
     private var isEditModeFotos = false
 
@@ -65,12 +66,12 @@ class EditarPrestador : AppCompatActivity() {
                 }
                 guidelines = CropImageView.Guidelines.ON
                 backgroundColor = Color.BLACK
-                
+
                 // Garantir visibilidade do botão de conclusão
                 activityTitle = "Recortar Foto"
                 cropMenuCropButtonTitle = "Concluir"
             }
-            
+
             cropImage.launch(CropImageContractOptions(uri, options))
         }
     }
@@ -100,7 +101,7 @@ class EditarPrestador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditarPrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         repository = UserRepository(this)
         currentUser = repository.getUsuarioLogado()
 
@@ -151,9 +152,9 @@ class EditarPrestador : AppCompatActivity() {
             binding.txtNomePrestador.text = user.usuario.ifEmpty { "UserName" }
             binding.txtCidade.text = user.local.ifEmpty { "Local" }
             binding.txtDesc.text = user.descricao.ifEmpty { "Adicione mais informações sobre você e seus serviços." }
-            
-            user.fotoHorizontalPrestador?.let { 
-                binding.imgFotoHorizontalPrestador.load(it.toUri()) 
+
+            user.fotoHorizontalPrestador?.let {
+                binding.imgFotoHorizontalPrestador.load(it.toUri())
             }
 
             setupRecyclerView(user.servicos)
@@ -185,7 +186,7 @@ class EditarPrestador : AppCompatActivity() {
             (binding.rvServicos.adapter as? ServicoAdapter)?.apply {
                 // Idealmente o adapter deveria lidar com a atualização da lista interna
                 // mas para manter compatibilidade com o adapter atual:
-                notifyDataSetChanged() 
+                notifyDataSetChanged()
             }
         }
     }
@@ -197,19 +198,19 @@ class EditarPrestador : AppCompatActivity() {
         imageViews.forEachIndexed { index, imageView ->
             when {
                 index < fotos.size -> {
-                    imageView.visibility = android.view.View.VISIBLE
+                    imageView.visibility = View.VISIBLE
                     imageView.load(fotos[index].toUri())
                     imageView.alpha = 1.0f
                 }
                 isEditModeFotos && index == fotos.size && index < 4 -> {
-                    imageView.visibility = android.view.View.VISIBLE
+                    imageView.visibility = View.VISIBLE
                     imageView.setImageResource(R.drawable.nenuma_imagem_selecionada)
                     imageView.alpha = 0.4f
                 }
-                else -> imageView.visibility = android.view.View.GONE
+                else -> imageView.visibility = View.GONE
             }
         }
-        binding.txtSemFotos.visibility = if (fotos.isEmpty() && !isEditModeFotos) android.view.View.VISIBLE else android.view.View.GONE
+        binding.txtSemFotos.visibility = if (fotos.isEmpty() && !isEditModeFotos) View.VISIBLE else View.GONE
     }
 
     private fun setupFotoClickListener(imageView: ImageView, index: Int) {
@@ -304,7 +305,7 @@ class EditarPrestador : AppCompatActivity() {
     private fun expandirFoto(uriString: String) {
         val view = layoutInflater.inflate(R.layout.dialog_expandir_foto, null)
         val imageView = view.findViewById<ImageView>(R.id.imgExpandida)
-        
+
         imageView.load(uriString.toUri()) {
             placeholder(R.drawable.nenuma_imagem_selecionada)
             error(R.drawable.nenuma_imagem_selecionada)

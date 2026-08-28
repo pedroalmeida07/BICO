@@ -1,17 +1,18 @@
-package com.example.bico
+package com.example.bico.Cliente
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.widget.TextView
-
+import com.example.bico.R
+import com.example.bico.UserRepository
 
 class HomeCliente : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

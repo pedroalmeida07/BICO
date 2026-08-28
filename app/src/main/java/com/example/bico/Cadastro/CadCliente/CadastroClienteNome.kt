@@ -1,4 +1,4 @@
-package com.example.bico.Cadastro.Prestador
+package com.example.bico.Cadastro.CadCliente
 
 import android.content.Intent
 import android.graphics.Color
@@ -8,13 +8,12 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bico.UserRepository
-import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
+import com.example.bico.databinding.ActivityCadastroClienteNomeBinding
 import com.example.bico.utils.CpfMaskWatcher
 import com.example.bico.utils.CpfValidator
 
-class CadastroPrestadorNome : AppCompatActivity() {
-
-    private lateinit var binding: ActivityCadastroPrestadorNomeBinding
+class CadastroClienteNome : AppCompatActivity() {
+    private lateinit var binding: ActivityCadastroClienteNomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,7 @@ class CadastroPrestadorNome : AppCompatActivity() {
             )
         )
 
-        binding = ActivityCadastroPrestadorNomeBinding.inflate(layoutInflater)
+        binding = ActivityCadastroClienteNomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.editTextCPF.addTextChangedListener(CpfMaskWatcher(binding.editTextCPF))
@@ -52,10 +51,10 @@ class CadastroPrestadorNome : AppCompatActivity() {
             UserRepository.tempUser = UserRepository.tempUser.copy(
                 nome = nome,
                 cpf = CpfMaskWatcher.unmask(cpf),
-                tipo = "PRESTADOR"
+                tipo = "CLIENTE"
             )
 
-            val intent = Intent(this, CadastroPrestadorUsuario::class.java)
+            val intent = Intent(this, CadastroClienteLocal::class.java)
             startActivity(intent)
         }
 

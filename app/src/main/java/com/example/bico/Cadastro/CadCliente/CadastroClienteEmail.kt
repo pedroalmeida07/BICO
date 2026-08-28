@@ -1,4 +1,4 @@
-package com.example.bico.Cadastro.Cliente
+package com.example.bico.Cadastro.CadCliente
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bico.HomeCliente
 import com.example.bico.MainActivity
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroClienteEmailBinding

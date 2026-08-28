@@ -11,8 +11,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.bico.Cadastro.Cliente.CadastroClienteNome
-import com.example.bico.Cadastro.Prestador.CadastroPrestadorNome
+import com.example.bico.Cadastro.CadCliente.CadastroClienteNome
+import com.example.bico.Cadastro.CadPrestador.CadastroPrestadorNome
 import com.example.bico.Login.PaginaLogin
 import com.example.bico.databinding.ActivityMainBinding
 

@@ -14,25 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bico">
         <activity
-            android:name=".HomePrestador"
+            android:name=".Prestador.HomePrestador"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Cliente.CadastroClienteEmail"
+            android:name=".Cadastro.CadCliente.CadastroClienteEmail"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Cliente.CadastroClienteNome"
+            android:name=".Cadastro.CadCliente.CadastroClienteNome"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Prestador.CadastroPrestadorEmail"
+            android:name=".Cadastro.CadPrestador.CadastroPrestadorEmail"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Prestador.CadastroPrestadorServico"
+            android:name=".Cadastro.CadPrestador.CadastroPrestadorServico"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Prestador.CadastroPrestadorUsuario"
+            android:name=".Cadastro.CadPrestador.CadastroPrestadorUsuario"
             android:exported="false" />
         <activity
-            android:name=".Cadastro.Prestador.CadastroPrestadorNome"
+            android:name=".Cadastro.CadPrestador.CadastroPrestadorNome"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -49,11 +49,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Cadastro.Cliente.CadastroClienteLocal"
+            android:name=".Cadastro.CadCliente.CadastroClienteLocal"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".HomeCliente"
+            android:name=".Cliente.HomeCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -69,11 +69,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EditarPrestador"
+            android:name=".Prestador.EditarPrestador"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".PesquisaCliente"
+            android:name=".Cliente.PesquisaCliente"
             android:exported="false"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize" />

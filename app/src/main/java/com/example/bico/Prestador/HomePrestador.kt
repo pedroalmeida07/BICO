@@ -1,17 +1,20 @@
-package com.example.bico
+package com.example.bico.Prestador
 
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.bico.R
+import com.example.bico.UserRepository
 
 class HomePrestador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,18 +39,18 @@ class HomePrestador : AppCompatActivity() {
         txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
 
         // Lógica para mostrar/esconder o card de serviços
-        val cardServico = findViewById<androidx.cardview.widget.CardView>(R.id.cardProximoServico)
+        val cardServico = findViewById<CardView>(R.id.cardProximoServico)
         val txtSemServicos = findViewById<TextView>(R.id.txtSemServicos)
 
         // implementar funcao pra checar true/false, se tem serviços marcados ou nao
         val temServicos = false // retonar false -> Nao mostra servicos | retornar true -> mostra card de servico
 
         if (temServicos) {
-            cardServico.visibility = android.view.View.VISIBLE
-            txtSemServicos.visibility = android.view.View.GONE
+            cardServico.visibility = View.VISIBLE
+            txtSemServicos.visibility = View.GONE
         } else {
-            cardServico.visibility = android.view.View.GONE
-            txtSemServicos.visibility = android.view.View.VISIBLE
+            cardServico.visibility = View.GONE
+            txtSemServicos.visibility = View.VISIBLE
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

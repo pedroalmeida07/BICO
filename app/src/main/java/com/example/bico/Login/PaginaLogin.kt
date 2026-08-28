@@ -7,12 +7,11 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bico.Cadastro.Cliente.CadastroClienteNome
-import com.example.bico.HomeCliente
-import com.example.bico.HomePrestador
+import com.example.bico.Cadastro.CadCliente.CadastroClienteNome
+import com.example.bico.Cliente.HomeCliente
+import com.example.bico.Prestador.HomePrestador
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
-import com.example.bico.model.User
 
 class PaginaLogin : AppCompatActivity() {
 
