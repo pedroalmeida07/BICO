@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.image.cropper)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

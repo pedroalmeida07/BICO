@@ -17,6 +17,10 @@ import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import coil.load
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
 import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -31,29 +35,64 @@ class EditarPrestador : AppCompatActivity() {
     private var fotoAlvo: Int = 0 // 0: Horizontal, 1-4: Fotos Inferiores
     private var isEditModeFotos = false
 
+    // 1. Lançador para o Recortador de Imagem
+    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            val uriContent = result.uriContent
+            if (uriContent != null) {
+                salvarImagemAtualizada(uriContent)
+            }
+        } else {
+            val exception = result.error
+            // Opcional: lidar com erro
+        }
+    }
+
+    // 2. Modificado para abrir o recortador após selecionar a mídia
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
-            val contentResolver = applicationContext.contentResolver
-            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            currentUser?.let { u ->
-                val userAtualizado = if (fotoAlvo == 0) {
-                    binding.imgFotoHorizontalPrestador.load(uri)
-                    u.copy(fotoHorizontalPrestador = uri.toString())
+            // Configurações do WhatsApp-like Cropper
+            val options = CropImageOptions().apply {
+                // Define a escala/proporção baseada no alvo
+                if (fotoAlvo == 0) {
+                    aspectRatioX = 16
+                    aspectRatioY = 9
+                    fixAspectRatio = true // Proporção fixa para a capa
                 } else {
-                    val fotosAtuais = u.fotosServico.filter { it.isNotEmpty() }.toMutableList()
-                    val index = fotoAlvo - 1
-                    if (index < fotosAtuais.size) {
-                        fotosAtuais[index] = uri.toString()
-                    } else {
-                        fotosAtuais.add(uri.toString())
-                    }
-                    u.copy(fotosServico = fotosAtuais)
+                    aspectRatioX = 155
+                    aspectRatioY = 130
+                    fixAspectRatio = true // Quadrada para os serviços
                 }
-                repository.atualizarUsuario(userAtualizado)
-                currentUser = userAtualizado
-                atualizarVisibilidadeFotos()
+                guidelines = CropImageView.Guidelines.ON
+                backgroundColor = Color.BLACK
+                
+                // Garantir visibilidade do botão de conclusão
+                activityTitle = "Recortar Foto"
+                cropMenuCropButtonTitle = "Concluir"
             }
+            
+            cropImage.launch(CropImageContractOptions(uri, options))
+        }
+    }
+
+    private fun salvarImagemAtualizada(uri: Uri) {
+        currentUser?.let { u ->
+            val userAtualizado = if (fotoAlvo == 0) {
+                binding.imgFotoHorizontalPrestador.load(uri)
+                u.copy(fotoHorizontalPrestador = uri.toString())
+            } else {
+                val fotosAtuais = u.fotosServico.filter { it.isNotEmpty() }.toMutableList()
+                val index = fotoAlvo - 1
+                if (index < fotosAtuais.size) {
+                    fotosAtuais[index] = uri.toString()
+                } else {
+                    fotosAtuais.add(uri.toString())
+                }
+                u.copy(fotosServico = fotosAtuais)
+            }
+            repository.atualizarUsuario(userAtualizado)
+            currentUser = userAtualizado
+            atualizarVisibilidadeFotos()
         }
     }
 

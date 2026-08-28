@@ -77,6 +77,11 @@
             android:exported="false"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Activity da biblioteca de recorte de imagem -->
+        <activity
+            android:name="com.canhub.cropper.CropImageActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
     </application>
 
 </manifest>
