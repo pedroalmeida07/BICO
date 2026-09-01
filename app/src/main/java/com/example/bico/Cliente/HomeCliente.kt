@@ -13,8 +13,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bico.R
 import com.example.bico.UserRepository
+import com.example.bico.databinding.ActivityHomeClienteBinding
 
 class HomeCliente : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
@@ -45,6 +47,11 @@ class HomeCliente : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        findViewById<ImageView>(R.id.imgUser).setOnClickListener {
+            val intent = Intent(this, EditarCliente::class.java)
+            startActivity(intent)
         }
     }
 }

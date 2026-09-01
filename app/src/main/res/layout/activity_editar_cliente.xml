@@ -5,7 +5,7 @@
     android:id="@+id/parentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cliente.activity_editar_cliente">
+    tools:context=".Cliente.EditarCliente">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -48,6 +48,17 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.1" />
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:backgroundTint="@color/azul"
+                android:background="@drawable/icseta_esquerda"
+                android:layout_marginLeft="0dp"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/guideline4"
+                android:id="@+id/sair">
+            </com.google.android.material.button.MaterialButton>
+
             <ImageView
                 android:id="@+id/fotoPerfil"
                 android:layout_width="200dp"
@@ -56,6 +67,27 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="@id/guideline4"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarFoto"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:insetLeft="0dp"
+                android:insetRight="0dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:backgroundTint="@color/laranja"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_foto"
+                app:iconSize="24dp"
+                app:iconTint="@color/azul"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                app:layout_constraintBottom_toBottomOf="@id/fotoPerfil"
+                app:layout_constraintEnd_toEndOf="@id/fotoPerfil" />
 
             <TextView
                 android:id="@+id/txtNome"
@@ -69,14 +101,30 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/fotoPerfil"/>
 
-            <EditText
-                android:id="@+id/editTextNome"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNome"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Nome do Usuário"
+                android:layout_marginTop="8dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="@color/black"
+                app:hintEnabled="false"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/txtNome"/>
+                app:layout_constraintTop_toBottomOf="@id/txtNome">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do Usuário"
+                    android:inputType="textPersonName"
+                    android:drawableRight="@drawable/ic_lapis"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtTelefone"
@@ -88,16 +136,32 @@
                 android:textSize="24sp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/editTextNome"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutNome"/>
 
-            <EditText
-                android:id="@+id/editTextTelefone"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutTelefone"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="+55 (27) 99999-8888"
+                android:layout_marginTop="8dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="@color/black"
+                app:hintEnabled="false"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/txtTelefone"/>
+                app:layout_constraintTop_toBottomOf="@id/txtTelefone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTelefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="+55 (27) 99999-8888"
+                    android:inputType="phone"
+                    android:drawableRight="@drawable/ic_lapis"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtCep"
@@ -109,17 +173,45 @@
                 android:textSize="24sp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/editTextTelefone"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutTelefone"/>
 
-            <EditText
-                android:id="@+id/editTextCep"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCep"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="06767-000"
+                android:layout_marginTop="8dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxStrokeColor="@color/black"
+                app:hintEnabled="false"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/txtCep"/>
+                app:layout_constraintTop_toBottomOf="@id/txtCep">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="06767-000"
+                android:inputType="number"
+                android:drawableRight="@drawable/ic_lapis"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSalvar"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutCep"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            android:text="Salvar"
+            android:textSize="16sp"
+            android:backgroundTint="@color/azul"
+            android:layout_marginTop="28dp"
+            app:cornerRadius="12dp"/>
 
 
 
@@ -157,8 +249,18 @@
             android:layout_height="35dp"
             android:src="@drawable/ic_home_preto"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_chat"
+            app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_pesquisa"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_pesquisa_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_chat"
+            app:layout_constraintStart_toEndOf="@id/ic_home"
             app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
         <ImageView
@@ -168,29 +270,18 @@
             android:src="@drawable/ic_chat_preto"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_config"
-            app:layout_constraintStart_toEndOf="@id/ic_home"
+            app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
             app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
         <ImageView
             android:id="@+id/ic_config"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_config_preto"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_user_barra"
-            app:layout_constraintStart_toEndOf="@id/ic_chat"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_user_barra"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/user"
+            android:src="@drawable/ic_config_laranja"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ic_config"
-            app:layout_constraintTop_toTopOf="@id/barraInferior"
-            app:tint="@color/black"/>
+            app:layout_constraintStart_toEndOf="@id/ic_chat"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
