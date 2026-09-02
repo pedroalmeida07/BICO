@@ -5,6 +5,7 @@
     android:id="@+id/parentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".Cliente.EditarCliente">
 
     <androidx.constraintlayout.widget.Guideline
@@ -303,8 +304,7 @@
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3">
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:id="@+id/barraInferior"
