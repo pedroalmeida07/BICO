@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cliente.DenunciasCliente">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"
+        android:id="@+id/guideline1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"
+        android:id="@+id/guideline2"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:backgroundTint="@color/azul"
+        android:background="@drawable/ic_arrow_back_24"
+        android:layout_marginStart="0dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
+        android:id="@+id/sair">
+    </com.google.android.material.button.MaterialButton>
+
+    <TextView
+        android:id="@+id/txtDenuncias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/azul"
+        android:text="Denúncias e violações"
+        app:layout_constraintStart_toEndOf="@id/sair"
+        app:layout_constraintTop_toTopOf="@id/sair"
+        app:layout_constraintBottom_toBottomOf="@id/sair"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="24sp"
+        android:layout_marginStart="8dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnDenuncias"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="75dp"
+        app:cardBackgroundColor="@color/saborBranco"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iconDenuncias"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_megaphone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconDenuncias"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Denúncias"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Acompanhe aqui suas denúncias enviadas no BICO."
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnEnviarDenuncia"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
+        app:cardBackgroundColor="@color/saborBranco"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/btnDenuncias"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iconEnviarDenuncias"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_mail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconEnviarDenuncias"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar uma Denúncia"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Toque para registrar uma nova denúncia."
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnViolacoes"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
+        app:cardBackgroundColor="@color/saborBranco"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/btnEnviarDenuncia"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iconViolacoes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_shield"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconViolacoes"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Violações"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Histórico de conteúdos que não cumprem as diretrizes do BICO."
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBarra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/barraInferior"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/barra_inferior_branca"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ic_home"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_home_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_pesquisa"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_pesquisa_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_chat"
+            app:layout_constraintStart_toEndOf="@id/ic_home"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_chat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_chat_preto"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_config"
+            app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_config"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_config_laranja"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_chat"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

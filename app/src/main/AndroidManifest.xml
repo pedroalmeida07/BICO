@@ -87,7 +87,15 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_configuracao_cliente"
+            android:name=".Cliente.ConfiguracaoCliente"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Cliente.FavoritosCliente"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Cliente.DenunciasCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
