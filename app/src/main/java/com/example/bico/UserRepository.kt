@@ -2,13 +2,13 @@ package com.example.bico
 
 import android.content.Context
 import com.example.bico.model.User
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.io.File
+import com.example.bico.network.RetrofitClient
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.tasks.await
 
 class UserRepository(private val context: Context) {
-    private val fileName = "usuarios.json"
-    private val gson = Gson()
+    private val auth = FirebaseAuth.getInstance()
+    private val api = RetrofitClient.service
 
     // Dados temporários para o fluxo de telas de cadastro
     companion object {
@@ -19,65 +19,92 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    private fun getFile(): File = File(context.filesDir, fileName)
-
-    fun salvarUsuario(user: User) {
-        val lista = listarUsuarios().toMutableList()
-        lista.add(user)
-        getFile().writeText(gson.toJson(lista))
-    }
-
-    fun listarUsuarios(): List<User> {
-        val file = getFile()
-        if (!file.exists()) return emptyList()
-        val type = object : TypeToken<List<User>>() {}.type
-        return gson.fromJson(file.readText(), type)
-    }
-
-    // Em UserRepository.kt
-
-
-    //valida o email e senha e salva o email do usuário logado
-    fun realizarLogin(email: String, senha: String): User? {val user = listarUsuarios().find { it.email == email && it.senha == senha }
-        if (user != null) {
-            // Salva o e-mail do usuário logado
-            val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
-            sharedPref.edit().putString("email_logado", email).apply()
+    suspend fun salvarUsuario(user: User): Boolean {
+        return try {
+            val response = if (user.tipo == "PRESTADOR") {
+                api.cadastrarPrestador(user)
+            } else {
+                api.cadastrarCliente(user)
+            }
+            response.isSuccessful
+        } catch (e: Exception) {
+            false
         }
-        return user
     }
 
-    //retorna o usuário logado
-    fun getUsuarioLogado(): User? {
+    // Valida o email e senha usando Firebase Auth e busca os dados no Backend
+    suspend fun realizarLogin(email: String, senha: String): User? {
+        return try {
+            // 1. Tenta autenticar no Firebase
+            auth.signInWithEmailAndPassword(email, senha).await()
+            
+            // 2. Busca os dados complementares no nosso backend em Go
+            val response = api.getDadosUsuario(email)
+            if (response.isSuccessful) {
+                val user = response.body()
+                if (user != null) {
+                    saveLoggedEmail(email)
+                }
+                user
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    // Retorna o usuário logado buscando no backend
+    suspend fun getUsuarioLogado(): User? {
+        val email = getLoggedEmail() ?: return null
+        return try {
+            val response = api.getDadosUsuario(email)
+            if (response.isSuccessful) response.body() else null
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    // Atualiza os dados de um usuário no backend
+    suspend fun atualizarUsuario(user: User): Boolean {
+        return try {
+            val response = api.atualizarUsuario(user)
+            response.isSuccessful
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    // Atualiza a senha usando Firebase
+    suspend fun atualizarSenha(email: String, novaSenha: String): Boolean {
+        return try {
+            val user = auth.currentUser
+            if (user?.email == email) {
+                user.updatePassword(novaSenha).await()
+                true
+            } else {
+                // Caso o usuário não esteja logado, envia email de recuperação
+                auth.sendPasswordResetEmail(email).await()
+                true
+            }
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    private fun saveLoggedEmail(email: String) {
         val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
-        val email = sharedPref.getString("email_logado", null)
-        return listarUsuarios().find { it.email == email }
+        sharedPref.edit().putString("email_logado", email).apply()
     }
 
-    // Atualiza os dados de um usuário
-    fun atualizarUsuario(user: User): Boolean {
-        val lista = listarUsuarios().toMutableList()
-        val index = lista.indexOfFirst { it.id == user.id }
-
-        if (index != -1) {
-            lista[index] = user
-            getFile().writeText(gson.toJson(lista))
-            return true
-        }
-        return false
+    private fun getLoggedEmail(): String? {
+        val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
+        return sharedPref.getString("email_logado", null)
     }
 
-    // Atualiza a senha de um usuário pelo e-mail
-    fun atualizarSenha(email: String, novaSenha: String): Boolean {
-        val lista = listarUsuarios().toMutableList()
-        val index = lista.indexOfFirst { it.email == email }
-
-        if (index != -1) {
-            val userAtualizado = lista[index].copy(senha = novaSenha)
-            lista[index] = userAtualizado
-            getFile().writeText(gson.toJson(lista))
-            return true
-        }
-        return false
+    fun deslogar() {
+        auth.signOut()
+        val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
+        sharedPref.edit().remove("email_logado").apply()
     }
 }
