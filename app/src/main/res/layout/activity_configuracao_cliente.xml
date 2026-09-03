@@ -49,12 +49,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/roboto_bold"
-        android:gravity="center_vertical"
         android:text="Configurações"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/barraSuperior"
         app:layout_constraintBottom_toBottomOf="@id/barraSuperior"/>
+
+    <ImageView
+        android:id="@+id/ic_privacy"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_privacy"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <TextView
+        android:id="@+id/txtPrivacidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="Privacidade"
+        android:textColor="@color/azul"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="189dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
