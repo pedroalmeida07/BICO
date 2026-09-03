@@ -1,6 +1,7 @@
 package com.example.bico
 
 import android.content.Context
+import android.util.Log
 import com.example.bico.model.User
 import com.example.bico.network.RetrofitClient
 import com.google.firebase.auth.FirebaseAuth
@@ -26,8 +27,15 @@ class UserRepository(private val context: Context) {
             } else {
                 api.cadastrarCliente(user)
             }
-            response.isSuccessful
+            
+            if (response.isSuccessful) {
+                true
+            } else {
+                Log.e("UserRepository", "Erro no Backend: ${response.code()} - ${response.errorBody()?.string()}")
+                false
+            }
         } catch (e: Exception) {
+            Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
             false
         }
     }
@@ -36,10 +44,16 @@ class UserRepository(private val context: Context) {
     suspend fun realizarLogin(email: String, senha: String): User? {
         return try {
             // 1. Tenta autenticar no Firebase
-            auth.signInWithEmailAndPassword(email, senha).await()
+            val authResult = auth.signInWithEmailAndPassword(email, senha).await()
+            val uid = authResult.user?.uid
             
+            if (uid == null) {
+                Log.e("UserRepository", "Firebase Auth: UID nulo após login")
+                return null
+            }
+
             // 2. Busca os dados complementares no nosso backend em Go
-            val response = api.getDadosUsuario(email)
+            val response = api.getDadosUsuario(uid)
             if (response.isSuccessful) {
                 val user = response.body()
                 if (user != null) {
@@ -47,20 +61,23 @@ class UserRepository(private val context: Context) {
                 }
                 user
             } else {
+                Log.e("UserRepository", "Erro ao buscar dados do usuário: ${response.code()} - ${response.errorBody()?.string()}")
                 null
             }
         } catch (e: Exception) {
+            Log.e("UserRepository", "Erro no processo de login: ${e.message}", e)
             null
         }
     }
 
     // Retorna o usuário logado buscando no backend
     suspend fun getUsuarioLogado(): User? {
-        val email = getLoggedEmail() ?: return null
+        val uid = auth.currentUser?.uid ?: return null
         return try {
-            val response = api.getDadosUsuario(email)
+            val response = api.getDadosUsuario(uid)
             if (response.isSuccessful) response.body() else null
         } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao buscar usuário logado: ${e.message}")
             null
         }
     }

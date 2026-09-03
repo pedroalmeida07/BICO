@@ -12,7 +12,7 @@ interface BicoApiService {
     suspend fun cadastrarPrestador(@Body user: User): Response<Unit>
 
     @GET("DadosUsuario")
-    suspend fun getDadosUsuario(@Query("email") email: String): Response<User>
+    suspend fun getDadosUsuario(@Query("id") id: String): Response<User>
 
     @POST("AtualizarUsuario")
     suspend fun atualizarUsuario(@Body user: User): Response<Unit>
