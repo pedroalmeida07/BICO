@@ -53,7 +53,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:backgroundTint="@color/azul"
-                android:background="@drawable/icseta_esquerda"
+                android:background="@drawable/ic_arrow_back_24"
                 android:layout_marginLeft="0dp"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4"
@@ -196,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ex.: 06767-000"
-                android:inputType="number"
+                android:inputType="text"
                 android:drawableRight="@drawable/ic_lapis"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -268,7 +268,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ex.: Apt. 100 "
-                    android:inputType="number"
+                    android:inputType="text"
                     android:drawableRight="@drawable/ic_lapis"/>
             </com.google.android.material.textfield.TextInputLayout>
 
