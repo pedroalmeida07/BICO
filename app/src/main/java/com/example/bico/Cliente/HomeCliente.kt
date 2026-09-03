@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
 import com.example.bico.databinding.ActivityHomeClienteBinding
+import kotlinx.coroutines.launch
 
 class HomeCliente : AppCompatActivity() {
 
@@ -38,9 +40,10 @@ class HomeCliente : AppCompatActivity() {
 
         //Mostra o primeiro nome do cliente na pagina home
         val repository = UserRepository(this)
-        val usuario = repository.getUsuarioLogado()
-        val txtNomeUsuario = binding.txtNomeUsuario
-        txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
+        lifecycleScope.launch {
+            val usuario = repository.getUsuarioLogado()
+            binding.txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
+        }
 
         binding.icPesquisa.setOnClickListener {
             val intent = Intent(this, PesquisaCliente::class.java)

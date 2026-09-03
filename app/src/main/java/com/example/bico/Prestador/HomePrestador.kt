@@ -13,8 +13,10 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.bico.R
 import com.example.bico.UserRepository
+import kotlinx.coroutines.launch
 
 class HomePrestador : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +36,11 @@ class HomePrestador : AppCompatActivity() {
 
         //Mostra o primeiro nome do prestador na pagina home
         val repository = UserRepository(this)
-        val usuario = repository.getUsuarioLogado()
-        val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
-        txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
+        lifecycleScope.launch {
+            val usuario = repository.getUsuarioLogado()
+            val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
+            txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
+        }
 
         // Lógica para mostrar/esconder o card de serviços
         val cardServico = findViewById<CardView>(R.id.cardProximoServico)

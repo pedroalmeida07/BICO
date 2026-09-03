@@ -7,9 +7,11 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.bico.MainActivity
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroClienteEmailBinding
+import kotlinx.coroutines.launch
 
 class CadastroClienteEmail : AppCompatActivity() {
     private lateinit var binding: ActivityCadastroClienteEmailBinding
@@ -53,14 +55,19 @@ class CadastroClienteEmail : AppCompatActivity() {
 
             // Salva o usuário definitivamente no repositório
             val repository = UserRepository(this)
-            repository.salvarUsuario(UserRepository.tempUser)
-
-            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-
-            // Vai para a tela inicial e limpa as telas anteriores
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            
+            lifecycleScope.launch {
+                val sucesso = repository.salvarUsuario(UserRepository.tempUser)
+                if (sucesso) {
+                    Toast.makeText(this@CadastroClienteEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    // Vai para a tela inicial e limpa as telas anteriores
+                    val intent = Intent(this@CadastroClienteEmail, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@CadastroClienteEmail, "Erro ao realizar cadastro", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.sair.setOnClickListener {

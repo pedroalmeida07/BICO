@@ -7,11 +7,13 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.bico.Cadastro.CadCliente.CadastroClienteNome
 import com.example.bico.Cliente.HomeCliente
 import com.example.bico.Prestador.HomePrestador
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
+import kotlinx.coroutines.launch
 
 class PaginaLogin : AppCompatActivity() {
 
@@ -55,18 +57,20 @@ class PaginaLogin : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val usuario = repository.realizarLogin(email, senha)
-            if (usuario != null) {
-                Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                val intent = if (usuario.tipo == "PRESTADOR") {
-                    Intent(this, HomePrestador::class.java)
+            lifecycleScope.launch {
+                val usuario = repository.realizarLogin(email, senha)
+                if (usuario != null) {
+                    Toast.makeText(this@PaginaLogin, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    val intent = if (usuario.tipo == "PRESTADOR") {
+                        Intent(this@PaginaLogin, HomePrestador::class.java)
+                    } else {
+                        Intent(this@PaginaLogin, HomeCliente::class.java)
+                    }
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 } else {
-                    Intent(this, HomeCliente::class.java)
+                    Toast.makeText(this@PaginaLogin, "Email ou senha incorretos", Toast.LENGTH_SHORT).show()
                 }
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show()
             }
         }
     }

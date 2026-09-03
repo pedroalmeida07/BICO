@@ -26,6 +26,8 @@ import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class EditarPrestador : AppCompatActivity() {
 
@@ -91,7 +93,9 @@ class EditarPrestador : AppCompatActivity() {
                 }
                 u.copy(fotosServico = fotosAtuais)
             }
-            repository.atualizarUsuario(userAtualizado)
+            lifecycleScope.launch {
+                repository.atualizarUsuario(userAtualizado)
+            }
             currentUser = userAtualizado
             atualizarVisibilidadeFotos()
         }
@@ -103,11 +107,13 @@ class EditarPrestador : AppCompatActivity() {
         setContentView(binding.root)
 
         repository = UserRepository(this)
-        currentUser = repository.getUsuarioLogado()
+        lifecycleScope.launch {
+            currentUser = repository.getUsuarioLogado()
+            loadUserData()
+        }
 
         setupEdgeToEdge()
         setupListeners()
-        loadUserData()
     }
 
     private fun setupEdgeToEdge() {
@@ -181,7 +187,9 @@ class EditarPrestador : AppCompatActivity() {
     private fun updateUserServices(novaLista: List<String>) {
         currentUser?.let { u ->
             val userAtualizado = u.copy(servicos = novaLista)
-            repository.atualizarUsuario(userAtualizado)
+            lifecycleScope.launch {
+                repository.atualizarUsuario(userAtualizado)
+            }
             currentUser = userAtualizado
             (binding.rvServicos.adapter as? ServicoAdapter)?.apply {
                 // Idealmente o adapter deveria lidar com a atualização da lista interna
@@ -240,7 +248,9 @@ class EditarPrestador : AppCompatActivity() {
             if (index < novaLista.size) {
                 novaLista.removeAt(index)
                 val userAtualizado = u.copy(fotosServico = novaLista)
-                repository.atualizarUsuario(userAtualizado)
+                lifecycleScope.launch {
+                    repository.atualizarUsuario(userAtualizado)
+                }
                 currentUser = userAtualizado
                 atualizarVisibilidadeFotos()
             }
@@ -260,7 +270,9 @@ class EditarPrestador : AppCompatActivity() {
                 binding.txtDesc.text = novaDesc.ifEmpty { "Adicione mais informações..." }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(descricao = novaDesc)
-                    repository.atualizarUsuario(userAtualizado)
+                    lifecycleScope.launch {
+                        repository.atualizarUsuario(userAtualizado)
+                    }
                     currentUser = userAtualizado
                 }
             }.setNegativeButton("Cancelar", null).show()
@@ -296,7 +308,9 @@ class EditarPrestador : AppCompatActivity() {
                 binding.txtCidade.text = novoLocal.ifEmpty { "Local" }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(local = novoLocal)
-                    repository.atualizarUsuario(userAtualizado)
+                    lifecycleScope.launch {
+                        repository.atualizarUsuario(userAtualizado)
+                    }
                     currentUser = userAtualizado
                 }
             }.setNegativeButton("Cancelar", null).show()
