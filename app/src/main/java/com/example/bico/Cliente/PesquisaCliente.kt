@@ -1,5 +1,6 @@
 package com.example.bico.Cliente
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -8,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bico.R
+import com.example.bico.databinding.ActivityPesquisaClienteBinding
 
 class PesquisaCliente : AppCompatActivity() {
+
+    private lateinit var binding: ActivityPesquisaClienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -22,12 +26,12 @@ class PesquisaCliente : AppCompatActivity() {
                 Color.WHITE
             )
         )
-        setContentView(R.layout.activity_pesquisa_cliente)
+        binding = ActivityPesquisaClienteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.icHome.setOnClickListener {
+            val intent = Intent(this, HomeCliente::class.java)
+            startActivity(intent)
         }
     }
 }
