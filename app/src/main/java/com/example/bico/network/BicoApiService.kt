@@ -11,7 +11,7 @@ interface BicoApiService {
     @POST("CadastrarPrestador")
     suspend fun cadastrarPrestador(@Body user: User): Response<Unit>
 
-    @GET("DadosUsuario")
+    @GET("GetDadosUsuario")
     suspend fun getDadosUsuario(@Query("id") id: String): Response<User>
 
     @POST("AtualizarUsuario")

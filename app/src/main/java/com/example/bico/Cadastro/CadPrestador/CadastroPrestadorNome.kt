@@ -51,8 +51,7 @@ class CadastroPrestadorNome : AppCompatActivity() {
             // Salva no objeto temporário
             UserRepository.tempUser = UserRepository.tempUser.copy(
                 nome = nome,
-                cpf = CpfMaskWatcher.unmask(cpf),
-                tipo = "PRESTADOR"
+                cpf = CpfMaskWatcher.unmask(cpf)
             )
 
             val intent = Intent(this, CadastroPrestadorUsuario::class.java)

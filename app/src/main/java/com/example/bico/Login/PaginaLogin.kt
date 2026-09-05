@@ -61,10 +61,10 @@ class PaginaLogin : AppCompatActivity() {
                 val usuario = repository.realizarLogin(email, senha)
                 if (usuario != null) {
                     Toast.makeText(this@PaginaLogin, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    val intent = if (usuario.tipo == "PRESTADOR") {
-                        Intent(this@PaginaLogin, HomePrestador::class.java)
-                    } else {
+                    val intent = if (usuario.usuario == "") {
                         Intent(this@PaginaLogin, HomeCliente::class.java)
+                    } else {
+                        Intent(this@PaginaLogin, HomePrestador::class.java)
                     }
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)

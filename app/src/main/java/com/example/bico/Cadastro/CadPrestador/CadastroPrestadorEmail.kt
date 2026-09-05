@@ -57,7 +57,7 @@ class CadastroPrestadorEmail : AppCompatActivity() {
             val repository = UserRepository(this)
             
             lifecycleScope.launch {
-                val sucesso = repository.salvarUsuario(UserRepository.tempUser)
+                val sucesso = repository.salvarPrestador(UserRepository.tempUser)
                 if (sucesso) {
                     Toast.makeText(this@CadastroPrestadorEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
                     // Vai para a Home e limpa as telas anteriores

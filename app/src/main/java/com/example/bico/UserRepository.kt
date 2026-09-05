@@ -20,14 +20,26 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    suspend fun salvarUsuario(user: User): Boolean {
+    suspend fun salvarPrestador(user: User): Boolean {
         return try {
-            val response = if (user.tipo == "PRESTADOR") {
-                api.cadastrarPrestador(user)
+            val response = api.cadastrarPrestador(user)
+
+            if (response.isSuccessful) {
+                true
             } else {
-                api.cadastrarCliente(user)
+                Log.e("UserRepository", "Erro no Backend: ${response.code()} - ${response.errorBody()?.string()}")
+                false
             }
-            
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
+            false
+        }
+    }
+
+    suspend fun salvarCliente(user: User): Boolean {
+        return try {
+            val response = api.cadastrarCliente(user)
+
             if (response.isSuccessful) {
                 true
             } else {
