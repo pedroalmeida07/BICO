@@ -45,14 +45,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgUser"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/user"
         android:layout_marginBottom="-30dp"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintBottom_toBottomOf="@id/guideline4"/>
+        app:layout_constraintBottom_toBottomOf="@id/guideline4"
+        app:shapeAppearanceOverlay="@style/CircleShape" />
 
     <TextView
         android:id="@+id/txtOla"

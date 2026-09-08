@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
 import kotlinx.coroutines.launch
@@ -34,13 +35,7 @@ class HomePrestador : AppCompatActivity() {
         )
         setContentView(R.layout.activity_home_prestador)
 
-        //Mostra o primeiro nome do prestador na pagina home
-        val repository = UserRepository(this)
-        lifecycleScope.launch {
-            val usuario = repository.getUsuarioLogado()
-            val txtNomeUsuario = findViewById<TextView>(R.id.txtNomeUsuario)
-            txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
-        }
+        carregarDadosUsuario()
 
         // Lógica para mostrar/esconder o card de serviços
         val cardServico = findViewById<CardView>(R.id.cardProximoServico)
@@ -71,6 +66,44 @@ class HomePrestador : AppCompatActivity() {
         findViewById<ImageView>(R.id.imgUser).setOnClickListener {
             val intent = Intent(this, EditarPrestador::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        carregarDadosUsuario()
+    }
+
+    private fun carregarDadosUsuario() {
+        val repository = UserRepository(this)
+        lifecycleScope.launch {
+            val usuario = repository.getUsuarioLogado()
+            usuario?.let { 
+                findViewById<TextView>(R.id.txtNomeUsuario).text = it.primeiroNome.ifEmpty { "Usuário" }
+                val imgUser = findViewById<ImageView>(R.id.imgUser)
+                val icUserBarra = findViewById<ImageView>(R.id.ic_user_barra)
+                
+                if (!it.fotoPerfil.isNullOrEmpty()) {
+                    imgUser.load(it.fotoPerfil) {
+                        crossfade(true)
+                        placeholder(R.drawable.user)
+                        error(R.drawable.user)
+                    }
+                    icUserBarra.load(it.fotoPerfil) {
+                        crossfade(true)
+                        placeholder(R.drawable.user)
+                        error(R.drawable.user)
+                        // Para o ícone da barra, podemos querer remover o tint se for uma foto
+                        target { drawable ->
+                            icUserBarra.setImageDrawable(drawable)
+                            icUserBarra.colorFilter = null
+                        }
+                    }
+                } else {
+                    imgUser.setImageResource(R.drawable.user)
+                    icUserBarra.setImageResource(R.drawable.user)
+                }
+            }
         }
     }
 }

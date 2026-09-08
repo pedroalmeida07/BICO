@@ -5,33 +5,35 @@ import java.util.UUID
 
 data class User(
     //padrao ao prestador e cliente
-    val id: String = UUID.randomUUID().toString(),
-    val nome: String = "",
-    val cpf: String = "",
-    val email: String = "",
-    val senha: String = "",
+    @SerializedName("id")
+    val id: String? = "",
+    val nome: String? = "",
+    val cpf: String? = "",
+    val telefone: String? = "",
+    val email: String? = "",
+    val senha: String? = "",
 
     //exclusivo cliente
-    val cep: String = "",
-    val numero: String = "",
-    val complemento: String = "",
+    val cep: String? = "",
+    val numero: String? = "",
+    val complemento: String? = "",
 
     //exclusivo prestador
     @SerializedName("username")
-    val usuario: String = "",
+    val usuario: String? = "",
     @SerializedName("fotoPerfil")
-    val fotoPerfil: String = "",
+    val fotoPerfil: String? = null,
     @SerializedName("fotoPaginaPerfil")
     val fotoHorizontalPrestador: String? = null,
     @SerializedName("fotosServicos")
-    val fotosServico: List<String> = emptyList(),
+    val fotosServico: List<String>? = emptyList(),
     @SerializedName("tiposServico")
-    val servicos: List<String> = emptyList(),
+    val servicos: List<String>? = emptyList(),
     @SerializedName("sobre")
-    val descricao: String = "",
+    val descricao: String? = "",
     @SerializedName("localAtuacao")
-    val local: String = "",
+    val local: String? = "",
 ) {
     val primeiroNome: String
-        get() = nome.trim().split(" ").firstOrNull() ?: ""
+        get() = (nome ?: "").trim().split(" ").firstOrNull() ?: ""
 }

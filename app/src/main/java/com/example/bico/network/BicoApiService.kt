@@ -15,5 +15,5 @@ interface BicoApiService {
     suspend fun getDadosUsuario(@Query("id") id: String): Response<User>
 
     @POST("AtualizarUsuario")
-    suspend fun atualizarUsuario(@Body user: User): Response<Unit>
+    suspend fun atualizarUsuario(@Query("id") id: String, @Body user: User): Response<Unit>
 }

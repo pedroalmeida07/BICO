@@ -60,14 +60,18 @@
                 android:id="@+id/sair">
             </com.google.android.material.button.MaterialButton>
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fotoPerfil"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/user"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toTopOf="@id/guideline4"/>
+                app:layout_constraintTop_toTopOf="@id/guideline4"
+                app:shapeAppearanceOverlay="@style/CircleShape"
+                app:strokeColor="@color/azul"
+                app:strokeWidth="2dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarFoto"
