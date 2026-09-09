@@ -58,21 +58,94 @@
 
     <ImageView
         android:id="@+id/ic_privacy"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_privacy"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="174dp" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior" />
 
     <TextView
         android:id="@+id/txtPrivacidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
         android:fontFamily="@font/inter"
         android:text="Privacidade"
         android:textColor="@color/azul"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="189dp" />
+        app:layout_constraintStart_toEndOf="@id/ic_privacy"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintBottom_toBottomOf="@id/linha1"/>
+
+    <View
+        android:id="@+id/linha1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_privacy" />
+    <ImageView
+        android:id="@+id/ic_user"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_user"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha1" />
+
+    <TextView
+        android:id="@+id/txtEditarPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:text="Editar Perfil"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toEndOf="@id/ic_user"
+        app:layout_constraintTop_toBottomOf="@id/linha1"
+        app:layout_constraintBottom_toBottomOf="@id/linha2"/>
+
+    <View
+        android:id="@+id/linha2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_user" />
+    <ImageView
+        android:id="@+id/ic_star"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_estrela_vazia"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha2" />
+
+    <TextView
+        android:id="@+id/txtFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:text="Favoritos"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toEndOf="@id/ic_user"
+        app:layout_constraintTop_toBottomOf="@id/linha1"
+        app:layout_constraintBottom_toBottomOf="@id/linha2"/>
+
+    <View
+        android:id="@+id/linha2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_user" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
