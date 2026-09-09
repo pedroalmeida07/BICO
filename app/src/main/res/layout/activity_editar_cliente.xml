@@ -69,9 +69,7 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="@id/guideline4"
-                app:shapeAppearanceOverlay="@style/CircleShape"
-                app:strokeColor="@color/azul"
-                app:strokeWidth="2dp"/>
+                app:shapeAppearanceOverlay="@style/CircleShape" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarFoto"
