@@ -6,28 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cliente.FavoritosCliente">
-
-    <!--Linhas de Guia-->
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        android:id="@+id/guideline1"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
+        android:id="@+id/guideline2"/>
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9"/>
+        android:id="@+id/guideline3"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -36,28 +33,31 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sair"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/ic_arrow_back_24"
         app:backgroundTint="@color/azul"
+        android:background="@drawable/ic_arrow_back_24"
+        android:layout_marginStart="0dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/guideline4"
-        app:layout_constraintEnd_toStartOf="@id/txtFavoritos"/>
+        android:id="@+id/sair">
+    </com.google.android.material.button.MaterialButton>
 
     <TextView
         android:id="@+id/txtFavoritos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Favoritos"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="26sp"
         android:textColor="@color/azul"
-        android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@id/sair"
         app:layout_constraintTop_toTopOf="@id/sair"
-        app:layout_constraintBottom_toBottomOf="@id/sair"/>
+        app:layout_constraintBottom_toBottomOf="@id/sair"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="24sp"
+        android:layout_marginStart="8dp"/>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerBarra"
@@ -65,8 +65,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:paddingBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="guideline3">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <View
             android:id="@+id/barraInferior"
@@ -116,6 +115,7 @@
             app:layout_constraintStart_toEndOf="@id/ic_chat"
             app:layout_constraintTop_toTopOf="@id/barraInferior" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

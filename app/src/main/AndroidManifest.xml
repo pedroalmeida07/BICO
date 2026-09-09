@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_bico"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Bico">
+        android:theme="@style/Theme.Bico"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".Prestador.HomePrestador"
             android:exported="false" />
@@ -84,6 +85,18 @@
             android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
         <activity
             android:name=".Cliente.EditarCliente"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Cliente.ConfiguracaoCliente"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Cliente.FavoritosCliente"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Cliente.DenunciasCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

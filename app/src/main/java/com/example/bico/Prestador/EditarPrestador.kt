@@ -24,8 +24,11 @@ import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.User
+import com.example.bico.utils.ImageUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class EditarPrestador : AppCompatActivity() {
 
@@ -33,7 +36,7 @@ class EditarPrestador : AppCompatActivity() {
     private lateinit var repository: UserRepository
     private var currentUser: User? = null
 
-    private var fotoAlvo: Int = 0 // 0: Horizontal, 1-4: Fotos Inferiores
+    private var fotoAlvo: Int = 0 // -1: Perfil, 0: Horizontal, 1-4: Fotos Inferiores
     private var isEditModeFotos = false
 
     // 1. Lançador para o Recortador de Imagem
@@ -55,14 +58,22 @@ class EditarPrestador : AppCompatActivity() {
             // Configurações do WhatsApp-like Cropper
             val options = CropImageOptions().apply {
                 // Define a escala/proporção baseada no alvo
-                if (fotoAlvo == 0) {
-                    aspectRatioX = 16
-                    aspectRatioY = 9
-                    fixAspectRatio = true // Proporção fixa para a capa
-                } else {
-                    aspectRatioX = 155
-                    aspectRatioY = 130
-                    fixAspectRatio = true // Quadrada para os serviços
+                when (fotoAlvo) {
+                    -1 -> {
+                        aspectRatioX = 1
+                        aspectRatioY = 1
+                        fixAspectRatio = true
+                    }
+                    0 -> {
+                        aspectRatioX = 16
+                        aspectRatioY = 9
+                        fixAspectRatio = true // Proporção fixa para a capa
+                    }
+                    else -> {
+                        aspectRatioX = 155
+                        aspectRatioY = 130
+                        fixAspectRatio = true // Quadrada para os serviços
+                    }
                 }
                 guidelines = CropImageView.Guidelines.ON
                 backgroundColor = Color.BLACK
@@ -77,21 +88,34 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun salvarImagemAtualizada(uri: Uri) {
+        val uriPersistente = ImageUtils.persistirImagem(this, uri) ?: return
+
         currentUser?.let { u ->
-            val userAtualizado = if (fotoAlvo == 0) {
-                binding.imgFotoHorizontalPrestador.load(uri)
-                u.copy(fotoHorizontalPrestador = uri.toString())
-            } else {
-                val fotosAtuais = u.fotosServico.filter { it.isNotEmpty() }.toMutableList()
-                val index = fotoAlvo - 1
-                if (index < fotosAtuais.size) {
-                    fotosAtuais[index] = uri.toString()
-                } else {
-                    fotosAtuais.add(uri.toString())
+            val userAtualizado = when (fotoAlvo) {
+                -1 -> {
+                    binding.fotoPerfil.load(uriPersistente)
+                    u.copy(fotoPerfil = uriPersistente.toString())
                 }
-                u.copy(fotosServico = fotosAtuais)
+                /*
+                0 -> {
+                    binding.imgFotoHorizontalPrestador.load(uriPersistente)
+                    u.copy(fotoHorizontalPrestador = uriPersistente.toString())
+                }
+                */
+                else -> {
+                    val fotosAtuais = (u.fotosServico ?: emptyList()).filter { it.isNotEmpty() }.toMutableList()
+                    val index = fotoAlvo - 1
+                    if (index < fotosAtuais.size) {
+                        fotosAtuais[index] = uriPersistente.toString()
+                    } else {
+                        fotosAtuais.add(uriPersistente.toString())
+                    }
+                    u.copy(fotosServico = fotosAtuais)
+                }
             }
-            repository.atualizarUsuario(userAtualizado)
+            lifecycleScope.launch {
+                repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+            }
             currentUser = userAtualizado
             atualizarVisibilidadeFotos()
         }
@@ -103,11 +127,13 @@ class EditarPrestador : AppCompatActivity() {
         setContentView(binding.root)
 
         repository = UserRepository(this)
-        currentUser = repository.getUsuarioLogado()
+        lifecycleScope.launch {
+            currentUser = repository.getUsuarioLogado()
+            loadUserData()
+        }
 
         setupEdgeToEdge()
         setupListeners()
-        loadUserData()
     }
 
     private fun setupEdgeToEdge() {
@@ -125,8 +151,15 @@ class EditarPrestador : AppCompatActivity() {
     private fun setupListeners() {
         binding.icHome.setOnClickListener { finish() }
 
+        /*
         binding.btnEditarFoto.setOnClickListener {
             fotoAlvo = 0
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+        */
+
+        binding.btnEditarFotoPerfil.setOnClickListener {
+            fotoAlvo = -1
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
@@ -149,15 +182,27 @@ class EditarPrestador : AppCompatActivity() {
 
     private fun loadUserData() {
         currentUser?.let { user ->
-            binding.txtNomePrestador.text = user.usuario.ifEmpty { "UserName" }
-            binding.txtCidade.text = user.local.ifEmpty { "Local" }
-            binding.txtDesc.text = user.descricao.ifEmpty { "Adicione mais informações sobre você e seus serviços." }
+            binding.txtNomePrestador.text = (user.usuario ?: "").ifEmpty { "UserName" }
+            binding.txtCidade.text = (user.local ?: "").ifEmpty { "Local" }
+            binding.txtDesc.text = (user.descricao ?: "").ifEmpty { "Adicione mais informações sobre você e seus serviços." }
 
+            /*
             user.fotoHorizontalPrestador?.let {
                 binding.imgFotoHorizontalPrestador.load(it.toUri())
             }
+            */
 
-            setupRecyclerView(user.servicos)
+            if (!user.fotoPerfil.isNullOrEmpty()) {
+                binding.fotoPerfil.load(user.fotoPerfil) {
+                    crossfade(true)
+                    placeholder(R.drawable.user)
+                    error(R.drawable.user)
+                }
+            } else {
+                binding.fotoPerfil.setImageResource(R.drawable.user)
+            }
+
+            setupRecyclerView(user.servicos ?: emptyList())
             atualizarVisibilidadeFotos()
         }
     }
@@ -181,7 +226,9 @@ class EditarPrestador : AppCompatActivity() {
     private fun updateUserServices(novaLista: List<String>) {
         currentUser?.let { u ->
             val userAtualizado = u.copy(servicos = novaLista)
-            repository.atualizarUsuario(userAtualizado)
+            lifecycleScope.launch {
+                repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+            }
             currentUser = userAtualizado
             (binding.rvServicos.adapter as? ServicoAdapter)?.apply {
                 // Idealmente o adapter deveria lidar com a atualização da lista interna
@@ -236,11 +283,13 @@ class EditarPrestador : AppCompatActivity() {
 
     private fun removerFoto(index: Int) {
         currentUser?.let { u ->
-            val novaLista = u.fotosServico.filter { it.isNotEmpty() }.toMutableList()
+            val novaLista = (u.fotosServico ?: emptyList()).filter { it.isNotEmpty() }.toMutableList()
             if (index < novaLista.size) {
                 novaLista.removeAt(index)
                 val userAtualizado = u.copy(fotosServico = novaLista)
-                repository.atualizarUsuario(userAtualizado)
+                lifecycleScope.launch {
+                    repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+                }
                 currentUser = userAtualizado
                 atualizarVisibilidadeFotos()
             }
@@ -260,7 +309,9 @@ class EditarPrestador : AppCompatActivity() {
                 binding.txtDesc.text = novaDesc.ifEmpty { "Adicione mais informações..." }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(descricao = novaDesc)
-                    repository.atualizarUsuario(userAtualizado)
+                    lifecycleScope.launch {
+                        repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+                    }
                     currentUser = userAtualizado
                 }
             }.setNegativeButton("Cancelar", null).show()
@@ -296,7 +347,9 @@ class EditarPrestador : AppCompatActivity() {
                 binding.txtCidade.text = novoLocal.ifEmpty { "Local" }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(local = novoLocal)
-                    repository.atualizarUsuario(userAtualizado)
+                    lifecycleScope.launch {
+                        repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+                    }
                     currentUser = userAtualizado
                 }
             }.setNegativeButton("Cancelar", null).show()

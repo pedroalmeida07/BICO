@@ -37,18 +37,18 @@
         <EditText
             android:id="@+id/editTextPesquisar"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="47sp"
             android:background="@drawable/barra_pesquisa"
             android:textSize="16sp"
             android:hint="@string/hint_pesquisar"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp"
             android:drawableEnd="@drawable/ic_pesquisa_preto"
-            android:drawablePadding="8dp"
+            android:drawablePadding="8sp"
             android:inputType="text"
             app:layout_constraintStart_toEndOf="@id/btnFiltro"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/guideline4"/>
+            app:layout_constraintTop_toTopOf="@id/guideline4"/>
 
 
     <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
@@ -58,8 +58,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_filters"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="153dp"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintEnd_toStartOf="@id/editTextPesquisar"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/editTextPesquisar"
         app:layout_constraintBottom_toBottomOf="@id/editTextPesquisar"
         android:layout_marginEnd="8dp"/>
@@ -70,8 +72,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:paddingBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <View
             android:id="@+id/barraInferior"

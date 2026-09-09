@@ -54,20 +54,24 @@
                 android:layout_height="40dp"
                 app:backgroundTint="@color/azul"
                 android:background="@drawable/ic_arrow_back_24"
-                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4"
                 android:id="@+id/sair">
             </com.google.android.material.button.MaterialButton>
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fotoPerfil"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/user"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toTopOf="@id/guideline4"/>
+                app:layout_constraintTop_toTopOf="@id/guideline4"
+                app:shapeAppearanceOverlay="@style/CircleShape"
+                app:strokeColor="@color/azul"
+                app:strokeWidth="2dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarFoto"
@@ -196,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ex.: 06767-000"
-                android:inputType="text"
+                android:inputType="number"
                 android:drawableRight="@drawable/ic_lapis"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -268,7 +272,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ex.: Apt. 100 "
-                    android:inputType="text"
+                    android:inputType="number"
                     android:drawableRight="@drawable/ic_lapis"/>
             </com.google.android.material.textfield.TextInputLayout>
 

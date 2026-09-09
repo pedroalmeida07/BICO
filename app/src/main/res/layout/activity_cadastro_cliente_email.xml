@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="textPassword"
-            android:hint="Senha"
+            android:hint="Senha (Mín. 6 dígitos)"
             android:fontFamily="@font/inter"
             android:textSize="16sp"
             android:paddingStart="0dp"

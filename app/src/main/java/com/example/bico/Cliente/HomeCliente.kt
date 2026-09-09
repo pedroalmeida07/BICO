@@ -11,10 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
 import com.example.bico.databinding.ActivityHomeClienteBinding
+import kotlinx.coroutines.launch
 
 class HomeCliente : AppCompatActivity() {
 
@@ -36,11 +39,7 @@ class HomeCliente : AppCompatActivity() {
         binding = ActivityHomeClienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Mostra o primeiro nome do cliente na pagina home
-        val repository = UserRepository(this)
-        val usuario = repository.getUsuarioLogado()
-        val txtNomeUsuario = binding.txtNomeUsuario
-        txtNomeUsuario.text = usuario?.primeiroNome ?: "Usuário"
+        carregarDadosUsuario()
 
         binding.icPesquisa.setOnClickListener {
             val intent = Intent(this, PesquisaCliente::class.java)
@@ -50,6 +49,30 @@ class HomeCliente : AppCompatActivity() {
         binding.imgUser.setOnClickListener {
             val intent = Intent(this, EditarCliente::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        carregarDadosUsuario()
+    }
+
+    private fun carregarDadosUsuario() {
+        val repository = UserRepository(this)
+        lifecycleScope.launch {
+            val usuario = repository.getUsuarioLogado()
+            usuario?.let { 
+                binding.txtNomeUsuario.text = it.primeiroNome.ifEmpty { "Usuário" }
+                if (!it.fotoPerfil.isNullOrEmpty()) {
+                    binding.imgUser.load(it.fotoPerfil) {
+                        crossfade(true)
+                        placeholder(R.drawable.user)
+                        error(R.drawable.user)
+                    }
+                } else {
+                    binding.imgUser.setImageResource(R.drawable.user)
+                }
+            }
         }
     }
 }
