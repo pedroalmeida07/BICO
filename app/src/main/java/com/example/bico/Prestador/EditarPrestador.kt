@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
@@ -28,13 +29,20 @@ import com.example.bico.utils.ImageUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import androidx.lifecycle.lifecycleScope
+import com.example.bico.utils.IbgeClient
+import com.example.bico.utils.NoAccentsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import android.widget.AutoCompleteTextView
+import com.google.android.material.textfield.TextInputLayout
 
 class EditarPrestador : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditarPrestadorBinding
     private lateinit var repository: UserRepository
     private var currentUser: User? = null
+    private val listaCidadesFormatadas = mutableListOf<String>()
 
     private var fotoAlvo: Int = 0 // -1: Perfil, 0: Horizontal, 1-4: Fotos Inferiores
     private var isEditModeFotos = false
@@ -131,6 +139,7 @@ class EditarPrestador : AppCompatActivity() {
             currentUser = repository.getUsuarioLogado()
             loadUserData()
         }
+        carregarCidadesIbge()
 
         setupEdgeToEdge()
         setupListeners()
@@ -336,23 +345,61 @@ class EditarPrestador : AppCompatActivity() {
 
     private fun showDialogEditarLocal() {
         val view = layoutInflater.inflate(R.layout.dialog_editar_local, null)
-        val input = view.findViewById<TextInputEditText>(R.id.editLocal)
+        val input = view.findViewById<AutoCompleteTextView>(R.id.editLocal)
+        val layout = view.findViewById<TextInputLayout>(R.id.txtInputLayoutLocal)
+        
         input.setText(currentUser?.local ?: "")
+        
+        val adapterCidades = NoAccentsAdapter(this, android.R.layout.simple_dropdown_item_1line, listaCidadesFormatadas)
+        input.setAdapter(adapterCidades)
 
-        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+        val dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
             .setTitle("Editar local de atuação")
             .setView(view)
-            .setPositiveButton("Confirmar") { _, _ ->
-                val novoLocal = input.text.toString()
-                binding.txtCidade.text = novoLocal.ifEmpty { "Local" }
-                currentUser?.let { u ->
-                    val userAtualizado = u.copy(local = novoLocal)
-                    lifecycleScope.launch {
-                        repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+            .setPositiveButton("Confirmar", null) // Definimos como null para sobrescrever o comportamento
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.setOnShowListener {
+            val button = dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener {
+                val novoLocal = input.text.toString().trim()
+                
+                if (novoLocal.isEmpty()) {
+                    layout.error = "O local não pode estar vazio"
+                } else if (listaCidadesFormatadas.isNotEmpty() && !listaCidadesFormatadas.contains(novoLocal)) {
+                    layout.error = "Selecione uma cidade válida da lista"
+                } else {
+                    binding.txtCidade.text = novoLocal
+                    currentUser?.let { u ->
+                        val userAtualizado = u.copy(local = novoLocal)
+                        lifecycleScope.launch {
+                            repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+                        }
+                        currentUser = userAtualizado
                     }
-                    currentUser = userAtualizado
+                    dialog.dismiss()
                 }
-            }.setNegativeButton("Cancelar", null).show()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun carregarCidadesIbge() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val resposta = IbgeClient.apiService.getMunicipios()
+                val nomes = resposta.map { it.nomeFormatado }
+                withContext(Dispatchers.Main) {
+                    listaCidadesFormatadas.clear()
+                    listaCidadesFormatadas.addAll(nomes)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@EditarPrestador, "Erro ao carregar lista de cidades", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun expandirFoto(uriString: String) {

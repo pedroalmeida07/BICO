@@ -8,19 +8,20 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutLocal"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cidade e Estado (Ex: São Paulo, SP)"
+        android:hint="Cidade e Estado"
         app:boxStrokeColor="@color/azul"
         app:hintTextColor="@color/azul">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/editLocal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textColor="@color/azul" />
+            android:textColor="@color/azul"
+            android:completionThreshold="1"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
