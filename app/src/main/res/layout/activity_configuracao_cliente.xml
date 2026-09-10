@@ -121,6 +121,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_estrela_vazia"
+        app:tint="@color/azul"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/linha2" />
@@ -134,18 +135,49 @@
         android:fontFamily="@font/inter"
         android:text="Favoritos"
         android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/linha1"
-        app:layout_constraintBottom_toBottomOf="@id/linha2"/>
+        app:layout_constraintStart_toEndOf="@id/ic_star"
+        app:layout_constraintTop_toBottomOf="@id/linha2"
+        app:layout_constraintBottom_toBottomOf="@id/linha3"/>
 
     <View
-        android:id="@+id/linha2"
+        android:id="@+id/linha3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_user" />
+        app:layout_constraintTop_toBottomOf="@id/ic_star" />
+    <ImageView
+        android:id="@+id/ic_help"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_help"
+        app:tint="@color/azul"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha3" />
+
+    <TextView
+        android:id="@+id/txtAjuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:text="Ajuda"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toEndOf="@id/ic_help"
+        app:layout_constraintTop_toBottomOf="@id/linha3"
+        app:layout_constraintBottom_toBottomOf="@id/linha4"/>
+
+    <View
+        android:id="@+id/linha4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_help" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
