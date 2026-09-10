@@ -134,18 +134,18 @@
         android:fontFamily="@font/inter"
         android:text="Favoritos"
         android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/linha1"
-        app:layout_constraintBottom_toBottomOf="@id/linha2"/>
+        app:layout_constraintStart_toEndOf="@id/ic_star"
+        app:layout_constraintTop_toBottomOf="@id/linha2"
+        app:layout_constraintBottom_toBottomOf="@id/linha3"/>
 
     <View
-        android:id="@+id/linha2"
+        android:id="@+id/linha3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_user" />
+        app:layout_constraintTop_toBottomOf="@id/ic_star" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
