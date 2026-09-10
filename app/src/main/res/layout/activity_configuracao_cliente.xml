@@ -177,6 +177,65 @@
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_help" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerBarra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline3">
+
+            <View
+                android:id="@+id/barraInferior"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/barra_inferior_branca"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp"/>
+
+            <ImageView
+                android:id="@+id/ic_home"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_home_laranja"
+                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+                app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+            <ImageView
+                android:id="@+id/ic_pesquisa"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_pesquisa_preto"
+                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+                app:layout_constraintEnd_toStartOf="@id/ic_chat"
+                app:layout_constraintStart_toEndOf="@id/ic_home"
+                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+            <ImageView
+                android:id="@+id/ic_chat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chat_preto"
+                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+                app:layout_constraintEnd_toStartOf="@id/ic_config"
+                app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
+                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+            <ImageView
+                android:id="@+id/ic_config"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_config_preto"
+                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ic_chat"
+                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
