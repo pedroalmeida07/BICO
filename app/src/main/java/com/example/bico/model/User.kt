@@ -6,33 +6,33 @@ import java.util.UUID
 data class User(
     //padrao ao prestador e cliente
     @SerializedName("id")
-    val id: String? = "",
-    val nome: String? = "",
-    val cpf: String? = "",
-    val telefone: String? = "",
-    val email: String? = "",
-    val senha: String? = "",
+    val id: String? = null,
+    val nome: String? = null,
+    val cpf: String? = null,
+    val telefone: String? = null,
+    val email: String? = null,
+    val senha: String? = null,
 
     //exclusivo cliente
-    val cep: String? = "",
-    val numero: String? = "",
-    val complemento: String? = "",
+    val cep: String? = null,
+    val numero: String? = null,
+    val complemento: String? = null,
 
     //exclusivo prestador
     @SerializedName("username")
-    val usuario: String? = "",
+    val usuario: String? = null,
     @SerializedName("fotoPerfil")
     val fotoPerfil: String? = null,
     @SerializedName("fotoPaginaPerfil")
     val fotoHorizontalPrestador: String? = null,
     @SerializedName("fotosServicos")
-    val fotosServico: List<String>? = emptyList(),
+    val fotosServico: List<String>? = null,
     @SerializedName("tiposServico")
-    val servicos: List<String>? = emptyList(),
+    val servicos: List<String>? = null,
     @SerializedName("sobre")
-    val descricao: String? = "",
+    val descricao: String? = null,
     @SerializedName("localAtuacao")
-    val local: String? = "",
+    val local: String? = null,
 ) {
     val primeiroNome: String
         get() = (nome ?: "").trim().split(" ").firstOrNull() ?: ""

@@ -24,6 +24,7 @@ import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarClienteBinding
 import com.example.bico.model.User
 import com.example.bico.utils.ImageUtils
+import com.example.bico.utils.MaskWatcher
 import kotlinx.coroutines.launch
 
 class EditarCliente : AppCompatActivity() {
@@ -72,6 +73,12 @@ class EditarCliente : AppCompatActivity() {
         setupEdgeToEdge()
         loadUserData()
         setupListeners()
+        setupMasks()
+    }
+
+    private fun setupMasks() {
+        binding.editTextCep.addTextChangedListener(MaskWatcher("#####-###", binding.editTextCep))
+        binding.editTextTelefone.addTextChangedListener(MaskWatcher("(##) #####-####", binding.editTextTelefone))
     }
 
     private fun setupEdgeToEdge() {
@@ -143,8 +150,8 @@ class EditarCliente : AppCompatActivity() {
 
     private fun salvarAlteracoes() {
         val nome = binding.editTextNome.text.toString()
-        val telefone = binding.editTextTelefone.text.toString()
-        val cep = binding.editTextCep.text.toString()
+        val telefone = MaskWatcher.unmask(binding.editTextTelefone.text.toString())
+        val cep = MaskWatcher.unmask(binding.editTextCep.text.toString())
         val numero = binding.editTextNumero.text.toString()
         val complemento = binding.editTextComplemento.text.toString()
 
@@ -160,7 +167,7 @@ class EditarCliente : AppCompatActivity() {
                 cep = cep,
                 numero = numero,
                 complemento = complemento,
-                local = "$cep, $numero - $complemento"
+                local = "${binding.editTextCep.text}, $numero - $complemento"
             )
 
             lifecycleScope.launch {

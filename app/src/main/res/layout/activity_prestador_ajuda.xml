@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cliente.PesquisaCliente">
+
+    <!--Linhas de Guia-->
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"
+        android:id="@+id/guideline1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"
+        android:id="@+id/guideline2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="horizontal"
+        android:id="@+id/guideline3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="horizontal"
+        android:id="@+id/guideline4"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:backgroundTint="@color/azul"
+        android:background="@drawable/ic_arrow_back_24"
+        android:layout_marginStart="0dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/guideline4"
+        android:id="@+id/sair">
+    </com.google.android.material.button.MaterialButton>
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/azul"
+        android:text="Ajuda e suporte"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/sair"
+        app:layout_constraintTop_toTopOf="@+id/sair"
+        app:layout_constraintBottom_toBottomOf="@id/sair"/>
+
+    <ImageView
+        android:id="@+id/ic_handshake"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/ic_handshake"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo" />
+
+    <TextView
+        android:id="@+id/txtAjuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/azul"
+        android:text="Ajuda e suporte"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/ic_handshake" />
+
+    <ImageView
+        android:id="@+id/ic_danger"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_danger"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/txtAjuda"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relatar um Problema"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/inter"
+        android:textSize="18dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/ic_danger"
+        app:layout_constraintTop_toTopOf="@id/ic_danger"
+        app:layout_constraintBottom_toBottomOf="@id/ic_danger"/>
+
+    <ImageView
+        android:id="@+id/ic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_chat_exclamacao"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/ic_danger"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Denúncias e Violações"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/inter"
+        android:textSize="18dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/ic"
+        app:layout_constraintTop_toTopOf="@id/ic"
+        app:layout_constraintBottom_toBottomOf="@id/ic"/>
+
+
+
+
+
+    <!--Barra Inferior-->
+    <View
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/barra_inferior_branca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/ic_home"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_home_preto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
+
+    <ImageView
+        android:id="@+id/ic_chat"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_chat_preto"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_config"/>
+
+
+    <ImageView
+        android:id="@+id/ic_config"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_config_laranja"
+        app:layout_constraintStart_toEndOf="@id/ic_chat"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_user_barra"/>
+
+    <ImageView
+        android:id="@+id/ic_user_barra"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ic_config"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/black"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

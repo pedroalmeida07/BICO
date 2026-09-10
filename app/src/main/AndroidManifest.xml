@@ -99,6 +99,10 @@
             android:name=".Cliente.DenunciasCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity_prestador_ajuda"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
