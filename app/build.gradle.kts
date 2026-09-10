@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.bico"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.bico"
@@ -32,13 +30,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    viewBinding{
-        enable= true
+    viewBinding {
+        enable = true
     }
 }
 
 dependencies {
-    //biblioteca GSON para salvamento em JSON
+    // biblioteca GSON para salvamento em JSON
     implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
