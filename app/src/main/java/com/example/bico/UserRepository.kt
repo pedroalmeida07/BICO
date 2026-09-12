@@ -7,7 +7,6 @@ import com.example.bico.network.RetrofitClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import kotlinx.coroutines.tasks.await
-import kotlin.math.log
 
 class UserRepository(private val context: Context) {
     private val auth = FirebaseAuth.getInstance()
@@ -149,6 +148,21 @@ class UserRepository(private val context: Context) {
         catch (e: Exception) {
             Log.e("UserRepository", "Falha na requisição de deleção: ${e.message}")
             return false
+        }
+    }
+
+    suspend fun buscarPrestadores(tipos: String? = null, inicio: Int? = null, fim: Int? = null): List<User>? {
+        return try {
+            val response = api.buscarPrestadores(tipos, inicio, fim)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("UserRepository", "Erro ao buscar prestadores: ${response.code()}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Falha na requisição de prestadores: ${e.message}")
+            null
         }
     }
 
