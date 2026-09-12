@@ -3,19 +3,14 @@ package com.example.bico.Cliente
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
-import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
 import com.example.bico.databinding.ActivityHomeClienteBinding
 import kotlinx.coroutines.launch
 
@@ -60,7 +55,7 @@ class HomeCliente : AppCompatActivity() {
     private fun carregarDadosUsuario() {
         val repository = UserRepository(this)
         lifecycleScope.launch {
-            val usuario = repository.getUsuarioLogado()
+            val usuario = repository.usuarioLogado()
             usuario?.let { 
                 binding.txtNomeUsuario.text = it.primeiroNome.ifEmpty { "Usuário" }
                 if (!it.fotoPerfil.isNullOrEmpty()) {

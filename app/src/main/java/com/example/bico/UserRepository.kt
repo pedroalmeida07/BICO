@@ -7,6 +7,7 @@ import com.example.bico.network.RetrofitClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import kotlinx.coroutines.tasks.await
+import kotlin.math.log
 
 class UserRepository(private val context: Context) {
     private val auth = FirebaseAuth.getInstance()
@@ -68,7 +69,7 @@ class UserRepository(private val context: Context) {
 
             // 2. Busca os dados complementares no nosso backend em Go
             Log.d("UserRepository", "Firebase Auth OK. Buscando dados no backend para UID: $uid")
-            val response = api.getDadosUsuario(uid)
+            val response = api.DadosUsuario(uid)
             if (response.isSuccessful) {
                 val user = response.body()
                 if (user != null) {
@@ -92,7 +93,7 @@ class UserRepository(private val context: Context) {
     }
 
     // Retorna o usuário logado buscando no backend (com cache local)
-    suspend fun getUsuarioLogado(): User? {
+    suspend fun usuarioLogado(): User? {
         val uid = auth.currentUser?.uid ?: return null
         
         // Tenta retornar o cache local primeiro para rapidez
@@ -102,7 +103,7 @@ class UserRepository(private val context: Context) {
         }
 
         return try {
-            val response = api.getDadosUsuario(uid)
+            val response = api.DadosUsuario(uid)
             if (response.isSuccessful) {
                 val user = response.body()?.copy(id = uid)
                 user?.let { saveLocalUser(it) }
@@ -131,6 +132,23 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) {
             Log.e("UserRepository", "Falha na atualização: ${e.message}", e)
             false
+        }
+    }
+
+    suspend fun deletarUsuario(id: String): Boolean {
+        try {
+            val response = api.deletarUsuario(id)
+            if (response.isSuccessful) {
+                deslogar()
+                return true
+            } else {
+                Log.e("UserRepository", "Erro ao deletar usuario de ID: $id")
+                return false
+            }
+        }
+        catch (e: Exception) {
+            Log.e("UserRepository", "Falha na requisição de deleção: ${e.message}")
+            return false
         }
     }
 

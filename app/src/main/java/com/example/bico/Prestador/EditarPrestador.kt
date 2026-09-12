@@ -136,7 +136,7 @@ class EditarPrestador : AppCompatActivity() {
 
         repository = UserRepository(this)
         lifecycleScope.launch {
-            currentUser = repository.getUsuarioLogado()
+            currentUser = repository.usuarioLogado()
             loadUserData()
         }
         carregarCidadesIbge()

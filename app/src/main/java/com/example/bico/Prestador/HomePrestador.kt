@@ -77,7 +77,7 @@ class HomePrestador : AppCompatActivity() {
     private fun carregarDadosUsuario() {
         val repository = UserRepository(this)
         lifecycleScope.launch {
-            val usuario = repository.getUsuarioLogado()
+            val usuario = repository.usuarioLogado()
             usuario?.let { 
                 findViewById<TextView>(R.id.txtNomeUsuario).text = it.primeiroNome.ifEmpty { "Usuário" }
                 val imgUser = findViewById<ImageView>(R.id.imgUser)

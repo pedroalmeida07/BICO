@@ -10,7 +10,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -91,7 +90,7 @@ class EditarCliente : AppCompatActivity() {
 
     private fun loadUserData() {
         lifecycleScope.launch {
-            currentUser = repository.getUsuarioLogado()
+            currentUser = repository.usuarioLogado()
             currentUser?.let { user ->
                 binding.editTextNome.setText(user.nome)
                 binding.editTextTelefone.setText(user.telefone)
