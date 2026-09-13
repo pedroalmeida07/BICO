@@ -46,7 +46,7 @@ class CadastroClienteLocal : AppCompatActivity() {
             }
 
             // Salva no objeto temporário
-            UserRepository.tempUser = UserRepository.tempUser.copy(
+            UserRepository.tempCliente = UserRepository.tempCliente.copy(
                 local = "$cep, $numero - $complemento",
                 cep = MaskWatcher.unmask(cep),
                 telefone = MaskWatcher.unmask(telefone),

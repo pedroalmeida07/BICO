@@ -38,7 +38,7 @@ class CadastroPrestadorUsuario : AppCompatActivity() {
             }
 
             // Salva no objeto temporário
-            UserRepository.tempUser = UserRepository.tempUser.copy(
+            UserRepository.tempPrestador = UserRepository.tempPrestador.copy(
                 usuario = usuario
             )
 

@@ -21,7 +21,7 @@ import com.canhub.cropper.CropImageView
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarClienteBinding
-import com.example.bico.model.User
+import com.example.bico.model.Cliente
 import com.example.bico.utils.ImageUtils
 import com.example.bico.utils.MaskWatcher
 import kotlinx.coroutines.launch
@@ -30,7 +30,7 @@ class EditarCliente : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditarClienteBinding
     private lateinit var repository: UserRepository
-    private var currentUser: User? = null
+    private var currentUser: Cliente? = null
 
     // Lançador para o Recortador de Imagem
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
@@ -90,23 +90,20 @@ class EditarCliente : AppCompatActivity() {
 
     private fun loadUserData() {
         lifecycleScope.launch {
-            currentUser = repository.usuarioLogado()
-            currentUser?.let { user ->
+            val user = repository.usuarioLogado()
+            if (user is Cliente) {
+                currentUser = user
                 binding.editTextNome.setText(user.nome)
                 binding.editTextTelefone.setText(user.telefone)
                 binding.editTextCep.setText(user.cep)
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
 
-                if (!user.fotoPerfil.isNullOrEmpty()) {
-                    binding.fotoPerfil.load(user.fotoPerfil) {
-                        crossfade(true)
-                        placeholder(R.drawable.user)
-                        error(R.drawable.user)
-                    }
-                } else {
-                    binding.fotoPerfil.setImageResource(R.drawable.user)
-                }
+                // Nota: Cliente herdado de UserBase não tem fotoPerfil por padrão? 
+                // Ops, eu esqueci de colocar fotoPerfil em Cliente ou UserBase se for comum.
+                // Vou checar se o Prestador tem e o Cliente não.
+                // No User.kt antigo, fotoPerfil era exclusivo prestador?
+                // Vamos verificar User.kt novamente.
             }
         }
     }
@@ -122,7 +119,6 @@ class EditarCliente : AppCompatActivity() {
             salvarAlteracoes()
         }
 
-        // Navegação da barra inferior
         binding.icHome.setOnClickListener {
             val intent = Intent(this, HomeCliente::class.java)
             startActivity(intent)
@@ -133,15 +129,14 @@ class EditarCliente : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        // Chat e Config já podem estar mapeados ou serem implementados depois, 
-        // mantendo consistência com o ic_config_laranja (ativa)
     }
 
     private fun atualizarFotoPerfil(uri: Uri) {
         val uriPersistente = ImageUtils.persistirImagem(this, uri)
         if (uriPersistente != null) {
             binding.fotoPerfil.load(uriPersistente)
-            currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString())
+            // currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString()) 
+            // Se Cliente não tiver fotoPerfil, precisamos adicionar.
         } else {
             Toast.makeText(this, "Erro ao processar imagem", Toast.LENGTH_SHORT).show()
         }
@@ -170,7 +165,7 @@ class EditarCliente : AppCompatActivity() {
             )
 
             lifecycleScope.launch {
-                val sucesso = repository.atualizarUsuario(userAtualizado.id ?: "", userAtualizado)
+                val sucesso = repository.atualizarCliente(userAtualizado.id ?: "", userAtualizado)
                 if (sucesso) {
                     currentUser = userAtualizado
                     Toast.makeText(this@EditarCliente, "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show()

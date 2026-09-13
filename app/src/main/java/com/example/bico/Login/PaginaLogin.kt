@@ -13,6 +13,7 @@ import com.example.bico.Cliente.HomeCliente
 import com.example.bico.Prestador.HomePrestador
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
+import com.example.bico.model.Cliente
 import kotlinx.coroutines.launch
 
 class PaginaLogin : AppCompatActivity() {
@@ -61,7 +62,7 @@ class PaginaLogin : AppCompatActivity() {
                 val usuario = repository.realizarLogin(email, senha)
                 if (usuario != null) {
                     Toast.makeText(this@PaginaLogin, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    val intent = if (usuario.usuario == null) {
+                    val intent = if (usuario is Cliente) {
                         Intent(this@PaginaLogin, HomeCliente::class.java)
                     } else {
                         Intent(this@PaginaLogin, HomePrestador::class.java)

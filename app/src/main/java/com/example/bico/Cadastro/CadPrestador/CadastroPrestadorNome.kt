@@ -49,7 +49,7 @@ class CadastroPrestadorNome : AppCompatActivity() {
             }
 
             // Salva no objeto temporário
-            UserRepository.tempUser = UserRepository.tempUser.copy(
+            UserRepository.tempPrestador = UserRepository.tempPrestador.copy(
                 nome = nome,
                 cpf = CpfMaskWatcher.unmask(cpf)
             )

@@ -101,7 +101,7 @@ class CadastroPrestadorServico : AppCompatActivity() {
             }
 
             // Salva e avança
-            UserRepository.tempUser = UserRepository.tempUser.copy(
+            UserRepository.tempPrestador = UserRepository.tempPrestador.copy(
                 servicos = listOf(tipo),
                 local = local
             )
