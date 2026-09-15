@@ -89,19 +89,17 @@ class HomePrestador : AppCompatActivity() {
                         placeholder(R.drawable.user)
                         error(R.drawable.user)
                     }
+                    icUserBarra.imageTintList = null
+                    icUserBarra.colorFilter = null
                     icUserBarra.load(it.fotoPerfil) {
                         crossfade(true)
                         placeholder(R.drawable.user)
                         error(R.drawable.user)
-                        // Para o ícone da barra, podemos querer remover o tint se for uma foto
-                        target { drawable ->
-                            icUserBarra.setImageDrawable(drawable)
-                            icUserBarra.colorFilter = null
-                        }
                     }
                 } else {
                     imgUser.setImageResource(R.drawable.user)
                     icUserBarra.setImageResource(R.drawable.user)
+                    icUserBarra.imageTintList = android.content.res.ColorStateList.valueOf(Color.BLACK)
                 }
             }
         }

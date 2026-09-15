@@ -92,6 +92,9 @@ class EditarPrestador : AppCompatActivity() {
             val userAtualizado = when (fotoAlvo) {
                 -1 -> {
                     binding.fotoPerfil.load(uriPersistente)
+                    binding.icUserBarra.imageTintList = null
+                    binding.icUserBarra.colorFilter = null
+                    binding.icUserBarra.load(uriPersistente)
                     u.copy(fotoPerfil = uriPersistente.toString())
                 }
                 else -> {
@@ -181,8 +184,17 @@ class EditarPrestador : AppCompatActivity() {
                     placeholder(R.drawable.user)
                     error(R.drawable.user)
                 }
+                binding.icUserBarra.imageTintList = null
+                binding.icUserBarra.colorFilter = null
+                binding.icUserBarra.load(user.fotoPerfil) {
+                    crossfade(true)
+                    placeholder(R.drawable.user)
+                    error(R.drawable.user)
+                }
             } else {
                 binding.fotoPerfil.setImageResource(R.drawable.user)
+                binding.icUserBarra.setImageResource(R.drawable.user)
+                binding.icUserBarra.imageTintList = android.content.res.ColorStateList.valueOf(Color.BLACK)
             }
 
             setupRecyclerView(user.servicos ?: emptyList())
