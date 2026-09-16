@@ -135,7 +135,7 @@
         android:fontFamily="@font/inter"
         android:text="Ajuda"
         android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
+        app:layout_constraintStart_toEndOf="@id/ic_help"
         app:layout_constraintTop_toBottomOf="@id/linha2"
         app:layout_constraintBottom_toBottomOf="@id/linha3"/>
 
@@ -148,69 +148,91 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_help" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerBarra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:paddingBottom="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline3">
+    <ImageView
+        android:id="@+id/ic_impulso"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_raio"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha3" />
 
-            <View
-                android:id="@+id/barraInferior"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/barra_inferior_branca"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/txtImpulso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:text="Impulsionar Perfil"
+        android:textColor="@color/azul"
+        app:layout_constraintStart_toEndOf="@id/ic_impulso"
+        app:layout_constraintTop_toBottomOf="@id/linha3"
+        app:layout_constraintBottom_toBottomOf="@id/linha4"/>
 
-            <ImageView
-                android:id="@+id/ic_home"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_home"
-                app:tint="@color/laranja"
-                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-                app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+    <View
+        android:id="@+id/linha4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_impulso" />
 
-            <ImageView
-                android:id="@+id/ic_pesquisa"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_pesquisa"
-                app:tint="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-                app:layout_constraintEnd_toStartOf="@id/ic_chat"
-                app:layout_constraintStart_toEndOf="@id/ic_home"
-                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+    <!--Barra Inferior-->
+    <View
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/barra_inferior_branca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        android:layout_marginTop="15dp"/>
 
-            <ImageView
-                android:id="@+id/ic_chat"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_chat"
-                app:tint="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-                app:layout_constraintEnd_toStartOf="@id/ic_config"
-                app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
-                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+    <ImageView
+        android:id="@+id/ic_home"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_home"
+        app:tint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_chat"/>
 
-            <ImageView
-                android:id="@+id/ic_config"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/ic_config"
-                app:tint="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ic_chat"
-                app:layout_constraintTop_toTopOf="@id/barraInferior" />
+    <ImageView
+        android:id="@+id/ic_chat"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_chat"
+        app:tint="@color/black"
+        app:layout_constraintStart_toEndOf="@id/ic_home"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_config"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ic_config"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_config"
+        app:tint="@color/laranja"
+        app:layout_constraintStart_toEndOf="@id/ic_chat"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ic_user_barra"/>
+
+    <ImageView
+        android:id="@+id/ic_user_barra"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ic_config"
+        app:layout_constraintTop_toTopOf="@id/barraInferior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/black"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
