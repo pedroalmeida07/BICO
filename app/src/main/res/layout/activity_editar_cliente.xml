@@ -298,7 +298,7 @@
 
 
 
-    <!-- Barra Inferior Fixa -->
+    <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerBarra"
         android:layout_width="match_parent"
@@ -314,15 +314,14 @@
             android:layout_height="60dp"
             android:background="@drawable/barra_inferior_branca"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="15dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ic_home"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_home"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
             app:layout_constraintStart_toStartOf="parent"
@@ -333,7 +332,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_pesquisa"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_chat"
             app:layout_constraintStart_toEndOf="@id/ic_home"
@@ -344,7 +343,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_chat"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_config"
             app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
@@ -355,7 +354,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_config"
-                app:tint="@color/laranja"
+            app:tint="@color/laranja"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ic_chat"

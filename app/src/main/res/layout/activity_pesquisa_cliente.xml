@@ -51,9 +51,6 @@
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="@id/guideline4"/>
 
-
-    <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
-
     <ImageView
         android:id="@+id/btnFiltro"
         android:layout_width="wrap_content"
@@ -67,13 +64,15 @@
         app:layout_constraintBottom_toBottomOf="@id/editTextPesquisar"
         android:layout_marginEnd="8dp"/>
 
+    <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerBarra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:paddingBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:id="@+id/barraInferior"
@@ -88,7 +87,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_home"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +98,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_pesquisa"
-                app:tint="@color/laranja"
+            app:tint="@color/laranja"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_chat"
             app:layout_constraintStart_toEndOf="@id/ic_home"
@@ -110,7 +109,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_chat"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_config"
             app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
@@ -121,7 +120,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_config"
-                app:tint="@color/black"
+            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ic_chat"
