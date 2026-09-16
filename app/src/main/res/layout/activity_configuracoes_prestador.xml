@@ -116,37 +116,7 @@
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ic_user" />
-    <ImageView
-        android:id="@+id/ic_star"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:tint="@color/azul"
-        android:src="@drawable/ic_estrela_vazia"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha2" />
 
-    <TextView
-        android:id="@+id/txtFavoritos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter"
-        android:text="Favoritos"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/linha2"
-        app:layout_constraintBottom_toBottomOf="@id/linha3"/>
-
-    <View
-        android:id="@+id/linha3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/cinzaClaro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_star" />
     <ImageView
         android:id="@+id/ic_help"
         android:layout_width="60dp"
@@ -154,7 +124,7 @@
         android:src="@drawable/ic_help"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha3" />
+        app:layout_constraintTop_toBottomOf="@id/linha2" />
 
     <TextView
         android:id="@+id/txtAjuda"
@@ -166,11 +136,11 @@
         android:text="Ajuda"
         android:textColor="@color/azul"
         app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/linha3"
-        app:layout_constraintBottom_toBottomOf="@id/linha4"/>
+        app:layout_constraintTop_toBottomOf="@id/linha2"
+        app:layout_constraintBottom_toBottomOf="@id/linha3"/>
 
     <View
-        android:id="@+id/linha4"
+        android:id="@+id/linha3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
