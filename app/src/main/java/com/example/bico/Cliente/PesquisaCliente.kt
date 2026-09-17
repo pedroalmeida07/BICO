@@ -29,6 +29,12 @@ class PesquisaCliente : AppCompatActivity() {
         binding = ActivityPesquisaClienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
         binding.icHome.setOnClickListener {
             val intent = Intent(this, HomeCliente::class.java)
             startActivity(intent)
