@@ -56,27 +56,35 @@
         app:layout_constraintTop_toTopOf="@id/barraSuperior"
         app:layout_constraintBottom_toBottomOf="@id/barraSuperior"/>
 
-    <ImageView
-        android:id="@+id/ic_privacy"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_privacy"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/barraSuperior" />
-
-    <TextView
-        android:id="@+id/txtPrivacidade"
+    <LinearLayout
+        android:id="@+id/layoutPrivacidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter"
-        android:text="Privacidade"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_privacy"
-        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
-        app:layout_constraintBottom_toBottomOf="@id/linha1"/>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior">
+
+        <ImageView
+            android:id="@+id/ic_privacy"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_privacy" />
+
+        <TextView
+            android:id="@+id/txtPrivacidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter"
+            android:text="Privacidade"
+            android:textColor="@color/azul" />
+    </LinearLayout>
 
     <View
         android:id="@+id/linha1"
@@ -85,28 +93,37 @@
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_privacy" />
-    <ImageView
-        android:id="@+id/ic_user"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_user"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha1" />
+        app:layout_constraintTop_toBottomOf="@id/layoutPrivacidade" />
 
-    <TextView
-        android:id="@+id/txtEditarPerfil"
+    <LinearLayout
+        android:id="@+id/layoutEditarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter"
-        android:text="Editar Perfil"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/linha1"
-        app:layout_constraintBottom_toBottomOf="@id/linha2"/>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha1">
+
+        <ImageView
+            android:id="@+id/ic_user"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/txtEditarPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter"
+            android:text="Editar Perfil"
+            android:textColor="@color/azul" />
+    </LinearLayout>
 
     <View
         android:id="@+id/linha2"
@@ -115,29 +132,37 @@
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_user" />
+        app:layout_constraintTop_toBottomOf="@id/layoutEditarPerfil" />
 
-    <ImageView
-        android:id="@+id/ic_help"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_help"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha2" />
-
-    <TextView
-        android:id="@+id/txtAjuda"
+    <LinearLayout
+        android:id="@+id/layoutAjuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter"
-        android:text="Ajuda"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_help"
-        app:layout_constraintTop_toBottomOf="@id/linha2"
-        app:layout_constraintBottom_toBottomOf="@id/linha3"/>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha2">
+
+        <ImageView
+            android:id="@+id/ic_help"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_help" />
+
+        <TextView
+            android:id="@+id/txtAjuda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter"
+            android:text="Ajuda"
+            android:textColor="@color/azul" />
+    </LinearLayout>
 
     <View
         android:id="@+id/linha3"
@@ -146,29 +171,37 @@
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_help" />
+        app:layout_constraintTop_toBottomOf="@id/layoutAjuda" />
 
-    <ImageView
-        android:id="@+id/ic_impulso"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_raio"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha3" />
-
-    <TextView
-        android:id="@+id/txtImpulso"
+    <LinearLayout
+        android:id="@+id/layoutImpulso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter"
-        android:text="Impulsionar Perfil"
-        android:textColor="@color/azul"
-        app:layout_constraintStart_toEndOf="@id/ic_impulso"
-        app:layout_constraintTop_toBottomOf="@id/linha3"
-        app:layout_constraintBottom_toBottomOf="@id/linha4"/>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha3">
+
+        <ImageView
+            android:id="@+id/ic_impulso"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_raio" />
+
+        <TextView
+            android:id="@+id/txtImpulso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter"
+            android:text="Impulsionar Perfil"
+            android:textColor="@color/azul" />
+    </LinearLayout>
 
     <View
         android:id="@+id/linha4"
@@ -177,7 +210,7 @@
         android:layout_marginTop="30dp"
         android:background="@color/cinzaClaro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_impulso" />
+        app:layout_constraintTop_toBottomOf="@id/layoutImpulso" />
 
     <!-- Barra Inferior Fixa -->
     <androidx.constraintlayout.widget.ConstraintLayout

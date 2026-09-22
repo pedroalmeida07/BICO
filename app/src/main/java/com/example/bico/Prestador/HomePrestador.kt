@@ -17,9 +17,12 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
+import com.example.bico.databinding.ActivityHomePrestadorBinding
 import kotlinx.coroutines.launch
 
 class HomePrestador : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHomePrestadorBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //deixa a barra de status com icones pretos
@@ -67,6 +70,12 @@ class HomePrestador : AppCompatActivity() {
             val intent = Intent(this, EditarPrestador::class.java)
             startActivity(intent)
         }
+
+        findViewById<ImageView>(R.id.ic_config).setOnClickListener {
+            val intent = Intent(this, ConfiguracoesPrestador::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onResume() {

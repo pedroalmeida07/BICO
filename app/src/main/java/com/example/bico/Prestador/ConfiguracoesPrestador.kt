@@ -17,10 +17,36 @@ class ConfiguracoesPrestador : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityConfiguracoesPrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.icHelp.setOnClickListener {
+
+        binding.layoutPrivacidade.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, PrivacidadePrestador::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+
+        binding.layoutAjuda.setOnClickListener {
             // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, AjudaPrestador::class.java)
             startActivity(intent) // Inicia a nova tela
         }
+
+        binding.layoutEditarPerfil.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, EditarPrestador::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+
+        //Barra de Baixo
+        binding.icHome.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, HomePrestador::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+        binding.icUserBarra.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, EditarPrestador::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+
     }
 }
