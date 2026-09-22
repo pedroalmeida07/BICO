@@ -100,19 +100,19 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_prestador_ajuda"
+            android:name=".Prestador.AjudaPrestador"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_configuracoes_prestador"
+            android:name=".Prestador.ConfiguracoesPrestador"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_cliente_ajuda"
+            android:name=".Cliente.AjudaCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity_privacidade_cliente"
+            android:name=".Cliente.PrivacidadeCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
