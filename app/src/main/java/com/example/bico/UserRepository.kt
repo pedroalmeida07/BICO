@@ -56,6 +56,7 @@ class UserRepository(private val context: Context) {
     }
 
     suspend fun realizarLogin(email: String, senha: String): UserBase? {
+
         return try {
             val authResult = auth.signInWithEmailAndPassword(email, senha).await()
             val uid = authResult.user?.uid ?: return null

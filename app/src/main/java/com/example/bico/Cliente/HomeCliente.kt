@@ -51,6 +51,16 @@ class HomeCliente : AppCompatActivity() {
             val intent = Intent(this, EditarCliente::class.java)
             startActivity(intent)
         }
+
+        binding.pagPrestador1.setOnClickListener {
+            val intent = Intent(this, VerPrestadorCliente::class.java)
+            startActivity(intent)
+        }
+
+        binding.pagPrestador2.setOnClickListener {
+            val intent = Intent(this, VerPrestadorCliente::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

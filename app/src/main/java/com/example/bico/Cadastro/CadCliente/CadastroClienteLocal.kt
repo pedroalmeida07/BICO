@@ -48,11 +48,13 @@ class CadastroClienteLocal : AppCompatActivity() {
             // Salva no objeto temporário
             UserRepository.tempCliente = UserRepository.tempCliente.copy(
                 local = "$cep, $numero - $complemento",
-                cep = MaskWatcher.unmask(cep),
-                telefone = MaskWatcher.unmask(telefone),
+                cep = cep,
+                telefone = telefone,
                 numero = numero,
                 complemento = complemento
             )
+
+
 
             val intent = Intent(this, CadastroClienteEmail::class.java)
             startActivity(intent)

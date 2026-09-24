@@ -127,6 +127,7 @@
 
                     <!-- CARD 1 -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/pagPrestador1"
                         android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -187,6 +188,7 @@
 
                     <!-- CARD 2 -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/pagPrestador2"
                         android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"

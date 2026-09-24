@@ -70,9 +70,9 @@ class EditarCliente : AppCompatActivity() {
         repository = UserRepository(this)
 
         setupEdgeToEdge()
+        setupMasks()
         loadUserData()
         setupListeners()
-        setupMasks()
     }
 
     private fun setupMasks() {
@@ -99,7 +99,7 @@ class EditarCliente : AppCompatActivity() {
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
 
-                // Nota: Cliente herdado de UserBase não tem fotoPerfil por padrão? 
+                // Nota: Cliente herdado de UserBase não tem fotoPerfil por padrão?
                 // Ops, eu esqueci de colocar fotoPerfil em Cliente ou UserBase se for comum.
                 // Vou checar se o Prestador tem e o Cliente não.
                 // No User.kt antigo, fotoPerfil era exclusivo prestador?
@@ -107,7 +107,6 @@ class EditarCliente : AppCompatActivity() {
             }
         }
     }
-
     private fun setupListeners() {
         binding.sair.setOnClickListener { finish() }
 
@@ -144,8 +143,8 @@ class EditarCliente : AppCompatActivity() {
 
     private fun salvarAlteracoes() {
         val nome = binding.editTextNome.text.toString()
-        val telefone = MaskWatcher.unmask(binding.editTextTelefone.text.toString())
-        val cep = MaskWatcher.unmask(binding.editTextCep.text.toString())
+        val telefone = binding.editTextTelefone.text.toString()
+        val cep = binding.editTextCep.text.toString()
         val numero = binding.editTextNumero.text.toString()
         val complemento = binding.editTextComplemento.text.toString()
 

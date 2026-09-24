@@ -60,6 +60,7 @@ class CadastroClienteEmail : AppCompatActivity() {
                 val sucesso = repository.salvarCliente(UserRepository.tempCliente)
                 if (sucesso) {
                     Toast.makeText(this@CadastroClienteEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
                     // Vai para a tela inicial e limpa as telas anteriores
                     val intent = Intent(this@CadastroClienteEmail, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

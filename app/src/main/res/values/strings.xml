@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bico</string>
     <string name="hint_pesquisar">Pesquisar...</string>
+    <string name="nenhuma_imagem_selecionada">Nenhuma imagem selecionada</string>
 
     <string-array name="servicos">
         <item>Advogado</item>
