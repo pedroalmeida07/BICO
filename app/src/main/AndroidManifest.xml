@@ -119,10 +119,6 @@
             android:name=".Prestador.PrivacidadePrestador"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".Cliente.VerPrestadorCliente"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

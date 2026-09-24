@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_planos_prestador">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1"/>
+
+
+    <!--Barra Superior-->
+    <View
+        android:id="@+id/barraSuperior"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/barra_superior_azul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtImpulso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Impulsionar Perfil"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/barraSuperior"
+        app:layout_constraintBottom_toBottomOf="@id/barraSuperior"/>
+
+    <TextView
+        android:id="@+id/txtPlanoOuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plano Ouro"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/imgPlanoOuro"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo_bico_ouro"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoOuro"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/txtPlanoOuro1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Selo Ouro"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoOuro"
+        app:layout_constraintTop_toTopOf="@id/imgPlanoOuro"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoOuro2"
+        />
+
+    <TextView
+        android:id="@+id/txtPlanoOuro2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Conta impulsionada por 7 dias"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoOuro"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoOuro1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoOuro3"/>
+
+    <TextView
+        android:id="@+id/txtPlanoOuro3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Conta no topo das pesquisas"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoOuro"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoOuro2"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoValor"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <TextView
+        android:id="@+id/txtPlanoValor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Preço: R$ 9,90 / semana"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoOuro"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoOuro3"
+        app:layout_constraintBottom_toBottomOf="@id/imgPlanoOuro"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPlanoOuro"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Escolher Plano Ouro"
+        android:textColor="@color/saborBranco"
+        android:textSize="20sp"
+        app:backgroundTint="@color/laranja"
+        app:cornerRadius="13dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/imgPlanoOuro"
+        android:layout_marginTop="10dp"/>
+
+
+
+
+
+
+
+    <!-- Barra Inferior Fixa -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBarra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/barraInferior"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/barra_inferior_branca"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ic_home"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_home"
+            app:tint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_chat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_chat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_chat"
+            app:tint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_config"
+            app:layout_constraintStart_toEndOf="@id/ic_home"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_config"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_config"
+            app:tint="@color/laranja"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toStartOf="@id/ic_user_barra"
+            app:layout_constraintStart_toEndOf="@id/ic_chat"
+            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+
+        <ImageView
+            android:id="@+id/ic_user_barra"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_config"
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/black"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
