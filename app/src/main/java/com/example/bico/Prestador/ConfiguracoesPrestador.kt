@@ -36,6 +36,12 @@ class ConfiguracoesPrestador : AppCompatActivity() {
             startActivity(intent) // Inicia a nova tela
         }
 
+        binding.layoutImpulso.setOnClickListener {
+            // Criar o Intent para abrir a outra Activity
+            val intent = Intent(this, com.example.bico.activity_planos_prestador::class.java)
+            startActivity(intent) // Inicia a nova tela
+        }
+
         //Barra de Baixo
         binding.icHome.setOnClickListener {
             // Criar o Intent para abrir a outra Activity

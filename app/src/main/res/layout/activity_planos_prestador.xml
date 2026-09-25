@@ -44,6 +44,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:backgroundTint="@color/saborBranco"
+        android:background="@drawable/ic_arrow_back_24"
+        android:layout_marginStart="0dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/txtImpulso"
+        android:id="@+id/sair">
+    </com.google.android.material.button.MaterialButton>
+
     <TextView
         android:id="@+id/txtImpulso"
         android:layout_width="wrap_content"
@@ -53,7 +64,7 @@
         android:text="Impulsionar Perfil"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintStart_toEndOf="@id/sair"
         app:layout_constraintTop_toTopOf="@id/barraSuperior"
         app:layout_constraintBottom_toBottomOf="@id/barraSuperior"/>
 
@@ -68,7 +79,7 @@
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/barraSuperior"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="30dp"/>
 
     <ImageView
         android:id="@+id/imgPlanoOuro"
@@ -143,6 +154,103 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/imgPlanoOuro"
+        android:layout_marginTop="10dp"/>
+
+    <View
+        android:id="@+id/linha1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/cinzaClaro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlanoOuro" />
+
+    <TextView
+        android:id="@+id/txtPlanoPremium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plano Premium"
+        android:textColor="@color/azul"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/linha1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/imgPlanoPremium"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo_bico_diamante"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoPremium"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/txtPlanoPremium1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Selo Diamante"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoPremium"
+        app:layout_constraintTop_toTopOf="@id/imgPlanoPremium"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoPremium2"
+        />
+
+    <TextView
+        android:id="@+id/txtPlanoPremium2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Conta impulsionada por 30 dias"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoPremium"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoPremium1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoPremium3"/>
+
+    <TextView
+        android:id="@+id/txtPlanoPremium3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="✓ Conta no topo das pesquisas"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoPremium"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoPremium2"
+        app:layout_constraintBottom_toTopOf="@id/txtPlanoValorPremium"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <TextView
+        android:id="@+id/txtPlanoValorPremium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Preço: R$ 29,90 / semana"
+        android:textColor="@color/azul"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        app:layout_constraintStart_toEndOf="@id/imgPlanoPremium"
+        app:layout_constraintTop_toBottomOf="@id/txtPlanoPremium3"
+        app:layout_constraintBottom_toBottomOf="@id/imgPlanoPremium"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPlanoPremium"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Escolher Plano Premium"
+        android:textColor="@color/saborBranco"
+        android:textSize="20sp"
+        app:backgroundTint="@color/azul"
+        app:cornerRadius="13dp"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/imgPlanoPremium"
         android:layout_marginTop="10dp"/>
 
 
