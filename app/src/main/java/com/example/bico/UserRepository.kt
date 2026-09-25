@@ -56,15 +56,14 @@ class UserRepository(private val context: Context) {
     }
 
     suspend fun realizarLogin(email: String, senha: String): UserBase? {
-
         return try {
             val authResult = auth.signInWithEmailAndPassword(email, senha).await()
             val uid = authResult.user?.uid ?: return null
 
             Log.d("UserRepository", "Firebase Auth OK. Buscando dados no backend para UID: $uid")
-            
+
             // Tenta buscar como Cliente primeiro
-            val resCliente = api.getDadosCliente(uid)
+            val resCliente = api.getDadosCliente()
             if (resCliente.isSuccessful) {
                 val cliente = resCliente.body()?.copy(id = uid)
                 cliente?.let {
@@ -75,7 +74,7 @@ class UserRepository(private val context: Context) {
             }
 
             // Se não for cliente, tenta Prestador
-            val resPrestador = api.getDadosPrestador(uid)
+            val resPrestador = api.getDadosPrestador()
             if (resPrestador.isSuccessful) {
                 val prestador = resPrestador.body()?.copy(id = uid)
                 prestador?.let {
@@ -94,7 +93,7 @@ class UserRepository(private val context: Context) {
 
     suspend fun usuarioLogado(): UserBase? {
         val uid = auth.currentUser?.uid ?: return null
-        
+
         val localUser = getLocalUser()
         if (localUser != null && localUser.id == uid) {
             return localUser
@@ -102,7 +101,7 @@ class UserRepository(private val context: Context) {
 
         return try {
             // Tenta buscar como Cliente
-            val resCliente = api.getDadosCliente(uid)
+            val resCliente = api.getDadosCliente()
             if (resCliente.isSuccessful) {
                 val cliente = resCliente.body()?.copy(id = uid)
                 cliente?.let { saveLocalUser(it, "cliente") }
@@ -110,7 +109,7 @@ class UserRepository(private val context: Context) {
             }
 
             // Tenta buscar como Prestador
-            val resPrestador = api.getDadosPrestador(uid)
+            val resPrestador = api.getDadosPrestador()
             if (resPrestador.isSuccessful) {
                 val prestador = resPrestador.body()?.copy(id = uid)
                 prestador?.let { saveLocalUser(it, "prestador") }
@@ -123,9 +122,9 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    suspend fun atualizarCliente(id: String, cliente: Cliente): Boolean {
+    suspend fun atualizarCliente(cliente: Cliente): Boolean {
         return try {
-            val response = api.atualizarCliente(id, cliente)
+            val response = api.atualizarCliente(cliente)
             if (response.isSuccessful) {
                 saveLocalUser(cliente, "cliente")
                 true
@@ -133,9 +132,11 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { false }
     }
 
-    suspend fun atualizarPrestador(id: String, prestador: Prestador): Boolean {
+    suspend fun atualizarCliente(id: String, cliente: Cliente): Boolean = atualizarCliente(cliente)
+
+    suspend fun atualizarPrestador(prestador: Prestador): Boolean {
         return try {
-            val response = api.atualizarPrestador(id, prestador)
+            val response = api.atualizarPrestador(prestador)
             if (response.isSuccessful) {
                 saveLocalUser(prestador, "prestador")
                 true
@@ -143,15 +144,17 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { false }
     }
 
-    suspend fun deletarUsuario(id: String): Boolean {
+    suspend fun atualizarPrestador(id: String, prestador: Prestador): Boolean = atualizarPrestador(prestador)
+
+    suspend fun deletarUsuario(id: String? = null): Boolean {
         return try {
             // Tenta deletar como cliente primeiro
-            var response = api.deletarCliente(id)
+            var response = api.deletarCliente()
             if (!response.isSuccessful) {
                 // Se falhou, tenta como prestador
-                response = api.deletarPrestador(id)
+                response = api.deletarPrestador()
             }
-            
+
             if (response.isSuccessful) {
                 deslogar()
                 true
@@ -159,9 +162,15 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { false }
     }
 
-    suspend fun buscarPrestadores(tipos: String? = null, inicio: Int? = null, fim: Int? = null): List<Prestador>? {
+    suspend fun buscarPrestadores(
+        tipoServico: String? = null,
+        inicio: Int? = null,
+        fim: Int? = null,
+        tipos: String? = null
+    ): List<Prestador>? {
+        val filtro = tipoServico ?: tipos
         return try {
-            val response = api.buscarPrestadores(tipos, inicio, fim)
+            val response = api.buscarPrestadores(filtro, inicio, fim)
             if (response.isSuccessful) response.body() else null
         } catch (e: Exception) { null }
     }
@@ -196,7 +205,7 @@ class UserRepository(private val context: Context) {
         val sharedPref = context.getSharedPreferences("bico_prefs", Context.MODE_PRIVATE)
         val userJson = sharedPref.getString("usuario_logado", null)
         val userType = sharedPref.getString("usuario_tipo", null)
-        
+
         return if (userJson != null) {
             try {
                 if (userType == "cliente") {

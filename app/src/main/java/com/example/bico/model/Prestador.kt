@@ -25,5 +25,9 @@ data class Prestador(
     @SerializedName("sobre")
     val descricao: String? = null,
     @SerializedName("localAtuacao")
-    val local: String? = null
+    val local: String? = null,
+    @SerializedName("notaMedia")
+    val notaMedia: Double? = null,
+    @SerializedName("totalAvaliacoes")
+    val totalAvaliacoes: Int? = null
 ) : UserBase

@@ -7,34 +7,34 @@ import retrofit2.http.*
 
 interface BicoApiService {
     // Endpoints Cliente
-    @POST("cliente")
+    @POST("clientes")
     suspend fun cadastrarCliente(@Body cliente: Cliente): Response<Unit>
 
-    @GET("cliente")
-    suspend fun getDadosCliente(@Query("id") id: String): Response<Cliente>
+    @GET("clientes")
+    suspend fun getDadosCliente(): Response<Cliente>
 
-    @PUT("cliente")
-    suspend fun atualizarCliente(@Query("id") id: String, @Body cliente: Cliente): Response<Unit>
+    @PUT("clientes")
+    suspend fun atualizarCliente(@Body cliente: Cliente): Response<Unit>
 
-    @DELETE("cliente")
-    suspend fun deletarCliente(@Query("id") id: String): Response<Unit>
+    @DELETE("clientes")
+    suspend fun deletarCliente(): Response<Unit>
 
     // Endpoints Prestador
-    @POST("prestador")
+    @POST("prestadores")
     suspend fun cadastrarPrestador(@Body prestador: Prestador): Response<Unit>
 
-    @GET("prestador")
-    suspend fun getDadosPrestador(@Query("id") id: String): Response<Prestador>
-
-    @PUT("prestador")
-    suspend fun atualizarPrestador(@Query("id") id: String, @Body prestador: Prestador): Response<Unit>
-
-    @DELETE("prestador")
-    suspend fun deletarPrestador(@Query("id") id: String): Response<Unit>
-
     @GET("prestadores")
+    suspend fun getDadosPrestador(): Response<Prestador>
+
+    @PUT("prestadores")
+    suspend fun atualizarPrestador(@Body prestador: Prestador): Response<Unit>
+
+    @DELETE("prestadores")
+    suspend fun deletarPrestador(): Response<Unit>
+
+    @GET("prestadores/lista")
     suspend fun buscarPrestadores(
-        @Query("tipos") tipos: String? = null,
+        @Query("tipoServico") tipoServico: String? = null,
         @Query("inicio") inicio: Int? = null,
         @Query("fim") fim: Int? = null
     ): Response<List<Prestador>>
