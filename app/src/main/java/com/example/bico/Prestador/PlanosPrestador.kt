@@ -1,4 +1,4 @@
-package com.example.bico
+package com.example.bico.Prestador
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,12 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bico.Prestador.ConfiguracoesPrestador
-import com.example.bico.Prestador.EditarPrestador
-import com.example.bico.Prestador.HomePrestador
 import com.example.bico.databinding.ActivityPlanosPrestadorBinding
 
-class activity_planos_prestador : AppCompatActivity() {
+class PlanosPrestador : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlanosPrestadorBinding
 

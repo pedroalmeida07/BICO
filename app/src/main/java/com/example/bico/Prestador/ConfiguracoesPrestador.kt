@@ -4,10 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.bico.Login.PaginaLogin
-import com.example.bico.R
 import com.example.bico.databinding.ActivityConfiguracoesPrestadorBinding
 
 class ConfiguracoesPrestador : AppCompatActivity() {
@@ -38,7 +34,7 @@ class ConfiguracoesPrestador : AppCompatActivity() {
 
         binding.layoutImpulso.setOnClickListener {
             // Criar o Intent para abrir a outra Activity
-            val intent = Intent(this, com.example.bico.activity_planos_prestador::class.java)
+            val intent = Intent(this, PlanosPrestador::class.java)
             startActivity(intent) // Inicia a nova tela
         }
 
