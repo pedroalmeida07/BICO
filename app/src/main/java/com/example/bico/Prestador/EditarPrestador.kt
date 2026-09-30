@@ -155,6 +155,7 @@ class EditarPrestador : AppCompatActivity() {
         binding.icLapisSobre.setOnClickListener { showDialogEditarSobre() }
         binding.icLapisServicos.setOnClickListener { showDialogAdicionarServico() }
         binding.icLapisLocal.setOnClickListener { showDialogEditarLocal() }
+        binding.icLapisNome.setOnClickListener { showDialogEditarUsername() }
 
         binding.icLapisFotos.setOnClickListener {
             isEditModeFotos = !isEditModeFotos
@@ -290,6 +291,27 @@ class EditarPrestador : AppCompatActivity() {
                 binding.txtDesc.text = novaDesc.ifEmpty { "Adicione mais informações..." }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(descricao = novaDesc)
+                    lifecycleScope.launch {
+                        repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                    }
+                    currentUser = userAtualizado
+                }
+            }.setNegativeButton("Cancelar", null).show()
+    }
+
+    private fun showDialogEditarUsername() {
+        val view = layoutInflater.inflate(R.layout.dialog_editar_username, null)
+        val input = view.findViewById<TextInputEditText>(R.id.editUsername)
+        input.setText(currentUser?.usuario ?: "")
+
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setTitle("Editar Usuário")
+            .setView(view)
+            .setPositiveButton("Salvar") { _, _ ->
+                val newUsername = input.text.toString()
+                binding.txtDesc.text = newUsername.ifEmpty { "O nome de usuário não pode estar vazio" }
+                currentUser?.let { u ->
+                    val userAtualizado = u.copy(usuario = newUsername)
                     lifecycleScope.launch {
                         repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
                     }
