@@ -51,54 +51,18 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.1" />
 
-            <!--
+
             <ImageView
                 android:id="@+id/imgFotoHorizontalPrestador"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="0dp"
+                android:layout_height="175dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/nenuma_imagem_selecionada"
-                />
-            -->
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/guideline4"
+                app:srcCompat="@drawable/nenuma_imagem_selecionada" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/fotoPerfil"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-                android:padding="2dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/user"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/CircleShape"
-                app:strokeColor="@color/white"
-                app:strokeWidth="4dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEditarFotoPerfil"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                android:padding="0dp"
-                app:backgroundTint="@color/laranja"
-                app:cornerRadius="20dp"
-                app:icon="@drawable/ic_foto"
-                app:iconSize="22dp"
-                app:iconTint="@color/azul"
-                app:iconPadding="0dp"
-                app:iconGravity="textStart"
-                app:layout_constraintBottom_toBottomOf="@id/fotoPerfil"
-                app:layout_constraintEnd_toEndOf="@id/fotoPerfil" />
-
-            <!--
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVoltar"
                 android:layout_width="48dp"
@@ -114,10 +78,7 @@
                 app:iconTint="#FFFFFF"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4" />
-            -->
 
-
-            <!--
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEditarFoto"
                 android:layout_width="48dp"
@@ -136,19 +97,19 @@
                 app:iconGravity="textStart"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="@id/guideline4" />
-            -->
+
 
             <TextView
                 android:id="@+id/txtNomePrestador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="UserName"
                 android:textColor="@color/azul"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
+                app:layout_constraintTop_toBottomOf="@id/imgFotoHorizontalPrestador" />
 
             <ImageView
                 android:id="@+id/ic_lapisNome"
