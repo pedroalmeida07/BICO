@@ -214,9 +214,7 @@ class EditarPrestador : AppCompatActivity() {
                 repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
             }
             currentUser = userAtualizado
-            (binding.rvServicos.adapter as? ServicoAdapter)?.apply {
-                notifyDataSetChanged()
-            }
+            setupRecyclerView(novaLista)
         }
     }
 
@@ -309,13 +307,13 @@ class EditarPrestador : AppCompatActivity() {
             .setView(view)
             .setPositiveButton("Salvar") { _, _ ->
                 val newUsername = input.text.toString()
-                binding.txtDesc.text = newUsername.ifEmpty { "O nome de usuário não pode estar vazio" }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(usuario = newUsername)
                     lifecycleScope.launch {
                         repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
                     }
                     currentUser = userAtualizado
+                    binding.txtNomePrestador.text = currentUser?.usuario
                 }
             }.setNegativeButton("Cancelar", null).show()
     }
