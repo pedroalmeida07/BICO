@@ -307,13 +307,18 @@ class EditarPrestador : AppCompatActivity() {
             .setView(view)
             .setPositiveButton("Salvar") { _, _ ->
                 val newUsername = input.text.toString()
-                currentUser?.let { u ->
-                    val userAtualizado = u.copy(usuario = newUsername)
-                    lifecycleScope.launch {
-                        repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                if (newUsername.isEmpty()) {
+                    Toast.makeText(this@EditarPrestador, "O nome de Usuário não pode estar vazio", Toast.LENGTH_SHORT).show()
+                    showDialogEditarUsername()
+                } else {
+                    currentUser?.let { u ->
+                        val userAtualizado = u.copy(usuario = newUsername)
+                        lifecycleScope.launch {
+                            repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                        }
+                        currentUser = userAtualizado
+                        binding.txtNomePrestador.text = currentUser?.usuario
                     }
-                    currentUser = userAtualizado
-                    binding.txtNomePrestador.text = currentUser?.usuario
                 }
             }.setNegativeButton("Cancelar", null).show()
     }
