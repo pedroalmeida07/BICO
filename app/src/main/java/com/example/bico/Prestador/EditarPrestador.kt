@@ -147,7 +147,7 @@ class EditarPrestador : AppCompatActivity() {
     private fun setupListeners() {
         binding.icHome.setOnClickListener { finish() }
 
-        binding.btnEditarFotoPerfil.setOnClickListener {
+        binding.btnEditarFoto.setOnClickListener {
             fotoAlvo = -1
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
@@ -413,4 +413,5 @@ class EditarPrestador : AppCompatActivity() {
             .setPositiveButton("Fechar", null)
             .show()
     }
+
 }

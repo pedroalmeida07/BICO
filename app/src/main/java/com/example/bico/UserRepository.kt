@@ -175,6 +175,34 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { null }
     }
 
+    suspend fun buscarUserPrestador(
+        username: String? = null,
+        inicio: Int? = null,
+        fim: Int? = null,
+        usuario: String? = null
+    ): List<Prestador>? {
+        val filtro = username ?: usuario
+        return try {
+            val response = api.buscarUserPrestador(
+                username = filtro,
+                inicio = inicio,
+                fim = fim
+            )
+            if (response.isSuccessful) {
+                val lista = response.body()
+                if (!filtro.isNullOrEmpty() && lista != null) {
+                    val listaFiltrada = lista.filter { prestador ->
+                        prestador.usuario?.contains(filtro, ignoreCase = true) == true ||
+                        prestador.nome?.contains(filtro, ignoreCase = true) == true
+                    }
+                    if (listaFiltrada.isNotEmpty()) listaFiltrada else lista
+                } else {
+                    lista
+                }
+            } else null
+        } catch (e: Exception) { null }
+    }
+
     suspend fun atualizarSenha(email: String, novaSenha: String): Boolean {
         return try {
             val user = auth.currentUser

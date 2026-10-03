@@ -38,4 +38,11 @@ interface BicoApiService {
         @Query("inicio") inicio: Int? = null,
         @Query("fim") fim: Int? = null
     ): Response<List<Prestador>>
+
+    @GET("prestadores/lista")
+    suspend fun buscarUserPrestador(
+        @Query("username") username: String? = null,
+        @Query("inicio") inicio: Int? = null,
+        @Query("fim") fim: Int? = null
+    ): Response<List<Prestador>>
 }

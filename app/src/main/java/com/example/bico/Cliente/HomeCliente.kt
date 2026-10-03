@@ -3,6 +3,7 @@ package com.example.bico.Cliente
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,14 @@ import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityHomeClienteBinding
+import com.example.bico.model.Prestador
 import kotlinx.coroutines.launch
 
 class HomeCliente : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeClienteBinding
+
+    private lateinit var repository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,7 @@ class HomeCliente : AppCompatActivity() {
             insets
         }
 
+        repository = UserRepository(this)
         carregarDadosUsuario()
 
         binding.icPesquisa.setOnClickListener {
@@ -52,14 +57,50 @@ class HomeCliente : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         binding.pagPrestador1.setOnClickListener {
-            val intent = Intent(this, VerPrestadorCliente::class.java)
-            startActivity(intent)
+            lifecycleScope.launch {
+                val usuarioBuscado = "hugoneves"
+                val listaPrestadores = repository.buscarUserPrestador(username = usuarioBuscado)
+
+                // Encontra o prestador correspondente ao usuario buscado
+                val prestadorDoBanco = listaPrestadores?.find { 
+                    it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
+                    it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
+                } ?: listaPrestadores?.firstOrNull()
+
+                if (prestadorDoBanco != null) {
+                    val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
+                        putExtra("prestador", prestadorDoBanco)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@HomeCliente, "Prestador não encontrado", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.pagPrestador2.setOnClickListener {
-            val intent = Intent(this, VerPrestadorCliente::class.java)
-            startActivity(intent)
+            lifecycleScope.launch {
+                val usuarioBuscado = "takamasa"
+                val listaPrestadores = repository.buscarUserPrestador(username = usuarioBuscado)
+
+                // Encontra o prestador correspondente ao usuario buscado
+                val prestadorDoBanco = listaPrestadores?.find { 
+                    it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
+                    it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
+                } ?: listaPrestadores?.firstOrNull()
+
+                if (prestadorDoBanco != null) {
+                    val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
+                        putExtra("prestador", prestadorDoBanco)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@HomeCliente, "Prestador não encontrado", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

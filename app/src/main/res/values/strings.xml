@@ -2,6 +2,7 @@
     <string name="app_name">Bico</string>
     <string name="hint_pesquisar">Pesquisar...</string>
     <string name="nenhuma_imagem_selecionada">Nenhuma imagem selecionada</string>
+    <string name="sem_fotos_adicionadas">Sem fotos adicionadas</string>
 
     <string-array name="servicos">
         <item>Advogado</item>
