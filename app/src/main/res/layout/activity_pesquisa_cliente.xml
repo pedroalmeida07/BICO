@@ -5,64 +5,122 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/saborBranco"
     tools:context=".Cliente.PesquisaCliente">
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.1"
-        android:orientation="vertical"
-        android:id="@+id/guideline1"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.9"
-        android:orientation="vertical"
-        android:id="@+id/guideline2"/>
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.9"
-        android:orientation="horizontal"
-        android:id="@+id/guideline3"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
+    <!-- Container Search Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBarraPesquisa"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/barra_pesquisa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/editTextPesquisar"
             android:layout_width="0dp"
-            android:layout_height="47sp"
-            android:background="@drawable/barra_pesquisa"
-            android:textSize="16sp"
+            android:layout_height="match_parent"
+            android:background="@null"
             android:hint="@string/hint_pesquisar"
-            android:paddingStart="16sp"
-            android:paddingEnd="16sp"
-            android:drawableEnd="@drawable/ic_pesquisa"
-            android:drawableTint="@color/black"
-            android:drawablePadding="8sp"
+            android:imeOptions="actionSearch"
             android:inputType="text"
-            app:layout_constraintStart_toEndOf="@id/btnFiltro"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/guideline4"/>
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#888888"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icSearchIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/icSearchIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="@string/hint_pesquisar"
+            android:padding="4dp"
+            android:src="@drawable/ic_pesquisa"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Botão de Filtro -->
     <ImageView
         android:id="@+id/btnFiltro"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Filtro"
+        android:src="@drawable/ic_filters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutBarraPesquisa" />
+
+    <TextView
+        android:id="@+id/txtFiltroAtual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/azul"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/btnFiltro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnFiltro"
+        app:layout_constraintTop_toTopOf="@id/btnFiltro"
+        tools:text="Filtro: Encanador"
+        tools:visibility="visible" />
+
+    <!-- RecyclerView de Prestadores -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPrestadores"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnFiltro"
+        tools:listitem="@layout/item_prestador_pesquisa" />
+
+    <!-- Indicador de Carregamento -->
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_filters"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="153dp"
-        app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintEnd_toStartOf="@id/editTextPesquisar"
-        app:layout_constraintTop_toTopOf="@id/editTextPesquisar"
-        app:layout_constraintBottom_toBottomOf="@id/editTextPesquisar"
-        android:layout_marginEnd="8dp"/>
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnFiltro" />
+
+    <!-- Texto para Lista Vazia -->
+    <TextView
+        android:id="@+id/txtVazio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nenhum prestador encontrado"
+        android:textColor="#888888"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnFiltro" />
 
     <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,45 +144,50 @@
             android:id="@+id/ic_home"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:contentDescription="Home"
             android:src="@drawable/ic_home"
-            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/ic_pesquisa"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:contentDescription="Pesquisa"
             android:src="@drawable/ic_pesquisa"
-            app:tint="@color/laranja"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_chat"
             app:layout_constraintStart_toEndOf="@id/ic_home"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/laranja" />
 
         <ImageView
             android:id="@+id/ic_chat"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:contentDescription="Chat"
             android:src="@drawable/ic_chat"
-            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toStartOf="@id/ic_config"
             app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/ic_config"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:contentDescription="Configurações"
             android:src="@drawable/ic_config"
-            app:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/barraInferior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ic_chat"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
+            app:layout_constraintTop_toTopOf="@id/barraInferior"
+            app:tint="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

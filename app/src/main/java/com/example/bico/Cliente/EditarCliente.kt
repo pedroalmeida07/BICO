@@ -119,8 +119,6 @@ class EditarCliente : AppCompatActivity() {
         }
 
         binding.icHome.setOnClickListener {
-            val intent = Intent(this, HomeCliente::class.java)
-            startActivity(intent)
             finish()
         }
         binding.icPesquisa.setOnClickListener {

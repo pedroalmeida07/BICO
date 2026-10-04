@@ -62,7 +62,7 @@ class HomeCliente : AppCompatActivity() {
         binding.pagPrestador1.setOnClickListener {
             lifecycleScope.launch {
                 val usuarioBuscado = "hugoneves"
-                val listaPrestadores = repository.buscarUserPrestador(username = usuarioBuscado)
+                val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
                 // Encontra o prestador correspondente ao usuario buscado
                 val prestadorDoBanco = listaPrestadores?.find { 
@@ -84,7 +84,7 @@ class HomeCliente : AppCompatActivity() {
         binding.pagPrestador2.setOnClickListener {
             lifecycleScope.launch {
                 val usuarioBuscado = "takamasa"
-                val listaPrestadores = repository.buscarUserPrestador(username = usuarioBuscado)
+                val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
                 // Encontra o prestador correspondente ao usuario buscado
                 val prestadorDoBanco = listaPrestadores?.find { 
