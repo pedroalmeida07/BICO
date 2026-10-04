@@ -163,6 +163,7 @@ class UserRepository(private val context: Context) {
     }
 
     suspend fun buscarPrestadores(
+        username: String? = null,
         tipoServico: String? = null,
         inicio: Int? = null,
         fim: Int? = null,
@@ -170,36 +171,8 @@ class UserRepository(private val context: Context) {
     ): List<Prestador>? {
         val filtro = tipoServico ?: tipos
         return try {
-            val response = api.buscarPrestadores(filtro, inicio, fim)
+            val response = api.buscarPrestadores(username,filtro, inicio, fim)
             if (response.isSuccessful) response.body() else null
-        } catch (e: Exception) { null }
-    }
-
-    suspend fun buscarUserPrestador(
-        username: String? = null,
-        inicio: Int? = null,
-        fim: Int? = null,
-        usuario: String? = null
-    ): List<Prestador>? {
-        val filtro = username ?: usuario
-        return try {
-            val response = api.buscarUserPrestador(
-                username = filtro,
-                inicio = inicio,
-                fim = fim
-            )
-            if (response.isSuccessful) {
-                val lista = response.body()
-                if (!filtro.isNullOrEmpty() && lista != null) {
-                    val listaFiltrada = lista.filter { prestador ->
-                        prestador.usuario?.contains(filtro, ignoreCase = true) == true ||
-                        prestador.nome?.contains(filtro, ignoreCase = true) == true
-                    }
-                    if (listaFiltrada.isNotEmpty()) listaFiltrada else lista
-                } else {
-                    lista
-                }
-            } else null
         } catch (e: Exception) { null }
     }
 
