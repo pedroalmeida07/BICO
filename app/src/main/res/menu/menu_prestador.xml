@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home_prestador"
+        android:icon="@drawable/ic_home"
+        android:title="Início" />
+
+    <item
+        android:id="@+id/nav_chat_prestador"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat" />
+
+    <item
+        android:id="@+id/nav_config_prestador"
+        android:icon="@drawable/ic_config"
+        android:title="Config" />
+
+    <item
+        android:id="@+id/nav_perfil_prestador"
+        android:icon="@drawable/user"
+        android:title="Perfil" />
+</menu>

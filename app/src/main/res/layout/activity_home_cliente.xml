@@ -7,6 +7,34 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context=".Cliente.HomeCliente">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Container onde as telas (Fragments) do Cliente vão aparecer -->
+        <FrameLayout
+            android:id="@+id/fragment_container_cliente"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/nav_cliente"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_cliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:menu="@menu/menu_cliente"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconSize="35dp"
+            app:itemIconTint="@color/seletor_cores_barra"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -19,8 +47,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/containerBarra">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
@@ -469,68 +496,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerBarra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <View
-            android:id="@+id/barraInferior"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/barra_inferior_branca"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ic_home"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_home"
-            app:tint="@color/laranja"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_pesquisa"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_pesquisa"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_chat"
-            app:layout_constraintStart_toEndOf="@id/ic_home"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_chat"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_chat"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_config"
-            app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_config"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_config"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ic_chat"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <?xml version="1.0" encoding="utf-8"?>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
