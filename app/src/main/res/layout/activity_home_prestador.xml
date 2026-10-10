@@ -14,30 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Container onde o miolo das páginas do prestador vai aparecer -->
-        <FrameLayout
-            android:id="@+id/fragment_container_prestador"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/nav_prestador"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- Barra Inferior do Prestador -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_prestador"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/barra_inferior_branca"
-            app:menu="@menu/menu_prestador"
-            app:labelVisibilityMode="unlabeled"
-            app:itemIconSize="35dp"
-            app:itemIconTint="@color/seletor_cores_barra"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Linhas de Guia-->
@@ -472,4 +448,13 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+    <include
+        android:id="@+id/layoutBarraInferior"
+        layout="@layout/barra_inferior_prestador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

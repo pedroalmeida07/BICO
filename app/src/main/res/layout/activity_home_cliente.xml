@@ -7,34 +7,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context=".Cliente.HomeCliente">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Container onde as telas (Fragments) do Cliente vão aparecer -->
-        <FrameLayout
-            android:id="@+id/fragment_container_cliente"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/nav_cliente"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_cliente"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            app:menu="@menu/menu_cliente"
-            app:labelVisibilityMode="unlabeled"
-            app:itemIconSize="35dp"
-            app:itemIconTint="@color/seletor_cores_barra"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -47,7 +19,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/layoutBarraInferior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
@@ -496,6 +468,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    <?xml version="1.0" encoding="utf-8"?>
+    <include
+        android:id="@+id/layoutBarraInferior"
+        layout="@layout/barra_inferior_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

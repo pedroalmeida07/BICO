@@ -19,7 +19,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,14 +50,15 @@
                 app:layout_constraintGuide_begin="80dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/sair"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:backgroundTint="@color/azul"
-                android:background="@drawable/ic_arrow_back_24"
                 android:layout_marginStart="0dp"
+                android:background="@drawable/ic_arrow_back_24"
+                app:backgroundTint="@color/azul"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
-                app:layout_constraintTop_toTopOf="@id/guideline4"
-                android:id="@+id/sair">
+                app:layout_constraintTop_toTopOf="@id/guideline4">
+
             </com.google.android.material.button.MaterialButton>
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -66,8 +67,8 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/user"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4"
                 app:shapeAppearanceOverlay="@style/CircleShape" />
 
@@ -75,20 +76,20 @@
                 android:id="@+id/btnEditarFoto"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:padding="0dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
                 app:backgroundTint="@color/laranja"
                 app:cornerRadius="24dp"
                 app:icon="@drawable/ic_foto"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
                 app:iconSize="24dp"
                 app:iconTint="@color/azul"
-                app:iconPadding="0dp"
-                app:iconGravity="textStart"
                 app:layout_constraintBottom_toBottomOf="@id/fotoPerfil"
                 app:layout_constraintEnd_toEndOf="@id/fotoPerfil" />
 
@@ -96,13 +97,13 @@
                 android:id="@+id/txtNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
                 android:text="Nome"
                 android:textColor="@color/azul"
-                android:fontFamily="@font/inter"
                 android:textSize="24sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/fotoPerfil"/>
+                app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutNome"
@@ -116,30 +117,30 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtNome">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_lapis"
                     android:hint="Nome do Usuário"
-                    android:inputType="textPersonName"
-                    android:drawableRight="@drawable/ic_lapis"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtTelefone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
                 android:text="Telefone"
                 android:textColor="@color/azul"
-                android:fontFamily="@font/inter"
                 android:textSize="24sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/layoutNome"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutNome" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutTelefone"
@@ -153,30 +154,30 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtTelefone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTelefone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_lapis"
                     android:hint="Ex.: +55 (27) 99999-8888"
-                    android:inputType="phone"
-                    android:drawableRight="@drawable/ic_lapis"/>
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtCep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
                 android:text="CEP"
                 android:textColor="@color/azul"
-                android:fontFamily="@font/inter"
                 android:textSize="24sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/layoutTelefone"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutTelefone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutCep"
@@ -190,29 +191,30 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtCep">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextCep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ex.: 06767-000"
-                android:inputType="number"
-                android:drawableRight="@drawable/ic_lapis"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextCep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_lapis"
+                    android:hint="Ex.: 06767-000"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtNumero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
                 android:text="Número"
                 android:textColor="@color/azul"
-                android:fontFamily="@font/inter"
                 android:textSize="24sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/layoutCep"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutCep" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutNumero"
@@ -226,29 +228,30 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtNumero">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextNumero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_lapis"
                     android:hint="Ex.: 99"
-                    android:inputType="number"
-                    android:drawableRight="@drawable/ic_lapis"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtComplemento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
                 android:text="Complemento"
                 android:textColor="@color/azul"
-                android:fontFamily="@font/inter"
                 android:textSize="24sp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/layoutNumero"/>
+                app:layout_constraintTop_toBottomOf="@id/layoutNumero" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutComplemento"
@@ -262,16 +265,17 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtComplemento">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextComplemento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_lapis"
                     android:hint="Ex.: Apt. 100 "
-                    android:inputType="number"
-                    android:drawableRight="@drawable/ic_lapis"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -279,87 +283,28 @@
                 android:id="@+id/btnSalvar"
                 android:layout_width="200dp"
                 android:layout_height="70dp"
-                app:layout_constraintTop_toBottomOf="@id/layoutComplemento"
-                app:layout_constraintStart_toEndOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="@color/azul"
                 android:text="Salvar"
                 android:textSize="16sp"
-                android:backgroundTint="@color/azul"
-                android:layout_marginTop="28dp"
-                app:cornerRadius="12dp"/>
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/layoutComplemento"
+                android:layout_marginBottom="30dp"/>
+
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
-
-
-
-
-    <!-- Container da Barra Inferior com fundo branco sólido no rodapé -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerBarra"
+    <include
+        android:id="@+id/layoutBarraInferior"
+        layout="@layout/barra_inferior_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <View
-            android:id="@+id/barraInferior"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/barra_inferior_branca"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ic_home"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_home"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_pesquisa"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_pesquisa"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_pesquisa"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_chat"
-            app:layout_constraintStart_toEndOf="@id/ic_home"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_chat"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_chat"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_config"
-            app:layout_constraintStart_toEndOf="@id/ic_pesquisa"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_config"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_config"
-            app:tint="@color/laranja"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ic_chat"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
