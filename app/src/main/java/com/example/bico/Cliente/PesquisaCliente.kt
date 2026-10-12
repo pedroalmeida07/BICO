@@ -102,20 +102,6 @@ class PesquisaCliente : AppCompatActivity() {
             mostrarDropdownFiltro()
         }
 
-        // Navegação inferior
-        binding.icHome.setOnClickListener {
-            finish()
-        }
-
-        binding.icChat.setOnClickListener {
-            val intent = Intent(this, DenunciasCliente::class.java)
-            startActivity(intent)
-        }
-
-        binding.icConfig.setOnClickListener {
-            val intent = Intent(this, ConfiguracaoCliente::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun mostrarDropdownFiltro() {

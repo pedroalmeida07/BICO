@@ -47,9 +47,18 @@ class HomeCliente : AppCompatActivity() {
         repository = UserRepository(this)
         carregarDadosUsuario()
 
-        binding.icPesquisa.setOnClickListener {
-            val intent = Intent(this, PesquisaCliente::class.java)
-            startActivity(intent)
+        binding.navCliente.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_pesquisa -> {
+                    startActivity(Intent(this, PesquisaCliente::class.java))
+                    true
+                }
+                R.id.nav_config -> {
+                    startActivity(Intent(this, ConfiguracaoCliente::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
         binding.imgUser.setOnClickListener {

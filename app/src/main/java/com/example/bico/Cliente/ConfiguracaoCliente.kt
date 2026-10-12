@@ -1,5 +1,6 @@
 package com.example.bico.Cliente
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,10 @@ import com.example.bico.R
 
 import androidx.activity.SystemBarStyle
 import android.graphics.Color
+import com.example.bico.databinding.ActivityConfiguracaoClienteBinding
 
 class ConfiguracaoCliente : AppCompatActivity() {
+    private lateinit var binding: ActivityConfiguracaoClienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
@@ -22,6 +25,27 @@ class ConfiguracaoCliente : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Eventos de clique para abrir as outras páginas
+        binding.layoutPrivacidade.setOnClickListener {
+            val intent = Intent(this, PrivacidadeCliente::class.java)
+            startActivity(intent)
+        }
+
+        binding.layoutEditarPerfil.setOnClickListener {
+            val intent = Intent(this, EditarCliente::class.java)
+            startActivity(intent)
+        }
+
+        binding.layoutFavoritos.setOnClickListener {
+            val intent = Intent(this, FavoritosCliente::class.java)
+            startActivity(intent)
+        }
+
+        binding.layoutAjuda.setOnClickListener {
+            val intent = Intent(this, AjudaCliente::class.java)
+            startActivity(intent)
         }
     }
 }

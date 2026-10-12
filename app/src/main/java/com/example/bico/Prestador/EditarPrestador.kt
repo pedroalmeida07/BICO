@@ -145,7 +145,6 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.icHome.setOnClickListener { finish() }
 
         binding.btnEditarFoto.setOnClickListener {
             fotoAlvo = -1

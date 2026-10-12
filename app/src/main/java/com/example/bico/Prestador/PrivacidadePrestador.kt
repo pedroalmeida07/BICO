@@ -34,17 +34,5 @@ class PrivacidadePrestador : AppCompatActivity() {
             finish()
         }
 
-        //Barra de Baixo
-        binding.icHome.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
-            val intent = Intent(this, HomePrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
-        }
-        binding.icUserBarra.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
-            val intent = Intent(this, EditarPrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
-        }
-
     }
 }

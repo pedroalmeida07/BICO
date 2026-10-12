@@ -50,21 +50,7 @@ class VerPrestadorCliente : AppCompatActivity() {
             finish()
         }
 
-        //Barra de baixo
-        binding.icHome.setOnClickListener {
-            val intent = Intent(this, HomeCliente::class.java)
-            startActivity(intent)
-        }
 
-        binding.icConfig.setOnClickListener {
-            val intent = Intent(this, ConfiguracaoCliente::class.java)
-            startActivity(intent)
-        }
-
-        binding.icUserBarra.setOnClickListener {
-            val intent = Intent(this, EditarCliente::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun carregarDadosPrestador(prestador: Prestador) {

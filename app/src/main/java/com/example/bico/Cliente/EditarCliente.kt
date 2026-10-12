@@ -117,15 +117,6 @@ class EditarCliente : AppCompatActivity() {
         binding.btnSalvar.setOnClickListener {
             salvarAlteracoes()
         }
-
-        binding.icHome.setOnClickListener {
-            finish()
-        }
-        binding.icPesquisa.setOnClickListener {
-            val intent = Intent(this, PesquisaCliente::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun atualizarFotoPerfil(uri: Uri) {
