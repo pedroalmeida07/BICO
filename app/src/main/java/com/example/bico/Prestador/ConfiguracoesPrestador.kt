@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bico.databinding.ActivityConfiguracoesPrestadorBinding
+import com.example.bico.R
+import com.example.bico.utils.setupBottomNavPrestador
 
 class ConfiguracoesPrestador : AppCompatActivity() {
     private lateinit var binding: ActivityConfiguracoesPrestadorBinding
@@ -13,6 +15,8 @@ class ConfiguracoesPrestador : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityConfiguracoesPrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupBottomNavPrestador(binding.layoutBarraInferior.root, R.id.nav_config_prestador)
 
         binding.layoutPrivacidade.setOnClickListener {
             // Criar o Intent para abrir a outra Activity

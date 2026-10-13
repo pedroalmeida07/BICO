@@ -14,6 +14,7 @@ import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityVerPrestadorClienteBinding
 import com.example.bico.model.Prestador
+import com.example.bico.utils.setupBottomNavCliente
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,7 @@ class VerPrestadorCliente : AppCompatActivity() {
             finish()
         }
 
-
+        setupBottomNavCliente(binding.layoutBarraInferior.root)
     }
 
     private fun carregarDadosPrestador(prestador: Prestador) {

@@ -6,8 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bico.R
 import com.example.bico.databinding.ActivityPrestadorAjudaBinding
+import com.example.bico.utils.setupBottomNavPrestador
 
 class AjudaPrestador : AppCompatActivity() {
     private lateinit var binding: ActivityPrestadorAjudaBinding
@@ -22,6 +22,6 @@ class AjudaPrestador : AppCompatActivity() {
             finish()
         }
 
-
+        setupBottomNavPrestador(binding.layoutBarraInferior.root)
     }
 }

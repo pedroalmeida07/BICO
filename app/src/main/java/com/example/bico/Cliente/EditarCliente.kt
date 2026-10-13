@@ -24,6 +24,7 @@ import com.example.bico.databinding.ActivityEditarClienteBinding
 import com.example.bico.model.Cliente
 import com.example.bico.utils.ImageUtils
 import com.example.bico.utils.MaskWatcher
+import com.example.bico.utils.setupBottomNavCliente
 import kotlinx.coroutines.launch
 
 class EditarCliente : AppCompatActivity() {
@@ -68,6 +69,8 @@ class EditarCliente : AppCompatActivity() {
         setContentView(binding.root)
 
         repository = UserRepository(this)
+
+        setupBottomNavCliente(binding.layoutBarraInferior.root)
 
         setupEdgeToEdge()
         setupMasks()

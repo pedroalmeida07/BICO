@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText
 import androidx.lifecycle.lifecycleScope
 import com.example.bico.utils.IbgeClient
 import com.example.bico.utils.NoAccentsAdapter
+import com.example.bico.utils.setupBottomNavPrestador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -117,6 +118,8 @@ class EditarPrestador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditarPrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupBottomNavPrestador(binding.layoutBarraInferior.root, R.id.nav_perfil_prestador)
 
         repository = UserRepository(this)
         lifecycleScope.launch {

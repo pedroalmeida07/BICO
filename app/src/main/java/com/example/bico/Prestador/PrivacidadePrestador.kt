@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bico.R
 import com.example.bico.databinding.ActivityPrivacidadePrestadorBinding
+import com.example.bico.utils.setupBottomNavPrestador
 
 class PrivacidadePrestador : AppCompatActivity() {
 
@@ -34,5 +35,6 @@ class PrivacidadePrestador : AppCompatActivity() {
             finish()
         }
 
+        setupBottomNavPrestador(binding.layoutBarraInferior.root)
     }
 }

@@ -14,6 +14,7 @@ import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityHomeClienteBinding
 import com.example.bico.model.Prestador
+import com.example.bico.utils.setupBottomNavCliente
 import kotlinx.coroutines.launch
 
 class HomeCliente : AppCompatActivity() {
@@ -47,19 +48,7 @@ class HomeCliente : AppCompatActivity() {
         repository = UserRepository(this)
         carregarDadosUsuario()
 
-        binding.navCliente.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_pesquisa -> {
-                    startActivity(Intent(this, PesquisaCliente::class.java))
-                    true
-                }
-                R.id.nav_config -> {
-                    startActivity(Intent(this, ConfiguracaoCliente::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
+        setupBottomNavCliente(binding.layoutBarraInferior.root, R.id.nav_home)
 
         binding.imgUser.setOnClickListener {
             val intent = Intent(this, EditarCliente::class.java)

@@ -17,6 +17,7 @@ import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPesquisaClienteBinding
 import com.example.bico.utils.NoAccentsAdapter
+import com.example.bico.utils.setupBottomNavCliente
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.Job
@@ -54,6 +55,8 @@ class PesquisaCliente : AppCompatActivity() {
         }
 
         repository = UserRepository(this)
+
+        setupBottomNavCliente(binding.layoutBarraInferior.root, R.id.nav_pesquisa)
 
         setupRecyclerView()
         setupListeners()

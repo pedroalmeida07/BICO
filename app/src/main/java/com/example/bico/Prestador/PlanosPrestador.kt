@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bico.databinding.ActivityPlanosPrestadorBinding
+import com.example.bico.utils.setupBottomNavPrestador
 
 class PlanosPrestador : AppCompatActivity() {
 
@@ -29,6 +30,6 @@ class PlanosPrestador : AppCompatActivity() {
             finish()
         }
 
-
+        setupBottomNavPrestador(binding.layoutBarraInferior.root)
     }
 }

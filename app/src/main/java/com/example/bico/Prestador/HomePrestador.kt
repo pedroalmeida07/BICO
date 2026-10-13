@@ -18,6 +18,7 @@ import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityHomePrestadorBinding
+import com.example.bico.utils.setupBottomNavPrestador
 import kotlinx.coroutines.launch
 
 class HomePrestador : AppCompatActivity() {
@@ -36,7 +37,10 @@ class HomePrestador : AppCompatActivity() {
                 Color.WHITE
             )
         )
-        setContentView(R.layout.activity_home_prestador)
+        binding = ActivityHomePrestadorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupBottomNavPrestador(binding.layoutBarraInferior.root, R.id.nav_home_prestador)
 
         carregarDadosUsuario()
 
