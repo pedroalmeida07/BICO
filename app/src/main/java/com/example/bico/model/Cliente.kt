@@ -1,6 +1,7 @@
 package com.example.bico.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Cliente(
     @SerializedName("id")
@@ -20,4 +21,4 @@ data class Cliente(
     
     // Campo formatado usado em algumas telas
     val local: String? = null
-) : UserBase
+) : UserBase, Serializable

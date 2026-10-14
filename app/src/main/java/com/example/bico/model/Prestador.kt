@@ -1,6 +1,7 @@
 package com.example.bico.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Prestador(
     @SerializedName("id")
@@ -30,4 +31,4 @@ data class Prestador(
     val notaMedia: Double? = null,
     @SerializedName("totalAvaliacoes")
     val totalAvaliacoes: Int? = null
-) : UserBase
+) : UserBase, Serializable

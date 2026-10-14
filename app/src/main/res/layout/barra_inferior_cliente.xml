@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_cliente"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@android:color/white"
+    app:menu="@menu/menu_cliente"
+    app:labelVisibilityMode="unlabeled"
+    app:itemIconSize="35dp"
+    app:itemIconTint="@color/seletor_cores_barra" />

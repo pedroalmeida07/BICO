@@ -32,8 +32,9 @@ interface BicoApiService {
     @DELETE("prestadores")
     suspend fun deletarPrestador(): Response<Unit>
 
-    @GET("prestadores/lista")
+    @GET("prestadores/busca")
     suspend fun buscarPrestadores(
+        @Query("username") username: String? = null,
         @Query("tipoServico") tipoServico: String? = null,
         @Query("inicio") inicio: Int? = null,
         @Query("fim") fim: Int? = null

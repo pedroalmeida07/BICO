@@ -145,9 +145,8 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.icHome.setOnClickListener { finish() }
 
-        binding.btnEditarFotoPerfil.setOnClickListener {
+        binding.btnEditarFoto.setOnClickListener {
             fotoAlvo = -1
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
@@ -214,9 +213,7 @@ class EditarPrestador : AppCompatActivity() {
                 repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
             }
             currentUser = userAtualizado
-            (binding.rvServicos.adapter as? ServicoAdapter)?.apply {
-                notifyDataSetChanged()
-            }
+            setupRecyclerView(novaLista)
         }
     }
 
@@ -309,13 +306,18 @@ class EditarPrestador : AppCompatActivity() {
             .setView(view)
             .setPositiveButton("Salvar") { _, _ ->
                 val newUsername = input.text.toString()
-                binding.txtDesc.text = newUsername.ifEmpty { "O nome de usuário não pode estar vazio" }
-                currentUser?.let { u ->
-                    val userAtualizado = u.copy(usuario = newUsername)
-                    lifecycleScope.launch {
-                        repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                if (newUsername.isEmpty()) {
+                    Toast.makeText(this@EditarPrestador, "O nome de Usuário não pode estar vazio", Toast.LENGTH_SHORT).show()
+                    showDialogEditarUsername()
+                } else {
+                    currentUser?.let { u ->
+                        val userAtualizado = u.copy(usuario = newUsername)
+                        lifecycleScope.launch {
+                            repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                        }
+                        currentUser = userAtualizado
+                        binding.txtNomePrestador.text = currentUser?.usuario
                     }
-                    currentUser = userAtualizado
                 }
             }.setNegativeButton("Cancelar", null).show()
     }
@@ -410,4 +412,5 @@ class EditarPrestador : AppCompatActivity() {
             .setPositiveButton("Fechar", null)
             .show()
     }
+
 }

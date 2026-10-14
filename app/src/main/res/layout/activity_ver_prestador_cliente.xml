@@ -5,9 +5,8 @@
     android:id="@+id/parentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".Cliente.VerPrestadorCliente">
-
-
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
@@ -20,7 +19,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/containerBarra"
+        app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_begin="80dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerImagem"
@@ -182,8 +181,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/inter"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textColor="@color/azul"
+                android:text="Nenhuma descrição informada."
+                android:textColor="@color/cinza"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -258,56 +257,19 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/imgLocLaranja" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imgFoto1"
-                android:layout_width="155dp"
-                android:layout_height="130dp"
-                app:srcCompat="@drawable/ditador"
-                app:layout_constraintTop_toBottomOf="@id/txtTituloFotos"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/imgFoto2"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintHorizontal_bias="0"
-                android:scaleType="centerInside"
-                android:layout_margin="5dp"/>
 
-            <ImageView
-                android:id="@+id/imgFoto2"
-                android:layout_width="155dp"
-                android:layout_height="130dp"
-                app:srcCompat="@drawable/ditador"
-                app:layout_constraintTop_toTopOf="@id/imgFoto1"
-                app:layout_constraintBottom_toBottomOf="@id/imgFoto1"
-                app:layout_constraintStart_toEndOf="@id/imgFoto1"
+            <TextView
+                android:id="@+id/txtSemFotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/sem_fotos_adicionadas"
+                android:textColor="@color/cinza"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                android:scaleType="centerInside"
-                android:layout_margin="5dp"/>
-
-            <ImageView
-                android:id="@+id/imgFoto3"
-                android:layout_width="155dp"
-                android:layout_height="130dp"
-                app:srcCompat="@drawable/ditador"
-                app:layout_constraintTop_toBottomOf="@id/imgFoto1"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/imgFoto4"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintHorizontal_bias="0"
-                android:scaleType="centerInside"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="20dp"/>
-
-            <ImageView
-                android:id="@+id/imgFoto4"
-                android:layout_width="155dp"
-                android:layout_height="130dp"
-                app:srcCompat="@drawable/ditador"
-                app:layout_constraintTop_toTopOf="@id/imgFoto3"
-                app:layout_constraintBottom_toBottomOf="@id/imgFoto3"
-                app:layout_constraintStart_toEndOf="@id/imgFoto3"
-                app:layout_constraintEnd_toEndOf="@id/guideline2"
-                android:scaleType="centerInside"
-                android:layout_margin="5dp"/>
+                app:layout_constraintTop_toBottomOf="@id/txtTituloFotos" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnviarMsg"
@@ -325,7 +287,7 @@
                 app:strokeWidth="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/imgFoto4" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSemFotos" />
 
             <TextView
                 android:id="@+id/txtTituloAvaliacoes"
@@ -498,74 +460,19 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/btnAvaliar" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
         
 
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerBarra"
+    <include
+        android:id="@+id/layoutBarraInferior"
+        layout="@layout/barra_inferior_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <View
-            android:id="@+id/barraInferior"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/barra_inferior_branca"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ic_home"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_home"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_chat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_chat"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_chat"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_config"
-            app:layout_constraintStart_toEndOf="@id/ic_home"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_config"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_config"
-            app:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toStartOf="@id/ic_user_barra"
-            app:layout_constraintStart_toEndOf="@id/ic_chat"
-            app:layout_constraintTop_toTopOf="@id/barraInferior" />
-
-        <ImageView
-            android:id="@+id/ic_user_barra"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="@id/barraInferior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ic_config"
-            app:layout_constraintTop_toTopOf="@id/barraInferior"
-            app:tint="@color/azul"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

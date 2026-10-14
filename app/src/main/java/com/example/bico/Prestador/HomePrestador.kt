@@ -61,21 +61,12 @@ class HomePrestador : AppCompatActivity() {
             insets
         }
 
-        findViewById<ImageView>(R.id.ic_user_barra).setOnClickListener {
+
+
+        findViewById<ImageView>(R.id.imgUser)?.setOnClickListener {
             val intent = Intent(this, EditarPrestador::class.java)
             startActivity(intent)
         }
-
-        findViewById<ImageView>(R.id.imgUser).setOnClickListener {
-            val intent = Intent(this, EditarPrestador::class.java)
-            startActivity(intent)
-        }
-
-        findViewById<ImageView>(R.id.ic_config).setOnClickListener {
-            val intent = Intent(this, ConfiguracoesPrestador::class.java)
-            startActivity(intent)
-        }
-
     }
 
     override fun onResume() {
@@ -88,29 +79,19 @@ class HomePrestador : AppCompatActivity() {
         lifecycleScope.launch {
             val usuario = repository.usuarioLogado()
             usuario?.let { 
-                findViewById<TextView>(R.id.txtNomeUsuario).text = it.primeiroNome.ifEmpty { "Usuário" }
+                findViewById<TextView>(R.id.txtNomeUsuario)?.text = it.primeiroNome.ifEmpty { "Usuário" }
                 val imgUser = findViewById<ImageView>(R.id.imgUser)
-                val icUserBarra = findViewById<ImageView>(R.id.ic_user_barra)
+
                 
                 if (!it.fotoPerfil.isNullOrEmpty()) {
-                    imgUser.load(it.fotoPerfil) {
+                    imgUser?.load(it.fotoPerfil) {
                         crossfade(true)
                         placeholder(R.drawable.user)
                         error(R.drawable.user)
-                    }
-                    icUserBarra.load(it.fotoPerfil) {
-                        crossfade(true)
-                        placeholder(R.drawable.user)
-                        error(R.drawable.user)
-                        // Para o ícone da barra, podemos querer remover o tint se for uma foto
-                        target { drawable ->
-                            icUserBarra.setImageDrawable(drawable)
-                            icUserBarra.colorFilter = null
-                        }
                     }
                 } else {
-                    imgUser.setImageResource(R.drawable.user)
-                    icUserBarra.setImageResource(R.drawable.user)
+                    imgUser?.setImageResource(R.drawable.user)
+
                 }
             }
         }

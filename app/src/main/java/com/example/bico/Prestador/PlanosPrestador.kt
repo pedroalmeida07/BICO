@@ -29,23 +29,6 @@ class PlanosPrestador : AppCompatActivity() {
             finish()
         }
 
-        // Barra inferior
-        // Ícone de casa -> Página inicial de prestador (HomePrestador)
-        binding.icHome.setOnClickListener {
-            val intent = Intent(this, HomePrestador::class.java)
-            startActivity(intent)
-        }
 
-        // Ícone de engrenagem -> Página de configurações (ConfiguracoesPrestador)
-        binding.icConfig.setOnClickListener {
-            val intent = Intent(this, ConfiguracoesPrestador::class.java)
-            startActivity(intent)
-        }
-
-        // Ícone de perfil -> Página de editar perfil (EditarPrestador)
-        binding.icUserBarra.setOnClickListener {
-            val intent = Intent(this, EditarPrestador::class.java)
-            startActivity(intent)
-        }
     }
 }
