@@ -300,173 +300,21 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/linha2" />
 
-            <!--Prestado Favorito 1-->
-            <TextView
-                android:id="@+id/txtNomePrestador1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/inter"
-                android:text="Serjio Krüger - Encanador"
-                android:textColor="@color/azul"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/txtFavoritos" />
 
-            <TextView
-                android:id="@+id/txtTelPrestador1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="(27) 94002-8922"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtNomePrestador1"
-                app:layout_constraintTop_toBottomOf="@id/txtNomePrestador1" />
-
-            <TextView
-                android:id="@+id/txtDescPrestador1"
+            <!-- RecyclerView para listar os prestadores da mesma forma que a busca -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFavoritos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/inter"
-                android:text="Sou o melhor encanador da região, meu lema é que nunca irei te deixar na mão"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintStart_toStartOf="@id/txtTelPrestador1"
-                app:layout_constraintTop_toBottomOf="@id/txtTelPrestador1" />
-
-            <TextView
-                android:id="@+id/txtAvaliacaoPrestador1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="★★★★ (41)"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtDescPrestador1"
-                app:layout_constraintTop_toBottomOf="@id/txtDescPrestador1" />
-
-            <TextView
-                android:id="@+id/txtLocPrestador1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="Serra - ES"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtAvaliacaoPrestador1"
-                app:layout_constraintTop_toBottomOf="@id/txtAvaliacaoPrestador1" />
-
-            <ImageView
-                android:id="@+id/ic_favoritoPrestador1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_estrela_cheia"
-                app:layout_constraintBottom_toBottomOf="@id/txtLocPrestador1"
-                app:layout_constraintEnd_toEndOf="@id/txtNomePrestador1"
-                app:layout_constraintTop_toTopOf="@id/txtLocPrestador1" />
-
-            <View
-                android:id="@+id/linha3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/sombra"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLocPrestador1" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFavoritos"
+                tools:listitem="@layout/item_prestador_pesquisa" />
 
-
-            <!--Prestado Favorito 2-->
-            <TextView
-                android:id="@+id/txtNomePrestador2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/inter"
-                android:text="Ana Lyrio - Faxineira"
-                android:textColor="@color/azul"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/txtNomePrestador1"
-                app:layout_constraintTop_toBottomOf="@id/linha3" />
-
-            <TextView
-                android:id="@+id/txtTelPrestador2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="(27) 999189877"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtNomePrestador2"
-                app:layout_constraintTop_toBottomOf="@id/txtNomePrestador2" />
-
-            <TextView
-                android:id="@+id/txtDescPrestador2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/inter"
-                android:text="Não é delírio, a melhor faxina é com Ana Lyrio!"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintStart_toStartOf="@id/txtTelPrestador2"
-                app:layout_constraintTop_toBottomOf="@id/txtTelPrestador2" />
-
-            <TextView
-                android:id="@+id/txtAvaliacaoPrestador2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="★★★★ (41)"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtDescPrestador2"
-                app:layout_constraintTop_toBottomOf="@id/txtDescPrestador2" />
-
-            <TextView
-                android:id="@+id/txtLocPrestador2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/inter"
-                android:text="Serra - ES"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/txtAvaliacaoPrestador2"
-                app:layout_constraintTop_toBottomOf="@id/txtAvaliacaoPrestador2" />
-
-            <ImageView
-                android:id="@+id/ic_favoritoPrestador2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_estrela_cheia"
-                app:layout_constraintBottom_toBottomOf="@id/txtLocPrestador2"
-                app:layout_constraintEnd_toEndOf="@id/ic_favoritoPrestador1"
-                app:layout_constraintTop_toTopOf="@id/txtLocPrestador2" />
-
-            <View
-                android:id="@+id/linha4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/sombra"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLocPrestador2" />
-
-
+            <!-- Botão Ver Todos apontando para o rvFavoritos -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVerTodos"
                 android:layout_width="0dp"
@@ -482,9 +330,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/linha4"
+                app:layout_constraintTop_toBottomOf="@id/rvFavoritos"
                 app:strokeColor="@color/cinza"
                 app:strokeWidth="1dp" />
+
+            <View
+                android:id="@+id/linha4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/sombra"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvFavoritos" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
