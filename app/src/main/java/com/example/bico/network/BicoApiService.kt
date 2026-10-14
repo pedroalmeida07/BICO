@@ -19,6 +19,12 @@ interface BicoApiService {
     @DELETE("clientes")
     suspend fun deletarCliente(): Response<Unit>
 
+    @PUT("clientes/favoritos")
+    suspend fun adicionarFavorito(@Query("id") idPrestador: String): Response<Unit>
+
+    @GET("clientes/favoritos")
+    suspend fun getFavoritos(): Response<List<Prestador>>
+
     // Endpoints Prestador
     @POST("prestadores")
     suspend fun cadastrarPrestador(@Body prestador: Prestador): Response<Unit>

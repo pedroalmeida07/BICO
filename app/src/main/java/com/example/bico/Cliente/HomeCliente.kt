@@ -66,6 +66,11 @@ class HomeCliente : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnVerTodos.setOnClickListener {
+            val intent = Intent(this, FavoritosCliente::class.java)
+            startActivity(intent)
+        }
+
 
 
         binding.pagPrestador1.setOnClickListener {

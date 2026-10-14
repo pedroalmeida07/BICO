@@ -31,4 +31,10 @@ data class Prestador(
     val notaMedia: Double? = null,
     @SerializedName("totalAvaliacoes")
     val totalAvaliacoes: Int? = null
-) : UserBase, Serializable
+) : UserBase, Serializable {
+    val favoriteKey: String
+        get() = id?.takeIf { it.isNotEmpty() }
+            ?: usuario?.takeIf { it.isNotEmpty() }
+            ?: email?.takeIf { it.isNotEmpty() }
+            ?: nome ?: ""
+}
