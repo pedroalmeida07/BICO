@@ -18,12 +18,14 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.example.bico.MainActivity
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarClienteBinding
 import com.example.bico.model.Cliente
 import com.example.bico.utils.ImageUtils
 import com.example.bico.utils.MaskWatcher
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
 class EditarCliente : AppCompatActivity() {
@@ -117,6 +119,33 @@ class EditarCliente : AppCompatActivity() {
         binding.btnSalvar.setOnClickListener {
             salvarAlteracoes()
         }
+
+        binding.btnExcluir.setOnClickListener {
+            excluirConta()
+        }
+    }
+
+    private fun excluirConta() {
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setTitle("Excluir Conta")
+            .setMessage("Tem certeza de que deseja excluir sua conta? Esta ação não poderá ser desfeita.")
+            .setPositiveButton("Excluir") { _, _ ->
+                lifecycleScope.launch {
+                    val sucesso = repository.deletarCliente()
+                    if (sucesso) {
+                        Toast.makeText(this@EditarCliente, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@EditarCliente, MainActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@EditarCliente, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 
     private fun atualizarFotoPerfil(uri: Uri) {

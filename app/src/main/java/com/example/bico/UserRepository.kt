@@ -146,20 +146,44 @@ class UserRepository(private val context: Context) {
 
     suspend fun atualizarPrestador(id: String, prestador: Prestador): Boolean = atualizarPrestador(prestador)
 
-    suspend fun deletarUsuario(id: String? = null): Boolean {
+    suspend fun deletarCliente(): Boolean {
         return try {
-            // Tenta deletar como cliente primeiro
-            var response = api.deletarCliente()
-            if (!response.isSuccessful) {
-                // Se falhou, tenta como prestador
-                response = api.deletarPrestador()
-            }
-
+            val response = api.deletarCliente()
             if (response.isSuccessful) {
                 deslogar()
                 true
-            } else false
-        } catch (e: Exception) { false }
+            } else {
+                Log.e("UserRepository", "Erro ao deletar cliente: ${response.code()}")
+                false
+            }
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Exceção ao deletar cliente: ${e.message}", e)
+            false
+        }
+    }
+
+    suspend fun deletarPrestador(): Boolean {
+        return try {
+            val response = api.deletarPrestador()
+            if (response.isSuccessful) {
+                deslogar()
+                true
+            } else {
+                Log.e("UserRepository", "Erro ao deletar prestador: ${response.code()}")
+                false
+            }
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Exceção ao deletar prestador: ${e.message}", e)
+            false
+        }
+    }
+
+    suspend fun deletarUsuario(id: String? = null): Boolean {
+        return if (deletarCliente()) {
+            true
+        } else {
+            deletarPrestador()
+        }
     }
 
     suspend fun buscarPrestadores(

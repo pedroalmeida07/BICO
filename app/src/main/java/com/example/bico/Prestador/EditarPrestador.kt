@@ -1,5 +1,6 @@
 package com.example.bico.Prestador
 
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.example.bico.MainActivity
 import com.example.bico.R
 import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
@@ -145,6 +147,7 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        binding.btnVoltar.setOnClickListener { finish() }
 
         binding.btnEditarFoto.setOnClickListener {
             fotoAlvo = -1
@@ -167,6 +170,33 @@ class EditarPrestador : AppCompatActivity() {
         setupFotoClickListener(binding.imgFoto2, 1)
         setupFotoClickListener(binding.imgFoto3, 2)
         setupFotoClickListener(binding.imgFoto4, 3)
+
+        binding.btnExcluir.setOnClickListener {
+            excluirConta()
+        }
+    }
+
+    private fun excluirConta() {
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setTitle("Excluir Conta")
+            .setMessage("Tem certeza de que deseja excluir sua conta? Esta ação não poderá ser desfeita.")
+            .setPositiveButton("Excluir") { _, _ ->
+                lifecycleScope.launch {
+                    val sucesso = repository.deletarPrestador()
+                    if (sucesso) {
+                        Toast.makeText(this@EditarPrestador, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@EditarPrestador, MainActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@EditarPrestador, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 
     private fun loadUserData() {
