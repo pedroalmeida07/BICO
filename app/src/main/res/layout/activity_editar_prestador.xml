@@ -300,7 +300,6 @@
                 android:layout_height="130dp"
                 app:srcCompat="@drawable/ditador"
                 app:layout_constraintTop_toBottomOf="@id/imgFoto1"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintEnd_toStartOf="@id/imgFoto4"
                 android:scaleType="centerInside"
@@ -318,6 +317,19 @@
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 android:scaleType="centerInside"
                 android:layout_margin="5dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExcluir"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                app:layout_constraintTop_toBottomOf="@id/imgFoto3"
+                app:layout_constraintStart_toEndOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                android:text="Excluir Conta"
+                android:textSize="16sp"
+                android:backgroundTint="@color/vermelho"
+                android:layout_marginTop="30dp"
+                app:cornerRadius="12dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
