@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <!-- ScrollView contendo o conteúdo rolável -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Linhas de Guia internas -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="80dp" />
+
+
+            <ImageView
+                android:id="@+id/fotoPerfil"
+                android:layout_width="0dp"
+                android:layout_height="175dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/guideline4"
+                app:srcCompat="@drawable/nenuma_imagem_selecionada" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVoltar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                app:backgroundTint="@color/azul"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_seta_esquerda_branco"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="#FFFFFF"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/guideline4" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarFoto"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                app:backgroundTint="@color/laranja"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_lapis"
+                app:iconSize="30dp"
+                app:iconTint="@color/azul"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/guideline4" />
+
+
+            <TextView
+                android:id="@+id/txtNomePrestador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="UserName"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
+
+            <ImageView
+                android:id="@+id/ic_lapisNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtNomePrestador"
+                app:layout_constraintTop_toTopOf="@id/txtNomePrestador" />
+
+            <TextView
+                android:id="@+id/txtTituloDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Sobre"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtNomePrestador" />
+
+            <ImageView
+                android:id="@+id/ic_lapisSobre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloDesc"
+                app:layout_constraintTop_toTopOf="@id/txtTituloDesc" />
+
+            <TextView
+                android:id="@+id/txtDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"
+                android:text="Adicione mais informações sobre você e seus serviços."
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloDesc" />
+
+            <TextView
+                android:id="@+id/txtTituloServicos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Serviços Oferecidos"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtDesc" />
+
+            <ImageView
+                android:id="@+id/ic_lapisServicos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloServicos"
+                app:layout_constraintTop_toTopOf="@id/txtTituloServicos" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvServicos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloServicos"
+                tools:listitem="@layout/item_servico_tag" />
+
+            <TextView
+                android:id="@+id/txtTituloLoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Local de Atuação"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/rvServicos" />
+
+            <ImageView
+                android:id="@+id/ic_lapisLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloLoc"
+                app:layout_constraintTop_toTopOf="@id/txtTituloLoc" />
+
+            <ImageView
+                android:id="@+id/imgLocLaranja"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_localizacao_laranja"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloLoc" />
+
+            <TextView
+                android:id="@+id/txtCidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/inter"
+                android:text="Local"
+                android:textColor="@color/azul"
+                app:layout_constraintBottom_toBottomOf="@id/imgLocLaranja"
+                app:layout_constraintStart_toEndOf="@id/imgLocLaranja"
+                app:layout_constraintTop_toTopOf="@id/imgLocLaranja" />
+
+            <TextView
+                android:id="@+id/txtTituloFotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Fotos"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/imgLocLaranja" />
+
+            <ImageView
+                android:id="@+id/ic_lapisFotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloFotos"
+                app:layout_constraintTop_toTopOf="@id/txtTituloFotos" />
+
+            <TextView
+                android:id="@+id/txtSemFotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter"
+                android:gravity="center"
+                android:text="Nenhuma foto selecionada"
+                android:textColor="@color/cinza"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/ic_lapisFotos" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierServicos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgFoto1"
+                android:layout_width="155dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloFotos"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto2"
+                android:scaleType="centerInside"
+                android:layout_margin="5dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto2"
+                android:layout_width="155dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toTopOf="@id/imgFoto1"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto1"
+                app:layout_constraintStart_toEndOf="@id/imgFoto1"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:scaleType="centerInside"
+                android:layout_margin="5dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto3"
+                android:layout_width="155dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toBottomOf="@id/imgFoto1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto4"
+                android:scaleType="centerInside"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="20dp"/>
+
+            <ImageView
+                android:id="@+id/imgFoto4"
+                android:layout_width="155dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/ditador"
+                app:layout_constraintTop_toTopOf="@id/imgFoto3"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto3"
+                app:layout_constraintStart_toEndOf="@id/imgFoto3"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:scaleType="centerInside"
+                android:layout_margin="5dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

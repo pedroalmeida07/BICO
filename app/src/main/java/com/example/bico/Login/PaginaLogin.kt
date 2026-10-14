@@ -9,8 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.bico.Cadastro.CadCliente.CadastroClienteNome
-import com.example.bico.Cliente.HomeCliente
-import com.example.bico.Prestador.HomePrestador
+import com.example.bico.Cliente.MainClienteActivity
+import com.example.bico.Prestador.MainPrestadorActivity
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
 import com.example.bico.model.Cliente
@@ -62,11 +62,12 @@ class PaginaLogin : AppCompatActivity() {
                 val usuario = repository.realizarLogin(email, senha)
                 if (usuario != null) {
                     Toast.makeText(this@PaginaLogin, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    val intent = if (usuario is Cliente) {
-                        Intent(this@PaginaLogin, HomeCliente::class.java)
+                    val targetClass = if (usuario is Cliente) {
+                        MainClienteActivity::class.java
                     } else {
-                        Intent(this@PaginaLogin, HomePrestador::class.java)
+                        MainPrestadorActivity::class.java
                     }
+                    val intent = Intent(this@PaginaLogin, targetClass)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {

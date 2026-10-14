@@ -124,6 +124,14 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".Cliente.MainClienteActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Prestador.MainPrestadorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".Cliente.VerPrestadorCliente"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
