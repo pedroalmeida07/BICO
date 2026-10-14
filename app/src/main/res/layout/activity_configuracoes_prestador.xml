@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1"/>
+
     <!--Barra Superior-->
     <View
         android:id="@+id/barraSuperior"
