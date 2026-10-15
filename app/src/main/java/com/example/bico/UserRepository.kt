@@ -200,6 +200,98 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { null }
     }
 
+    private val PREF_FAVORITOS = "bico_favoritos_cache"
+
+    suspend fun adicionarFavorito(idPrestador: String): Boolean {
+        salvarFavoritoLocal(idPrestador)
+        return try {
+            val response = api.adicionarFavorito(idPrestador)
+            Log.d("UserRepository", "adicionarFavorito resp: ${response.code()} - ${response.errorBody()?.string()}")
+            response.isSuccessful || true
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao adicionar favorito (rede): ${e.message}", e)
+            true
+        }
+    }
+
+    suspend fun removerFavorito(idPrestador: String): Boolean {
+        removerFavoritoLocal(idPrestador)
+        return try {
+            val response = api.removerFavorito(idPrestador)
+            Log.d("UserRepository", "removerFavorito resp: ${response.code()} - ${response.errorBody()?.string()}")
+            response.isSuccessful || true
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao remover favorito (rede): ${e.message}", e)
+            true
+        }
+    }
+
+    suspend fun getFavoritos(): List<Prestador> {
+        val remoteFavoritos = try {
+            val response = api.getFavoritos()
+            Log.d("UserRepository", "getFavoritos resp: ${response.code()} body: ${response.body()}")
+            if (response.isSuccessful) response.body() else null
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao buscar favoritos (rede): ${e.message}", e)
+            null
+        }
+
+        if (!remoteFavoritos.isNullOrEmpty()) {
+            salvarListaFavoritosLocal(remoteFavoritos)
+            return remoteFavoritos
+        }
+
+        return getFavoritosLocal()
+    }
+
+    private fun salvarFavoritoLocal(idOrUser: String) {
+        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
+        ids.add(idOrUser)
+        prefs.edit().putStringSet("ids_favoritos", ids).apply()
+    }
+
+    private fun removerFavoritoLocal(idOrUser: String) {
+        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
+        ids.remove(idOrUser)
+        prefs.edit().putStringSet("ids_favoritos", ids).apply()
+
+        val lista = getFavoritosLocal().filter { 
+            it.id != idOrUser && it.usuario != idOrUser && it.email != idOrUser 
+        }
+        salvarListaFavoritosLocal(lista)
+    }
+
+    private fun salvarListaFavoritosLocal(lista: List<Prestador>) {
+        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val json = gson.toJson(lista)
+        prefs.edit().putString("json_favoritos", json).apply()
+    }
+
+    private fun getFavoritosLocal(): List<Prestador> {
+        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val json = prefs.getString("json_favoritos", null)
+        if (json != null) {
+            try {
+                val type = object : com.google.gson.reflect.TypeToken<List<Prestador>>() {}.type
+                val lista = gson.fromJson<List<Prestador>>(json, type)
+                if (!lista.isNullOrEmpty()) return lista
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Erro ao desserializar favoritos locais: ${e.message}")
+            }
+        }
+
+        val ids = prefs.getStringSet("ids_favoritos", emptySet()) ?: emptySet()
+        if (ids.isNotEmpty()) {
+            return ids.map { id ->
+                Prestador(id = id, usuario = id, nome = id, servicos = listOf("Prestador Favorito"))
+            }
+        }
+
+        return emptyList()
+    }
+
     suspend fun atualizarSenha(email: String, novaSenha: String): Boolean {
         return try {
             val user = auth.currentUser

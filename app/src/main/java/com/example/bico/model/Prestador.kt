@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Prestador(
-    @SerializedName("id")
+    @SerializedName(value = "id", alternate = ["_id"])
     override val id: String? = null,
     override val nome: String? = null,
     override val cpf: String? = null,
     override val telefone: String? = null,
     override val email: String? = null,
     override val senha: String? = null,
-    @SerializedName("fotoPerfil")
+    @SerializedName(value = "fotoPerfil", alternate = ["foto", "avatar"])
     override val fotoPerfil: String? = null,
 
     // Exclusivo prestador
-    @SerializedName("username")
+    @SerializedName(value = "username", alternate = ["usuario", "user"])
     val usuario: String? = null,
     @SerializedName("fotoPaginaPerfil")
     val fotoHorizontalPrestador: String? = null,

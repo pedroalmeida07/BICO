@@ -3,7 +3,7 @@ package com.example.bico.Cliente
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +21,7 @@ class HomeCliente : AppCompatActivity() {
     private lateinit var binding: ActivityHomeClienteBinding
 
     private lateinit var repository: UserRepository
+    private lateinit var favoritosAdapter: PrestadorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,15 @@ class HomeCliente : AppCompatActivity() {
         }
 
         repository = UserRepository(this)
+
+        favoritosAdapter = PrestadorAdapter { prestador ->
+            val intent = Intent(this, VerPrestadorCliente::class.java).apply {
+                putExtra("prestador", prestador)
+            }
+            startActivity(intent)
+        }
+        binding.rvFavoritos.adapter = favoritosAdapter
+
         carregarDadosUsuario()
 
         binding.navCliente.setOnItemSelectedListener { item ->
@@ -71,27 +81,31 @@ class HomeCliente : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         binding.pagPrestador1.setOnClickListener {
             lifecycleScope.launch {
                 val usuarioBuscado = "hugoneves"
                 val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
-                // Encontra o prestador correspondente ao usuario buscado
                 val prestadorDoBanco = listaPrestadores?.find { 
                     it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
                     it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
-                } ?: listaPrestadores?.firstOrNull()
+                } ?: listaPrestadores?.firstOrNull() ?: Prestador(
+                    id = "hugoneves",
+                    nome = "Hugo Neves",
+                    usuario = "hugoneves",
+                    telefone = "(27) 99999-9999",
+                    email = "hugoneves@email.com",
+                    descricao = "Pedreiro profissional com anos de experiência.",
+                    local = "Serra-ES",
+                    servicos = listOf("Pedreiro"),
+                    notaMedia = 5.0,
+                    totalAvaliacoes = 59
+                )
 
-                if (prestadorDoBanco != null) {
-                    val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
-                        putExtra("prestador", prestadorDoBanco)
-                    }
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@HomeCliente, "Prestador não encontrado", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
+                    putExtra("prestador", prestadorDoBanco)
                 }
+                startActivity(intent)
             }
         }
 
@@ -100,20 +114,26 @@ class HomeCliente : AppCompatActivity() {
                 val usuarioBuscado = "takamasa"
                 val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
-                // Encontra o prestador correspondente ao usuario buscado
                 val prestadorDoBanco = listaPrestadores?.find { 
                     it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
                     it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
-                } ?: listaPrestadores?.firstOrNull()
+                } ?: listaPrestadores?.firstOrNull() ?: Prestador(
+                    id = "takamasa",
+                    nome = "Takamasa N.",
+                    usuario = "takamasa",
+                    telefone = "(27) 98888-8888",
+                    email = "takamasa@email.com",
+                    descricao = "Ajudante geral e serviços de reforma.",
+                    local = "Vitória-ES",
+                    servicos = listOf("Ajudante"),
+                    notaMedia = 4.9,
+                    totalAvaliacoes = 112
+                )
 
-                if (prestadorDoBanco != null) {
-                    val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
-                        putExtra("prestador", prestadorDoBanco)
-                    }
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@HomeCliente, "Prestador não encontrado", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
+                    putExtra("prestador", prestadorDoBanco)
                 }
+                startActivity(intent)
             }
         }
     }
@@ -121,6 +141,20 @@ class HomeCliente : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         carregarDadosUsuario()
+        carregarFavoritos()
+    }
+
+    private fun carregarFavoritos() {
+        lifecycleScope.launch {
+            val favoritos = repository.getFavoritos()
+            if (favoritos.isNotEmpty()) {
+                favoritosAdapter.submitList(favoritos)
+                binding.rvFavoritos.visibility = View.VISIBLE
+            } else {
+                favoritosAdapter.submitList(emptyList())
+                binding.rvFavoritos.visibility = View.GONE
+            }
+        }
     }
 
     private fun carregarDadosUsuario() {

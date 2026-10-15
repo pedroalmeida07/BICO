@@ -1,5 +1,6 @@
 package com.example.bico.Cliente
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -54,8 +55,12 @@ class VerPrestadorCliente : AppCompatActivity() {
     }
 
     private fun carregarDadosPrestador(prestador: Prestador) {
-        // UserName
-        binding.txtNomePrestador.text = (prestador.usuario ?: "").ifEmpty { "UserName" }
+        // Nome e UserName
+        binding.txtNomePrestador.text = prestador.nome?.takeIf { it.isNotEmpty() } ?: prestador.usuario ?: "Prestador"
+
+        // Nota e Avaliações
+        binding.txtNotaPrestador.text = String.format(java.util.Locale.getDefault(), "%.1f", prestador.notaMedia ?: 5.0)
+        binding.txtTotalAvaliacoes.text = String.format(java.util.Locale.getDefault(), " (%d Avaliações)", prestador.totalAvaliacoes ?: 0)
 
         // Sobre
         binding.txtDesc.text = (prestador.descricao ?: "").ifEmpty { "Nenhuma descrição informada." }
@@ -70,5 +75,67 @@ class VerPrestadorCliente : AppCompatActivity() {
         }
         binding.rvServicos.adapter = adapter
 
+        var isFavorito = false
+
+        // Verificar se é favorito
+        lifecycleScope.launch {
+            val favoritos = repository.getFavoritos()
+            isFavorito = favoritos.any { 
+                (prestador.id != null && it.id == prestador.id) || 
+                (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
+                (!prestador.email.isNullOrEmpty() && it.email.equals(prestador.email, ignoreCase = true))
+            }
+
+            if (isFavorito) {
+                binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
+            } else {
+                binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
+            }
+        }
+
+        binding.btnFavorito.setOnClickListener {
+            val idParaFavoritar = prestador.usuario?.takeIf { it.isNotEmpty() } 
+                ?: prestador.id?.takeIf { it.isNotEmpty() } 
+                ?: prestador.email ?: ""
+
+            if (idParaFavoritar.isNotEmpty()) {
+                lifecycleScope.launch {
+                    val prefs = getSharedPreferences("bico_favoritos_cache", Context.MODE_PRIVATE)
+                    val currentList = repository.getFavoritos().toMutableList()
+
+                    if (isFavorito) {
+                        val sucesso = repository.removerFavorito(idParaFavoritar)
+                        if (sucesso) {
+                            isFavorito = false
+                            binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
+
+                            currentList.removeAll { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }
+                            val json = com.google.gson.Gson().toJson(currentList)
+                            prefs.edit().putString("json_favoritos", json).apply()
+
+                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Removido dos favoritos", android.widget.Toast.LENGTH_SHORT).show()
+                        } else {
+                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        val sucesso = repository.adicionarFavorito(idParaFavoritar)
+                        if (sucesso) {
+                            isFavorito = true
+                            binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
+
+                            if (!currentList.any { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }) {
+                                currentList.add(prestador)
+                                val json = com.google.gson.Gson().toJson(currentList)
+                                prefs.edit().putString("json_favoritos", json).apply()
+                            }
+
+                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Prestador adicionado aos favoritos!", android.widget.Toast.LENGTH_SHORT).show()
+                        } else {
+                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao favoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 }

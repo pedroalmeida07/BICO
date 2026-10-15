@@ -58,6 +58,32 @@
         android:textSize="24sp"
         android:layout_marginStart="8dp"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFavoritos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/txtFavoritos"
+        app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        tools:listitem="@layout/item_prestador_pesquisa" />
+
+    <TextView
+        android:id="@+id/txtVazio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nenhum prestador favoritado."
+        android:textColor="@color/cinza"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/rvFavoritos"
+        app:layout_constraintBottom_toBottomOf="@id/rvFavoritos"
+        app:layout_constraintStart_toStartOf="@id/rvFavoritos"
+        app:layout_constraintEnd_toEndOf="@id/rvFavoritos" />
+
     <include
         android:id="@+id/layoutBarraInferior"
         layout="@layout/barra_inferior_cliente"
