@@ -49,6 +49,6 @@ interface BicoApiService {
         @Query("username") username: String? = null,
         @Query("tipoServico") tipoServico: String? = null,
         @Query("inicio") inicio: Int? = null,
-        @Query("fim") fim: Int? = null
+        @Query("limite") limite: Int? = null
     ): Response<List<Prestador>>
 }
