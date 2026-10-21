@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityHomeClienteBinding
 import com.example.bico.model.Prestador
+import com.example.bico.utils.setupBottomNavCliente
 import kotlinx.coroutines.launch
 
 class HomeCliente : AppCompatActivity() {
@@ -57,19 +59,7 @@ class HomeCliente : AppCompatActivity() {
 
         carregarDadosUsuario()
 
-        binding.navCliente.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_pesquisa -> {
-                    startActivity(Intent(this, PesquisaCliente::class.java))
-                    true
-                }
-                R.id.nav_config -> {
-                    startActivity(Intent(this, ConfiguracaoCliente::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
+        setupBottomNavCliente(binding.layoutBarraInferior.navCliente, R.id.nav_home)
 
         binding.imgUser.setOnClickListener {
             val intent = Intent(this, EditarCliente::class.java)

@@ -17,6 +17,7 @@ import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPesquisaClienteBinding
 import com.example.bico.utils.NoAccentsAdapter
+import com.example.bico.utils.setupBottomNavCliente
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.Job
@@ -55,10 +56,11 @@ class PesquisaCliente : AppCompatActivity() {
 
         repository = UserRepository(this)
 
+        setupBottomNavCliente(binding.layoutBarraInferior.navCliente, R.id.nav_pesquisa)
+
         setupRecyclerView()
         setupListeners()
 
-        // Busca inicial com inicio = 0 e fim = 30
         realizarBusca()
     }
 
@@ -73,12 +75,10 @@ class PesquisaCliente : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Clique no ícone de busca na barra
         binding.icSearchIcon.setOnClickListener {
             realizarBusca()
         }
 
-        // Ação de busca no teclado (ImeAction)
         binding.editTextPesquisar.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 realizarBusca()
@@ -88,20 +88,17 @@ class PesquisaCliente : AppCompatActivity() {
             }
         }
 
-        // Debounce ao digitar na barra de pesquisa
         binding.editTextPesquisar.doAfterTextChanged {
             searchJob?.cancel()
             searchJob = lifecycleScope.launch {
-                delay(400) // Aguarda o usuário parar de digitar
+                delay(400)
                 realizarBusca()
             }
         }
 
-        // Botão de filtro por tipo de serviço
         binding.btnFiltro.setOnClickListener {
             mostrarDropdownFiltro()
         }
-
     }
 
     private fun mostrarDropdownFiltro() {
