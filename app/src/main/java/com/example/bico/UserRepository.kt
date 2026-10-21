@@ -191,11 +191,13 @@ class UserRepository(private val context: Context) {
         tipoServico: String? = null,
         inicio: Int? = null,
         limite: Int? = null,
+        fim: Int? = null,
         tipos: String? = null
     ): List<Prestador>? {
         val filtro = tipoServico ?: tipos
+        val l = limite ?: fim
         return try {
-            val response = api.buscarPrestadores(username,filtro, inicio, limite)
+            val response = api.buscarPrestadores(username, filtro, inicio, l)
             if (response.isSuccessful) response.body() else null
         } catch (e: Exception) { null }
     }
