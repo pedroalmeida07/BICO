@@ -69,6 +69,7 @@
                 app:layout_constraintGuide_percent="0.1" />
 
             <!--Barra Superior-->
+
             <View
                 android:id="@+id/barraSuperior"
                 android:layout_width="match_parent"
@@ -81,10 +82,10 @@
                 android:id="@+id/imgUser"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="-30dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/user"
-                app:layout_constraintBottom_toBottomOf="@id/guideline4"
+                app:layout_constraintTop_toTopOf="@id/txtOla"
+                app:layout_constraintBottom_toBottomOf="@id/txtNomeUsuario"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:shapeAppearanceOverlay="@style/CircleShape"/>
 
@@ -97,7 +98,8 @@
                 android:text="Olá,"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline4"
+                app:layout_constraintTop_toTopOf="@id/barraSuperior"
+                android:layout_marginTop="50dp"
                 app:layout_constraintStart_toStartOf="@id/guideline1" />
 
             <TextView
