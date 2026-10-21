@@ -8,7 +8,6 @@ data class Cliente(
     override val id: String? = null,
     override val nome: String? = null,
     override val cpf: String? = null,
-    override val telefone: String? = null,
     override val email: String? = null,
     override val senha: String? = null,
     @SerializedName("fotoPerfil")

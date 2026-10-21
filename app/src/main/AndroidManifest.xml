@@ -58,15 +58,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Login.RecuperacaoSenhaCodigo"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".Login.RecuperacaoSenhaEmail"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".Login.RecuperacaoSenhaTrocarSenha"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity

@@ -1,12 +1,15 @@
 package com.example.bico.Login
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityRecuperacaoSenhaEmailBinding
+import kotlinx.coroutines.launch
 
 class RecuperacaoSenhaEmail : AppCompatActivity() {
     private lateinit var binding: ActivityRecuperacaoSenhaEmailBinding
@@ -28,16 +31,32 @@ class RecuperacaoSenhaEmail : AppCompatActivity() {
         binding = ActivityRecuperacaoSenhaEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Evento de clique
+        val repository = UserRepository(this)
 
+        // Evento de clique
         binding.buttonAvancar.setOnClickListener {
-            val email = binding.edtEmail.text.toString()
+            val email = binding.edtEmail.text.toString().trim()
 
             if (email.isNotEmpty()) {
-                // Criar o Intent para abrir a outra Activity
-                val intent = Intent(this, RecuperacaoSenhaCodigo::class.java)
-                intent.putExtra("EMAIL_RECUPERACAO", email)
-                startActivity(intent) // Inicia a nova tela
+                binding.buttonAvancar.isEnabled = false
+                lifecycleScope.launch {
+                    val sucesso = repository.enviarEmailRedefinicaoSenha(email)
+                    binding.buttonAvancar.isEnabled = true
+                    if (sucesso) {
+                        Toast.makeText(
+                            this@RecuperacaoSenhaEmail,
+                            "E-mail de redefinição de senha enviado com sucesso!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this@RecuperacaoSenhaEmail,
+                            "Erro ao enviar e-mail. Verifique o endereço e tente novamente.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             } else {
                 binding.edtEmail.error = "Por favor, insira seu e-mail"
             }

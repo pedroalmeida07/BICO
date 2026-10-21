@@ -156,7 +156,7 @@ class PesquisaCliente : AppCompatActivity() {
                 username = usernameQuery,
                 tipoServico = tipoServicoSelecionado,
                 inicio = 0,
-                fim = 30
+                limite = 30
             )
 
             binding.progressBar.visibility = View.GONE

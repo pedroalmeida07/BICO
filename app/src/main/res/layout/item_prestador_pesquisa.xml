@@ -39,19 +39,6 @@
         app:layout_constraintTop_toTopOf="@id/imgFotoPerfil" />
 
     <TextView
-        android:id="@+id/txtTelefone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="2dp"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        tools:text="(27) 94002-8922"
-        app:layout_constraintStart_toEndOf="@id/imgFotoPerfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtNomeEProfissao" />
-
-    <TextView
         android:id="@+id/txtDescricao"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -64,7 +51,7 @@
         tools:text="Sou o melhor encanador da região, meu lema é que nunca irei te deixar na mão"
         app:layout_constraintStart_toEndOf="@id/imgFotoPerfil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTelefone" />
+        app:layout_constraintTop_toBottomOf="@id/txtNomeEProfissao" />
 
     <LinearLayout
         android:id="@+id/layoutRatingEFavorito"

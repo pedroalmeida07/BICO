@@ -79,7 +79,6 @@ class EditarCliente : AppCompatActivity() {
 
     private fun setupMasks() {
         binding.editTextCep.addTextChangedListener(MaskWatcher("#####-###", binding.editTextCep))
-        binding.editTextTelefone.addTextChangedListener(MaskWatcher("(##) #####-####", binding.editTextTelefone))
     }
 
     private fun setupEdgeToEdge() {
@@ -96,7 +95,6 @@ class EditarCliente : AppCompatActivity() {
             if (user is Cliente) {
                 currentUser = user
                 binding.editTextNome.setText(user.nome)
-                binding.editTextTelefone.setText(user.telefone)
                 binding.editTextCep.setText(user.cep)
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
@@ -161,7 +159,6 @@ class EditarCliente : AppCompatActivity() {
 
     private fun salvarAlteracoes() {
         val nome = binding.editTextNome.text.toString()
-        val telefone = binding.editTextTelefone.text.toString()
         val cep = binding.editTextCep.text.toString()
         val numero = binding.editTextNumero.text.toString()
         val complemento = binding.editTextComplemento.text.toString()
@@ -174,7 +171,6 @@ class EditarCliente : AppCompatActivity() {
         currentUser?.let { user ->
             val userAtualizado = user.copy(
                 nome = nome,
-                telefone = telefone,
                 cep = cep,
                 numero = numero,
                 complemento = complemento,

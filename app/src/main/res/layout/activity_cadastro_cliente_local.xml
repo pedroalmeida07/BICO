@@ -90,25 +90,13 @@
         android:hint="CEP"/>
 
     <EditText
-        android:id="@+id/editTextTelefone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="phone"
-        android:maxLength="15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextCEP"
-        android:hint="Telefone"/>
-
-    <EditText
         android:id="@+id/editTextNumero"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/editTextTelefone"
+        app:layout_constraintTop_toBottomOf="@id/editTextCEP"
         android:inputType="number"
         android:hint="Número"
         />
