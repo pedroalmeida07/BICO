@@ -294,6 +294,16 @@ class UserRepository(private val context: Context) {
         return emptyList()
     }
 
+    suspend fun enviarEmailRedefinicaoSenha(email: String): Boolean {
+        return try {
+            auth.sendPasswordResetEmail(email).await()
+            true
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao enviar email de redefinição de senha: ${e.message}", e)
+            false
+        }
+    }
+
     suspend fun atualizarSenha(email: String, novaSenha: String): Boolean {
         return try {
             val user = auth.currentUser

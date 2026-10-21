@@ -32,16 +32,14 @@ class CadastroClienteLocal : AppCompatActivity() {
 
         // Aplicação das máscaras
         binding.editTextCEP.addTextChangedListener(MaskWatcher("#####-###", binding.editTextCEP))
-        binding.editTextTelefone.addTextChangedListener(MaskWatcher("(##) #####-####", binding.editTextTelefone))
 
         binding.buttonAvancar.setOnClickListener {
             val cep = binding.editTextCEP.text.toString()
-            val telefone = binding.editTextTelefone.text.toString()
             val numero = binding.editTextNumero.text.toString()
             val complemento = binding.editTextComplemento.text.toString()
 
-            if (cep.isEmpty() || telefone.isEmpty() || numero.isEmpty()) {
-                Toast.makeText(this, "Por favor, preencha o CEP, Telefone e o número", Toast.LENGTH_SHORT).show()
+            if (cep.isEmpty() || numero.isEmpty()) {
+                Toast.makeText(this, "Por favor, preencha o CEP e o número", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -49,7 +47,6 @@ class CadastroClienteLocal : AppCompatActivity() {
             UserRepository.tempCliente = UserRepository.tempCliente.copy(
                 local = "$cep, $numero - $complemento",
                 cep = cep,
-                telefone = telefone,
                 numero = numero,
                 complemento = complemento
             )

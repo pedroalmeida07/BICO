@@ -7,7 +7,6 @@ interface UserBase {
     val id: String?
     val nome: String?
     val cpf: String?
-    val telefone: String?
     val email: String?
     val senha: String?
     @get:SerializedName("fotoPerfil")

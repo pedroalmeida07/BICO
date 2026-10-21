@@ -49,9 +49,6 @@ class PrestadorAdapter(
         }
         binding.txtNomeEProfissao.text = titulo
 
-        // Telefone
-        binding.txtTelefone.text = prestador.telefone ?: ""
-
         // Descrição / Sobre
         val desc = prestador.descricao ?: ""
         binding.txtDescricao.text = desc.ifEmpty { "Sem descrição informada." }
