@@ -8,5 +8,4 @@
     android:background="@android:color/white"
     app:menu="@menu/menu_prestador"
     app:labelVisibilityMode="unlabeled"
-    app:itemIconSize="35dp"
-    app:itemIconTint="@color/seletor_cores_barra" />
+    app:itemIconSize="35dp" />

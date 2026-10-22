@@ -49,8 +49,11 @@ class PesquisaCliente : AppCompatActivity() {
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val isTecladoVisivel = insets.isVisible(WindowInsetsCompat.Type.ime())
+            binding.layoutBarraInferior.root.visibility = if (isTecladoVisivel) View.GONE else View.VISIBLE
+
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
