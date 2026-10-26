@@ -128,6 +128,21 @@ class UserRepository(private val context: Context) {
             if (response.isSuccessful) {
                 saveLocalUser(cliente, "cliente")
                 true
+            } else{
+                Log.e("UserRepository", "Erro em atualizarCliente: ${response.code()} - ${response.errorBody()?.string()}")
+                false}
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Exceção em atualizarCliente: ${e.message}", e)
+            false
+        }
+    }
+
+    suspend fun atualizarEmailCliente(emailNovo: String): Boolean {
+        return try {
+            val response = api.atualizarEmailCliente(emailNovo)
+            if (response.isSuccessful) {
+                deslogar()
+                true
             } else false
         } catch (e: Exception) { false }
     }
@@ -145,6 +160,16 @@ class UserRepository(private val context: Context) {
     }
 
     suspend fun atualizarPrestador(id: String, prestador: Prestador): Boolean = atualizarPrestador(prestador)
+
+    suspend fun atualizarEmailPrestador(emailNovo: String): Boolean {
+        return try {
+            val response = api.atualizarEmailPrestador(emailNovo)
+            if (response.isSuccessful) {
+                deslogar()
+                true
+            } else false
+        } catch (e: Exception) { false }
+    }
 
     suspend fun deletarCliente(): Boolean {
         return try {

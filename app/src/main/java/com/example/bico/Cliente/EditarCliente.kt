@@ -18,6 +18,7 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.example.bico.Login.PaginaLogin
 import com.example.bico.MainActivity
 import com.example.bico.R
 import com.example.bico.UserRepository
@@ -97,6 +98,7 @@ class EditarCliente : AppCompatActivity() {
             if (user is Cliente) {
                 currentUser = user
                 binding.editTextNome.setText(user.nome)
+                binding.editTextEmail.setText(user.email)
                 binding.editTextCep.setText(user.cep)
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
@@ -159,7 +161,7 @@ class EditarCliente : AppCompatActivity() {
         val uriPersistente = ImageUtils.persistirImagem(this, uri)
         if (uriPersistente != null) {
             binding.fotoPerfil.load(uriPersistente)
-            // currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString()) 
+            // currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString())
             // Se Cliente não tiver fotoPerfil, precisamos adicionar.
         } else {
             Toast.makeText(this, "Erro ao processar imagem", Toast.LENGTH_SHORT).show()
@@ -168,6 +170,7 @@ class EditarCliente : AppCompatActivity() {
 
     private fun salvarAlteracoes() {
         val nome = binding.editTextNome.text.toString()
+        val email = binding.editTextEmail.text.toString()
         val cep = binding.editTextCep.text.toString()
         val numero = binding.editTextNumero.text.toString()
         val complemento = binding.editTextComplemento.text.toString()
@@ -176,6 +179,13 @@ class EditarCliente : AppCompatActivity() {
             binding.editTextNome.error = "Nome não pode ser vazio"
             return
         }
+
+        if (email.isEmpty()) {
+            binding.editTextEmail.error = "E-mail não pode ser vazio"
+            return
+        }
+
+
 
         currentUser?.let { user ->
             val userAtualizado = user.copy(
@@ -187,6 +197,27 @@ class EditarCliente : AppCompatActivity() {
             )
 
             lifecycleScope.launch {
+                val emailMudou = email != (user.email ?: "")
+                if (emailMudou) {
+                    val emailAtualizado = repository.atualizarEmailCliente(email)
+                    if (emailAtualizado) {
+                        Toast.makeText(
+                            this@EditarCliente,
+                            "E-mail alterado com sucesso! Por favor, faça login novamente.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(this@EditarCliente, PaginaLogin::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        startActivity(intent)
+                        finish()
+                        return@launch
+                    } else {
+                        Toast.makeText(this@EditarCliente, "Erro ao salvar o E-Mail", Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+                }
+
                 val sucesso = repository.atualizarCliente(userAtualizado.id ?: "", userAtualizado)
                 if (sucesso) {
                     currentUser = userAtualizado

@@ -16,6 +16,9 @@ interface BicoApiService {
     @PUT("clientes")
     suspend fun atualizarCliente(@Body cliente: Cliente): Response<Unit>
 
+    @PUT("clientes/email")
+    suspend fun atualizarEmailCliente(@Query("email") novoEmail: String): Response<Unit>
+
     @DELETE("clientes")
     suspend fun deletarCliente(): Response<Unit>
 
@@ -28,6 +31,7 @@ interface BicoApiService {
     @GET("clientes/favoritos")
     suspend fun getFavoritos(): Response<List<Prestador>>
 
+
     // Endpoints Prestador
     @POST("prestadores")
     suspend fun cadastrarPrestador(@Body prestador: Prestador): Response<Unit>
@@ -37,6 +41,9 @@ interface BicoApiService {
 
     @PUT("prestadores")
     suspend fun atualizarPrestador(@Body prestador: Prestador): Response<Unit>
+
+    @PUT("prestadores/email")
+    suspend fun atualizarEmailPrestador(@Query("email") novoEmail: String): Response<Unit>
 
     @DELETE("prestadores")
     suspend fun deletarPrestador(): Response<Unit>
