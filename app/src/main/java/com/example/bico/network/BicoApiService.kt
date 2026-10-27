@@ -1,5 +1,7 @@
 package com.example.bico.network
 
+import com.example.bico.model.Avaliacao
+import com.example.bico.model.AvaliacaoResponse
 import com.example.bico.model.Cliente
 import com.example.bico.model.Prestador
 import retrofit2.Response
@@ -30,6 +32,9 @@ interface BicoApiService {
 
     @GET("clientes/favoritos")
     suspend fun getFavoritos(): Response<List<Prestador>>
+
+    @PUT("clientes/avaliacores")
+    suspend fun adicionarAvaliacao(@Body dto: Avaliacao): Response<AvaliacaoResponse>
 
 
     // Endpoints Prestador
