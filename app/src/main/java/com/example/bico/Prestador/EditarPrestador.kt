@@ -21,6 +21,7 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
+import com.example.bico.Login.PaginaLogin
 import com.example.bico.MainActivity
 import com.example.bico.R
 import com.example.bico.ServicoAdapter
@@ -171,9 +172,68 @@ class EditarPrestador : AppCompatActivity() {
         setupFotoClickListener(binding.imgFoto3, 2)
         setupFotoClickListener(binding.imgFoto4, 3)
 
+        binding.btnEditarEmail.setOnClickListener {
+            showDialogEditarEmail()
+        }
+
         binding.btnExcluir.setOnClickListener {
             excluirConta()
         }
+    }
+
+    private fun showDialogEditarEmail() {
+        val view = layoutInflater.inflate(R.layout.dialog_editar_email, null)
+        val input = view.findViewById<TextInputEditText>(R.id.editEmail)
+        val layout = view.findViewById<TextInputLayout>(R.id.txtInputLayoutEmail)
+
+        input.setText(currentUser?.email ?: "")
+
+        val dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setTitle("Editar E-Mail")
+            .setView(view)
+            .setPositiveButton("Salvar E-Mail", null)
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.setOnShowListener {
+            val button = dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener {
+                val novoEmail = input.text.toString().trim()
+
+                if (novoEmail.isEmpty()) {
+                    layout.error = "E-mail não pode ser vazio"
+                    return@setOnClickListener
+                }
+
+                if (novoEmail == (currentUser?.email ?: "")) {
+                    dialog.dismiss()
+                    return@setOnClickListener
+                }
+
+                layout.error = null
+                dialog.dismiss()
+
+                lifecycleScope.launch {
+                    val sucesso = repository.atualizarEmailPrestador(novoEmail)
+                    if (sucesso) {
+                        Toast.makeText(
+                            this@EditarPrestador,
+                            "E-mail alterado com sucesso! Por favor, faça login novamente.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(this@EditarPrestador, PaginaLogin::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@EditarPrestador, "Erro ao salvar o E-Mail", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        dialog.show()
     }
 
     private fun excluirConta() {
