@@ -33,7 +33,7 @@ interface BicoApiService {
     @GET("clientes/favoritos")
     suspend fun getFavoritos(): Response<List<Prestador>>
 
-    @PUT("clientes/avaliacores")
+    @PUT("clientes/avaliacoes")
     suspend fun adicionarAvaliacao(@Body dto: Avaliacao): Response<AvaliacaoResponse>
 
 
