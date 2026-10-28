@@ -71,28 +71,42 @@ class PrestadorAdapter(
         }
 
         // Verificar se é favorito
-        val prefs = context.getSharedPreferences("bico_favoritos_cache", Context.MODE_PRIVATE)
-        val json = prefs.getString("json_favoritos", null)
-        val ids = prefs.getStringSet("ids_favoritos", emptySet()) ?: emptySet()
+        val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        val prefName = if (uid.isNotEmpty()) "bico_favoritos_cache_$uid" else "bico_favoritos_cache"
+        val prefs = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
         var isFavorito = false
-        if (!json.isNullOrEmpty()) {
+        val jsonMap = prefs.getString("map_favoritos", null)
+        if (!jsonMap.isNullOrEmpty()) {
             try {
-                val type = object : com.google.gson.reflect.TypeToken<List<Prestador>>() {}.type
-                val favoritosList: List<Prestador> = com.google.gson.Gson().fromJson(json, type)
-                isFavorito = favoritosList.any { 
+                val type = object : com.google.gson.reflect.TypeToken<Map<String, Prestador>>() {}.type
+                val map: Map<String, Prestador> = com.google.gson.Gson().fromJson(jsonMap, type)
+                isFavorito = map.values.any { 
                     (prestador.id != null && it.id == prestador.id) || 
                     (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
                     (!prestador.email.isNullOrEmpty() && it.email.equals(prestador.email, ignoreCase = true))
                 }
-            } catch (_: Exception) {
-                // ignore
-            }
+            } catch (_: Exception) {}
         }
 
-        if (!isFavorito && ids.isNotEmpty()) {
-            isFavorito = ids.any { id ->
-                id == prestador.id || id.equals(prestador.usuario, ignoreCase = true) || id.equals(prestador.email, ignoreCase = true)
+        if (!isFavorito) {
+            val json = prefs.getString("json_favoritos", null)
+            val ids = prefs.getStringSet("ids_favoritos", emptySet()) ?: emptySet()
+            if (!json.isNullOrEmpty()) {
+                try {
+                    val type = object : com.google.gson.reflect.TypeToken<List<Prestador>>() {}.type
+                    val favoritosList: List<Prestador> = com.google.gson.Gson().fromJson(json, type)
+                    isFavorito = favoritosList.any { 
+                        (prestador.id != null && it.id == prestador.id) || 
+                        (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
+                        (!prestador.email.isNullOrEmpty() && it.email.equals(prestador.email, ignoreCase = true))
+                    }
+                } catch (_: Exception) {}
+            }
+            if (!isFavorito && ids.isNotEmpty()) {
+                isFavorito = ids.any { id ->
+                    id == prestador.id || id.equals(prestador.usuario, ignoreCase = true) || id.equals(prestador.email, ignoreCase = true)
+                }
             }
         }
 
@@ -104,34 +118,18 @@ class PrestadorAdapter(
 
         // Clique no botão de favorito da lista
         binding.btnFavorito.setOnClickListener {
-            val idParaFavoritar = prestador.usuario?.takeIf { it.isNotEmpty() } 
-                ?: prestador.id?.takeIf { it.isNotEmpty() } 
-                ?: prestador.email ?: ""
-
-            if (idParaFavoritar.isNotEmpty()) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    val repository = UserRepository(context)
-                    val currentList = repository.getFavoritos().toMutableList()
-
-                    if (isFavorito) {
-                        repository.removerFavorito(idParaFavoritar)
-                        currentList.removeAll { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }
-                        val newJson = com.google.gson.Gson().toJson(currentList)
-                        prefs.edit().putString("json_favoritos", newJson).apply()
-                        binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
-                        isFavorito = false
-                        Toast.makeText(context, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
-                    } else {
-                        repository.adicionarFavorito(idParaFavoritar)
-                        if (!currentList.any { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }) {
-                            currentList.add(prestador)
-                            val newJson = com.google.gson.Gson().toJson(currentList)
-                            prefs.edit().putString("json_favoritos", newJson).apply()
-                        }
-                        binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
-                        isFavorito = true
-                        Toast.makeText(context, "Prestador adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
-                    }
+            CoroutineScope(Dispatchers.Main).launch {
+                val repository = UserRepository(context)
+                if (isFavorito) {
+                    repository.removerFavorito(prestador)
+                    binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
+                    isFavorito = false
+                    Toast.makeText(context, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
+                } else {
+                    repository.adicionarFavorito(prestador)
+                    binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
+                    isFavorito = true
+                    Toast.makeText(context, "Prestador adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

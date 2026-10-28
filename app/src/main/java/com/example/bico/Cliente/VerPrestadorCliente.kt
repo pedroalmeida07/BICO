@@ -94,45 +94,24 @@ class VerPrestadorCliente : AppCompatActivity() {
         }
 
         binding.btnFavorito.setOnClickListener {
-            val idParaFavoritar = prestador.usuario?.takeIf { it.isNotEmpty() } 
-                ?: prestador.id?.takeIf { it.isNotEmpty() } 
-                ?: prestador.email ?: ""
-
-            if (idParaFavoritar.isNotEmpty()) {
-                lifecycleScope.launch {
-                    val prefs = getSharedPreferences("bico_favoritos_cache", Context.MODE_PRIVATE)
-                    val currentList = repository.getFavoritos().toMutableList()
-
-                    if (isFavorito) {
-                        val sucesso = repository.removerFavorito(idParaFavoritar)
-                        if (sucesso) {
-                            isFavorito = false
-                            binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
-
-                            currentList.removeAll { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }
-                            val json = com.google.gson.Gson().toJson(currentList)
-                            prefs.edit().putString("json_favoritos", json).apply()
-
-                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Removido dos favoritos", android.widget.Toast.LENGTH_SHORT).show()
-                        } else {
-                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
-                        }
+            lifecycleScope.launch {
+                if (isFavorito) {
+                    val sucesso = repository.removerFavorito(prestador)
+                    if (sucesso) {
+                        isFavorito = false
+                        binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Removido dos favoritos", android.widget.Toast.LENGTH_SHORT).show()
                     } else {
-                        val sucesso = repository.adicionarFavorito(idParaFavoritar)
-                        if (sucesso) {
-                            isFavorito = true
-                            binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
-
-                            if (!currentList.any { it.id == prestador.id || it.usuario.equals(prestador.usuario, ignoreCase = true) }) {
-                                currentList.add(prestador)
-                                val json = com.google.gson.Gson().toJson(currentList)
-                                prefs.edit().putString("json_favoritos", json).apply()
-                            }
-
-                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Prestador adicionado aos favoritos!", android.widget.Toast.LENGTH_SHORT).show()
-                        } else {
-                            android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao favoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
-                        }
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val sucesso = repository.adicionarFavorito(prestador)
+                    if (sucesso) {
+                        isFavorito = true
+                        binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Prestador adicionado aos favoritos!", android.widget.Toast.LENGTH_SHORT).show()
+                    } else {
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao favoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
                     }
                 }
             }
