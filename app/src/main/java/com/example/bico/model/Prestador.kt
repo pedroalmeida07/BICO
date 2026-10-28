@@ -26,6 +26,8 @@ data class Prestador(
     val descricao: String? = null,
     @SerializedName("localAtuacao")
     val local: String? = null,
+    @SerializedName("cep")
+    val cep: String? = null,
     @SerializedName("notaMedia")
     val notaMedia: Double? = null,
     @SerializedName("totalAvaliacoes")
