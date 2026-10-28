@@ -116,5 +116,61 @@ class VerPrestadorCliente : AppCompatActivity() {
                 }
             }
         }
+
+        binding.btnAvaliar.setOnClickListener {
+            showDialogAvaliacao(prestador)
+        }
+    }
+
+    private fun showDialogAvaliacao(prestador: Prestador) {
+        val view = layoutInflater.inflate(R.layout.dialog_adicionar_avaliacao, null)
+        val ratingBar = view.findViewById<android.widget.RatingBar>(R.id.ratingBar)
+        val editComentario = view.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.editComentario)
+        val btnAvaliar = view.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAvaliarDialog)
+
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setView(view)
+            .create()
+
+        var notaAnterior = 0f
+        @android.annotation.SuppressLint("ClickableViewAccessibility")
+        ratingBar.setOnTouchListener { _, event ->
+            if (event.action == android.view.MotionEvent.ACTION_UP) {
+                if (ratingBar.rating == notaAnterior && notaAnterior > 0f) {
+                    ratingBar.rating = 0f
+                    notaAnterior = 0f
+                    return@setOnTouchListener true
+                } else {
+                    notaAnterior = ratingBar.rating
+                }
+            }
+            false
+        }
+
+        btnAvaliar.setOnClickListener {
+            val prestadorId = prestador.id?.takeIf { it.isNotEmpty() }
+                ?: prestador.usuario?.takeIf { it.isNotEmpty() }
+                ?: ""
+
+            if (prestadorId.isEmpty()) {
+                android.widget.Toast.makeText(this, "ID do prestador inválido", android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val nota = ratingBar.rating.toInt()
+            val comentario = editComentario.text?.toString()
+
+            lifecycleScope.launch {
+                val sucesso = repository.adicionarAvaliacao(prestadorId, nota, comentario)
+                if (sucesso) {
+                    android.widget.Toast.makeText(this@VerPrestadorCliente, "Avaliação enviada com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                } else {
+                    android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao enviar avaliação", android.widget.Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        dialog.show()
     }
 }
