@@ -2,6 +2,7 @@ package com.example.bico
 
 import android.content.Context
 import android.util.Log
+import com.example.bico.model.Avaliacao
 import com.example.bico.model.Cliente
 import com.example.bico.model.Prestador
 import com.example.bico.model.UserBase
@@ -269,6 +270,24 @@ class UserRepository(private val context: Context) {
         }
 
         return getFavoritosLocal()
+    }
+
+    suspend fun adicionarAvaliacao(prestadorId: String, nota: Int, comentario: String?): Boolean {
+        return try {
+            val dto = Avaliacao(
+                prestadorID = prestadorId,
+                nota = nota,
+                comentario = comentario?.takeIf { it.isNotBlank() }
+            )
+            val response = api.adicionarAvaliacao(dto)
+            if (!response.isSuccessful) {
+                Log.e("UserRepository", "Erro ao adicionar avaliação: ${response.code()} - ${response.errorBody()?.string()}")
+            }
+            response.isSuccessful
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Exceção ao adicionar avaliação: ${e.message}", e)
+            false
+        }
     }
 
     private fun salvarFavoritoLocal(idOrUser: String) {
