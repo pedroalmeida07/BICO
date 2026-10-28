@@ -7,6 +7,7 @@ import com.example.bico.model.Prestador
 import com.example.bico.model.UserBase
 import com.example.bico.network.RetrofitClient
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import kotlinx.coroutines.tasks.await
 
@@ -227,10 +228,34 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { null }
     }
 
-    private val PREF_FAVORITOS = "bico_favoritos_cache"
+    private val firestore = FirebaseFirestore.getInstance()
 
-    suspend fun adicionarFavorito(idPrestador: String): Boolean {
-        salvarFavoritoLocal(idPrestador)
+    private fun getPrefFavoritos(): String {
+        val uid = auth.currentUser?.uid ?: "default"
+        return "bico_favoritos_cache_$uid"
+    }
+
+    suspend fun adicionarFavorito(prestador: Prestador): Boolean {
+        val idPrestador = prestador.id?.takeIf { it.isNotEmpty() } 
+            ?: prestador.usuario?.takeIf { it.isNotEmpty() } 
+            ?: prestador.email ?: ""
+        
+        // 1. Salvar localmente imediatamente
+        adicionarFavoritoLocal(prestador)
+
+        // 2. Salvar no Firebase Firestore (nuvem - sobrevive a wipe data)
+        val uid = auth.currentUser?.uid
+        if (uid != null && idPrestador.isNotEmpty()) {
+            try {
+                firestore.collection("usuarios").document(uid)
+                    .collection("favoritos").document(idPrestador)
+                    .set(prestador).await()
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Erro ao salvar favorito no Firestore: ${e.message}", e)
+            }
+        }
+
+        // 3. Enviar para o servidor backend
         return try {
             val response = api.adicionarFavorito(idPrestador)
             Log.d("UserRepository", "adicionarFavorito resp: ${response.code()} - ${response.errorBody()?.string()}")
@@ -241,8 +266,32 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    suspend fun removerFavorito(idPrestador: String): Boolean {
-        removerFavoritoLocal(idPrestador)
+    suspend fun adicionarFavorito(idPrestador: String): Boolean {
+        val prestador = Prestador(id = idPrestador, usuario = idPrestador, nome = idPrestador)
+        return adicionarFavorito(prestador)
+    }
+
+    suspend fun removerFavorito(prestador: Prestador): Boolean {
+        val idPrestador = prestador.id?.takeIf { it.isNotEmpty() } 
+            ?: prestador.usuario?.takeIf { it.isNotEmpty() } 
+            ?: prestador.email ?: ""
+
+        // 1. Remover localmente imediatamente
+        removerFavoritoLocal(prestador)
+
+        // 2. Remover do Firebase Firestore
+        val uid = auth.currentUser?.uid
+        if (uid != null && idPrestador.isNotEmpty()) {
+            try {
+                firestore.collection("usuarios").document(uid)
+                    .collection("favoritos").document(idPrestador)
+                    .delete().await()
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Erro ao remover favorito do Firestore: ${e.message}", e)
+            }
+        }
+
+        // 3. Enviar para o servidor backend
         return try {
             val response = api.removerFavorito(idPrestador)
             Log.d("UserRepository", "removerFavorito resp: ${response.code()} - ${response.errorBody()?.string()}")
@@ -253,7 +302,76 @@ class UserRepository(private val context: Context) {
         }
     }
 
+    suspend fun removerFavorito(idPrestador: String): Boolean {
+        val prestador = Prestador(id = idPrestador, usuario = idPrestador, nome = idPrestador)
+        return removerFavorito(prestador)
+    }
+
+    private fun adicionarFavoritoLocal(prestador: Prestador) {
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
+        val json = prefs.getString("json_favoritos", null)
+        val lista = mutableListFromCache(json)
+        
+        val existe = lista.any { 
+            (prestador.id != null && it.id == prestador.id) || 
+            (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
+            (!prestador.email.isNullOrEmpty() && it.email.equals(prestador.email, ignoreCase = true))
+        }
+
+        if (!existe) {
+            lista.add(prestador)
+            val novoJson = gson.toJson(lista)
+            prefs.edit().putString("json_favoritos", novoJson).apply()
+        }
+    }
+
+    private fun removerFavoritoLocal(prestador: Prestador) {
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
+        val json = prefs.getString("json_favoritos", null)
+        val lista = mutableListFromCache(json)
+
+        lista.removeAll { 
+            (prestador.id != null && it.id == prestador.id) || 
+            (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
+            (!prestador.email.isNullOrEmpty() && it.email.equals(prestador.email, ignoreCase = true)) ||
+            it.id == prestador.usuario || it.usuario == prestador.id
+        }
+
+        val novoJson = gson.toJson(lista)
+        prefs.edit().putString("json_favoritos", novoJson).apply()
+    }
+
+    private fun mutableListFromCache(json: String?): MutableList<Prestador> {
+        if (json.isNullOrEmpty()) return mutableListOf()
+        return try {
+            val type = object : com.google.gson.reflect.TypeToken<List<Prestador>>() {}.type
+            gson.fromJson<List<Prestador>>(json, type)?.toMutableList() ?: mutableListOf()
+        } catch (e: Exception) {
+            mutableListOf()
+        }
+    }
+
     suspend fun getFavoritos(): List<Prestador> {
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
+        val uid = auth.currentUser?.uid
+
+        // 1. Tentar buscar do Firebase Firestore (nuvem - sobrevive a wipe data)
+        if (uid != null) {
+            try {
+                val snapshot = firestore.collection("usuarios").document(uid)
+                    .collection("favoritos").get().await()
+                val firestoreFavoritos = snapshot.documents.mapNotNull { it.toObject(Prestador::class.java) }
+                if (firestoreFavoritos.isNotEmpty()) {
+                    val json = gson.toJson(firestoreFavoritos)
+                    prefs.edit().putString("json_favoritos", json).apply()
+                    return firestoreFavoritos
+                }
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Erro ao buscar favoritos do Firestore: ${e.message}", e)
+            }
+        }
+
+        // 2. Tentar buscar da API Retrofit
         val remoteFavoritos = try {
             val response = api.getFavoritos()
             Log.d("UserRepository", "getFavoritos resp: ${response.code()} body: ${response.body()}")
@@ -264,55 +382,20 @@ class UserRepository(private val context: Context) {
         }
 
         if (!remoteFavoritos.isNullOrEmpty()) {
-            salvarListaFavoritosLocal(remoteFavoritos)
+            val json = gson.toJson(remoteFavoritos)
+            prefs.edit().putString("json_favoritos", json).apply()
             return remoteFavoritos
         }
 
-        return getFavoritosLocal()
-    }
-
-    private fun salvarFavoritoLocal(idOrUser: String) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
-        val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
-        ids.add(idOrUser)
-        prefs.edit().putStringSet("ids_favoritos", ids).apply()
-    }
-
-    private fun removerFavoritoLocal(idOrUser: String) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
-        val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
-        ids.remove(idOrUser)
-        prefs.edit().putStringSet("ids_favoritos", ids).apply()
-
-        val lista = getFavoritosLocal().filter { 
-            it.id != idOrUser && it.usuario != idOrUser && it.email != idOrUser 
-        }
-        salvarListaFavoritosLocal(lista)
-    }
-
-    private fun salvarListaFavoritosLocal(lista: List<Prestador>) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
-        val json = gson.toJson(lista)
-        prefs.edit().putString("json_favoritos", json).apply()
-    }
-
-    private fun getFavoritosLocal(): List<Prestador> {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
-        val json = prefs.getString("json_favoritos", null)
-        if (json != null) {
+        // 3. Fallback para o cache local permanente da conta
+        val jsonLocal = prefs.getString("json_favoritos", null)
+        if (!jsonLocal.isNullOrEmpty()) {
             try {
                 val type = object : com.google.gson.reflect.TypeToken<List<Prestador>>() {}.type
-                val lista = gson.fromJson<List<Prestador>>(json, type)
+                val lista = gson.fromJson<List<Prestador>>(jsonLocal, type)
                 if (!lista.isNullOrEmpty()) return lista
             } catch (e: Exception) {
                 Log.e("UserRepository", "Erro ao desserializar favoritos locais: ${e.message}")
-            }
-        }
-
-        val ids = prefs.getStringSet("ids_favoritos", emptySet()) ?: emptySet()
-        if (ids.isNotEmpty()) {
-            return ids.map { id ->
-                Prestador(id = id, usuario = id, nome = id, servicos = listOf("Prestador Favorito"))
             }
         }
 

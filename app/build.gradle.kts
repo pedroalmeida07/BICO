@@ -53,6 +53,7 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
+    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.kotlinx.coroutines.play.services)
 
     testImplementation(libs.junit)
