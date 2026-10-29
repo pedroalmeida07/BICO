@@ -120,13 +120,14 @@ class PrestadorAdapter(
         binding.btnFavorito.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val repository = UserRepository(context)
+                val prestadorId = prestador.id ?: prestador.usuario ?: ""
                 if (isFavorito) {
-                    repository.removerFavorito(prestador)
+                    repository.removerFavorito(prestadorId)
                     binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
                     isFavorito = false
                     Toast.makeText(context, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
                 } else {
-                    repository.adicionarFavorito(prestador)
+                    repository.adicionarFavorito(prestadorId)
                     binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
                     isFavorito = true
                     Toast.makeText(context, "Prestador adicionado aos favoritos!", Toast.LENGTH_SHORT).show()

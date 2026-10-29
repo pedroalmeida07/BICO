@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.R
 import com.example.bico.databinding.ActivityConfiguracoesPrestadorBinding
 
 class ConfiguracoesPrestador : AppCompatActivity() {
@@ -14,31 +15,54 @@ class ConfiguracoesPrestador : AppCompatActivity() {
         binding = ActivityConfiguracoesPrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupBottomNavigation()
+
         binding.layoutPrivacidade.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, PrivacidadePrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.layoutAjuda.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, AjudaPrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.layoutEditarPerfil.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, EditarPrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
 
         binding.layoutImpulso.setOnClickListener {
-            // Criar o Intent para abrir a outra Activity
             val intent = Intent(this, PlanosPrestador::class.java)
-            startActivity(intent) // Inicia a nova tela
+            startActivity(intent)
         }
+    }
 
+    private fun setupBottomNavigation() {
+        val nav = binding.layoutBarraInferior.root
+        nav.setOnItemSelectedListener(null)
+        nav.selectedItemId = R.id.nav_config_prestador
+        nav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home_prestador -> {
+                    startActivity(Intent(this, HomePrestador::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_chat_prestador -> true
+                R.id.nav_config_prestador -> true
+                R.id.nav_perfil_prestador -> {
+                    startActivity(Intent(this, EditarPrestador::class.java))
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        binding.layoutBarraInferior.root.selectedItemId = R.id.nav_config_prestador
     }
 }

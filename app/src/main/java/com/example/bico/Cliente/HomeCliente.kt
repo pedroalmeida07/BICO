@@ -76,7 +76,7 @@ class HomeCliente : AppCompatActivity() {
                 val usuarioBuscado = "hugoneves"
                 val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
-                val prestadorDoBanco = listaPrestadores?.find { 
+                val prestadorDoBanco = listaPrestadores?.find {
                     it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
                     it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
                 } ?: listaPrestadores?.firstOrNull() ?: Prestador(
@@ -103,7 +103,7 @@ class HomeCliente : AppCompatActivity() {
                 val usuarioBuscado = "takamasa"
                 val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
 
-                val prestadorDoBanco = listaPrestadores?.find { 
+                val prestadorDoBanco = listaPrestadores?.find {
                     it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
                     it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
                 } ?: listaPrestadores?.firstOrNull() ?: Prestador(

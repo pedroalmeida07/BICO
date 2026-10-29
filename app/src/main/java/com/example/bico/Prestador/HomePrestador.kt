@@ -4,12 +4,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,9 +20,9 @@ import kotlinx.coroutines.launch
 class HomePrestador : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomePrestadorBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //deixa a barra de status com icones pretos
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(
                 ContextCompat.getColor(this, R.color.azul),
@@ -36,42 +33,60 @@ class HomePrestador : AppCompatActivity() {
                 Color.WHITE
             )
         )
-        setContentView(R.layout.activity_home_prestador)
+        binding = ActivityHomePrestadorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         carregarDadosUsuario()
 
-        // Lógica para mostrar/esconder o card de serviços
-        val cardServico = findViewById<CardView>(R.id.cardProximoServico)
-        val txtSemServicos = findViewById<TextView>(R.id.txtSemServicos)
-
-        // implementar funcao pra checar true/false, se tem serviços marcados ou nao
-        val temServicos = false // retonar false -> Nao mostra servicos | retornar true -> mostra card de servico
+        val temServicos = false
 
         if (temServicos) {
-            cardServico.visibility = View.VISIBLE
-            txtSemServicos.visibility = View.GONE
+            binding.cardProximoServico.visibility = View.VISIBLE
+            binding.txtSemServicos.visibility = View.GONE
         } else {
-            cardServico.visibility = View.GONE
-            txtSemServicos.visibility = View.VISIBLE
+            binding.cardProximoServico.visibility = View.GONE
+            binding.txtSemServicos.visibility = View.VISIBLE
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
+        setupBottomNavigation()
 
-
-        findViewById<ImageView>(R.id.imgUser)?.setOnClickListener {
+        binding.imgUser.setOnClickListener {
             val intent = Intent(this, EditarPrestador::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun setupBottomNavigation() {
+        val nav = binding.layoutBarraInferior.root
+        nav.setOnItemSelectedListener(null)
+        nav.selectedItemId = R.id.nav_home_prestador
+        nav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home_prestador -> true
+                R.id.nav_chat_prestador -> true
+                R.id.nav_config_prestador -> {
+                    startActivity(Intent(this, ConfiguracoesPrestador::class.java))
+                    true
+                }
+                R.id.nav_perfil_prestador -> {
+                    startActivity(Intent(this, EditarPrestador::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
         carregarDadosUsuario()
+        binding.layoutBarraInferior.root.selectedItemId = R.id.nav_home_prestador
     }
 
     private fun carregarDadosUsuario() {
@@ -79,19 +94,15 @@ class HomePrestador : AppCompatActivity() {
         lifecycleScope.launch {
             val usuario = repository.usuarioLogado()
             usuario?.let { 
-                findViewById<TextView>(R.id.txtNomeUsuario)?.text = it.primeiroNome.ifEmpty { "Usuário" }
-                val imgUser = findViewById<ImageView>(R.id.imgUser)
-
-                
+                binding.txtNomeUsuario.text = it.primeiroNome.ifEmpty { "Usuário" }
                 if (!it.fotoPerfil.isNullOrEmpty()) {
-                    imgUser?.load(it.fotoPerfil) {
+                    binding.imgUser.load(it.fotoPerfil) {
                         crossfade(true)
                         placeholder(R.drawable.user)
                         error(R.drawable.user)
                     }
                 } else {
-                    imgUser?.setImageResource(R.drawable.user)
-
+                    binding.imgUser.setImageResource(R.drawable.user)
                 }
             }
         }

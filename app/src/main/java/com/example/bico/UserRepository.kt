@@ -227,6 +227,16 @@ class UserRepository(private val context: Context) {
         } catch (e: Exception) { null }
     }
 
+    suspend fun adicionarAvaliacao(idPrestador: String, nota: Int, comentario: String?): Boolean {
+        return try {
+            val response = api.adicionarAvaliacao(com.example.bico.model.Avaliacao(prestadorID = idPrestador, nota = nota, comentario = comentario))
+            response.isSuccessful
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao adicionar avaliação: ${e.message}", e)
+            false
+        }
+    }
+
     private val PREF_FAVORITOS = "bico_favoritos_cache"
 
     suspend fun adicionarFavorito(idPrestador: String): Boolean {

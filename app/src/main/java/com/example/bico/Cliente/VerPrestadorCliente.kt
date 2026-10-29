@@ -95,8 +95,9 @@ class VerPrestadorCliente : AppCompatActivity() {
 
         binding.btnFavorito.setOnClickListener {
             lifecycleScope.launch {
+                val prestadorId = prestador.id ?: prestador.usuario ?: ""
                 if (isFavorito) {
-                    val sucesso = repository.removerFavorito(prestador)
+                    val sucesso = repository.removerFavorito(prestadorId)
                     if (sucesso) {
                         isFavorito = false
                         binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
@@ -105,7 +106,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                         android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    val sucesso = repository.adicionarFavorito(prestador)
+                    val sucesso = repository.adicionarFavorito(prestadorId)
                     if (sucesso) {
                         isFavorito = true
                         binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
