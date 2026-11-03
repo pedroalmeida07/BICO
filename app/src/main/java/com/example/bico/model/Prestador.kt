@@ -6,6 +6,7 @@ import java.io.Serializable
 data class Prestador(
     @SerializedName(value = "id", alternate = ["_id"])
     override val id: String? = null,
+    @SerializedName(value = "nome", alternate = ["name", "nomeCompleto"])
     override val nome: String? = null,
     override val cpf: String? = null,
     override val email: String? = null,
@@ -31,11 +32,26 @@ data class Prestador(
     @SerializedName("notaMedia")
     val notaMedia: Double? = null,
     @SerializedName("totalAvaliacoes")
-    val totalAvaliacoes: Int? = null
+    val totalAvaliacoes: Int? = null,
+    @SerializedName("avaliacoes")
+    val avaliacoes: List<Avaliacao>? = null,
+    @SerializedName("distanciaKm")
+    val distanciaKm: Double? = null
 ) : UserBase, Serializable {
     val favoriteKey: String
         get() = id?.takeIf { it.isNotEmpty() }
             ?: usuario?.takeIf { it.isNotEmpty() }
             ?: email?.takeIf { it.isNotEmpty() }
             ?: nome ?: ""
+
+    val nomeExibicao: String
+        get() {
+            val n = nome?.takeIf { it.isNotBlank() && !isRawId(it) }
+            val u = usuario?.takeIf { it.isNotBlank() && !isRawId(it) }
+            return n ?: u ?: "Prestador"
+        }
+
+    private fun isRawId(str: String): Boolean {
+        return str.length >= 20 && str.all { it.isLetterOrDigit() && (it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F') }
+    }
 }

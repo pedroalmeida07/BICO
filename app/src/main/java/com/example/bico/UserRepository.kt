@@ -239,6 +239,21 @@ class UserRepository(private val context: Context) {
 
     private val PREF_FAVORITOS = "bico_favoritos_cache"
 
+    suspend fun adicionarFavorito(prestador: Prestador): Boolean {
+        salvarFavoritoLocal(prestador)
+        val idOrUser = prestador.id?.takeIf { it.isNotEmpty() }
+            ?: prestador.usuario?.takeIf { it.isNotEmpty() }
+            ?: ""
+        return try {
+            val response = api.adicionarFavorito(idOrUser)
+            Log.d("UserRepository", "adicionarFavorito resp: ${response.code()} - ${response.errorBody()?.string()}")
+            response.isSuccessful || true
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao adicionar favorito (rede): ${e.message}", e)
+            true
+        }
+    }
+
     suspend fun adicionarFavorito(idPrestador: String): Boolean {
         salvarFavoritoLocal(idPrestador)
         return try {
@@ -274,11 +289,39 @@ class UserRepository(private val context: Context) {
         }
 
         if (!remoteFavoritos.isNullOrEmpty()) {
-            salvarListaFavoritosLocal(remoteFavoritos)
-            return remoteFavoritos
+            val listaLimpa = remoteFavoritos.map { p ->
+                val nomeLimpo = p.nomeExibicao
+                p.copy(nome = nomeLimpo)
+            }
+            salvarListaFavoritosLocal(listaLimpa)
+            return listaLimpa
         }
 
-        return getFavoritosLocal()
+        val locais = getFavoritosLocal()
+        return locais.map { p ->
+            val nomeLimpo = p.nomeExibicao
+            p.copy(nome = nomeLimpo)
+        }
+    }
+
+    private fun salvarFavoritoLocal(prestador: Prestador) {
+        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val idOrUser = prestador.id?.takeIf { it.isNotEmpty() } ?: prestador.usuario ?: ""
+        if (idOrUser.isNotEmpty()) {
+            val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
+            ids.add(idOrUser)
+            prefs.edit().putStringSet("ids_favoritos", ids).apply()
+        }
+
+        val listaAtual = getFavoritosLocal().toMutableList()
+        listaAtual.removeAll { 
+            it.id == prestador.id || 
+            (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
+            (it.nome != null && it.nome == it.id)
+        }
+        val prestadorFormatado = prestador.copy(nome = prestador.nomeExibicao)
+        listaAtual.add(0, prestadorFormatado)
+        salvarListaFavoritosLocal(listaAtual)
     }
 
     private fun salvarFavoritoLocal(idOrUser: String) {
@@ -322,7 +365,7 @@ class UserRepository(private val context: Context) {
         val ids = prefs.getStringSet("ids_favoritos", emptySet()) ?: emptySet()
         if (ids.isNotEmpty()) {
             return ids.map { id ->
-                Prestador(id = id, usuario = id, nome = id, servicos = listOf("Prestador Favorito"))
+                Prestador(id = id, usuario = "Prestador", nome = "Prestador", servicos = listOf("Prestador Favorito"))
             }
         }
 

@@ -10,10 +10,12 @@ import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import coil.load
+import com.example.bico.AvaliacaoAdapter
 import com.example.bico.R
 import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityVerPrestadorClienteBinding
+import com.example.bico.model.Avaliacao
 import com.example.bico.model.Prestador
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -56,7 +58,7 @@ class VerPrestadorCliente : AppCompatActivity() {
 
     private fun carregarDadosPrestador(prestador: Prestador) {
         // Nome e UserName
-        binding.txtNomePrestador.text = prestador.nome?.takeIf { it.isNotEmpty() } ?: prestador.usuario ?: "Prestador"
+        binding.txtNomePrestador.text = prestador.nomeExibicao
 
         // Nota e Avaliações
         binding.txtNotaPrestador.text = String.format(java.util.Locale.getDefault(), "%.1f", prestador.notaMedia ?: 5.0)
@@ -74,6 +76,30 @@ class VerPrestadorCliente : AppCompatActivity() {
             // Modo leitura para clientes (sem ação de exclusão no long click)
         }
         binding.rvServicos.adapter = adapter
+
+        // Exibir avaliações recebidas
+        val avaliacoes = prestador.avaliacoes
+        if (!avaliacoes.isNullOrEmpty()) {
+            binding.rvAvaliacoes.adapter = AvaliacaoAdapter(avaliacoes)
+            binding.rvAvaliacoes.visibility = View.VISIBLE
+            binding.txtSemAvaliacoes.visibility = View.GONE
+        } else {
+            lifecycleScope.launch {
+                val busca = repository.buscarPrestadores(username = prestador.usuario ?: prestador.nome)
+                val pEncontrado = busca?.firstOrNull()
+                val listaAtualizada = pEncontrado?.avaliacoes
+                if (!listaAtualizada.isNullOrEmpty()) {
+                    binding.rvAvaliacoes.adapter = AvaliacaoAdapter(listaAtualizada)
+                    binding.rvAvaliacoes.visibility = View.VISIBLE
+                    binding.txtSemAvaliacoes.visibility = View.GONE
+                    binding.txtNotaPrestador.text = String.format(java.util.Locale.getDefault(), "%.1f", pEncontrado.notaMedia ?: 5.0)
+                    binding.txtTotalAvaliacoes.text = String.format(java.util.Locale.getDefault(), " (%d Avaliações)", pEncontrado.totalAvaliacoes ?: listaAtualizada.size)
+                } else {
+                    binding.rvAvaliacoes.visibility = View.GONE
+                    binding.txtSemAvaliacoes.visibility = View.VISIBLE
+                }
+            }
+        }
 
         var isFavorito = false
 
@@ -106,7 +132,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                         android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    val sucesso = repository.adicionarFavorito(prestadorId)
+                    val sucesso = repository.adicionarFavorito(prestador)
                     if (sucesso) {
                         isFavorito = true
                         binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
@@ -166,6 +192,24 @@ class VerPrestadorCliente : AppCompatActivity() {
                 if (sucesso) {
                     android.widget.Toast.makeText(this@VerPrestadorCliente, "Avaliação enviada com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
+
+                    // Recarrega os dados do prestador para atualizar a lista de avaliações e nota média
+                    val pBusca = repository.buscarPrestadores(username = prestador.usuario ?: prestador.nome)?.firstOrNull()
+                    if (pBusca != null) {
+                        carregarDadosPrestador(pBusca)
+                    } else {
+                        val novaLista = (prestador.avaliacoes ?: emptyList()) + Avaliacao(
+                            prestadorID = prestadorId,
+                            nota = nota,
+                            comentario = comentario,
+                            nomeAvaliador = "Você"
+                        )
+                        val pAtualizado = prestador.copy(
+                            avaliacoes = novaLista,
+                            totalAvaliacoes = (prestador.totalAvaliacoes ?: 0) + 1
+                        )
+                        carregarDadosPrestador(pAtualizado)
+                    }
                 } else {
                     android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao enviar avaliação", android.widget.Toast.LENGTH_SHORT).show()
                 }

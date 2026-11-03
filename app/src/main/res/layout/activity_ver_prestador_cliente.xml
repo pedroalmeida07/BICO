@@ -301,134 +301,45 @@
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/btnEnviarMsg" />
 
-            <LinearLayout
-                android:id="@+id/layoutItemAvaliacao"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAvaliacoes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloAvaliacoes"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/guideline2">
-
-                <TextView
-                    android:id="@+id/txtNomeClienteAvaliacao"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cliente 1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/azul"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/txtNotaAvaliacao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginStart="4dp"
-                        android:src="@drawable/ic_estrela_cheia"
-                        app:tint="@color/laranja"
-                        android:contentDescription="Estrela" />
-                </LinearLayout>
-
-            </LinearLayout>
+                tools:listitem="@layout/item_avaliacao" />
 
             <TextView
-                android:id="@+id/txtComentarioAvaliacao"
+                android:id="@+id/txtSemAvaliacoes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                android:text="Nenhuma avaliação recebida ainda."
                 android:textColor="@color/cinza"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/layoutItemAvaliacao"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/guideline2" />
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAvaliacoes" />
 
-            <LinearLayout
-                android:id="@+id/layoutItemAvaliacao2"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierAvaliacoes"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp"
-                android:gravity="center_vertical"
-                app:layout_constraintTop_toBottomOf="@id/txtComentarioAvaliacao"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/guideline2">
-
-                <TextView
-                    android:id="@+id/txtNomeClienteAvaliacao2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cliente 2"
-                    android:fontFamily="@font/roboto_medium"
-                    android:textColor="@color/azul"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/txtNotaAvaliacao2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginStart="4dp"
-                        android:src="@drawable/ic_estrela_cheia"
-                        app:tint="@color/laranja"
-                        android:contentDescription="Estrela" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtComentarioAvaliacao2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="24dp"
-                android:fontFamily="@font/inter"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                android:textColor="@color/cinza"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@id/btnAvaliar"
-                app:layout_constraintTop_toBottomOf="@id/layoutItemAvaliacao2"
-                app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintEnd_toStartOf="@id/guideline2" />
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rvAvaliacoes,txtSemAvaliacoes" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAvaliar"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:backgroundTint="@color/saborBranco"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="24dp"
                 android:text="Deixar Avaliação"
                 android:textColor="@color/azul"
@@ -439,7 +350,7 @@
                 app:strokeWidth="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/txtComentarioAvaliacao2" />
+                app:layout_constraintTop_toBottomOf="@+id/barrierAvaliacoes" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDenunciar"

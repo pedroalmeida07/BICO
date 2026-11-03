@@ -40,7 +40,7 @@ class PrestadorAdapter(
         val context = holder.itemView.context
 
         // Nome + Serviço principal
-        val nome = prestador.nome ?: "Prestador"
+        val nome = prestador.nomeExibicao
         val primeiroServico = prestador.servicos?.firstOrNull()
         val titulo = if (!primeiroServico.isNullOrEmpty()) {
             "$nome - $primeiroServico"
@@ -127,7 +127,7 @@ class PrestadorAdapter(
                     isFavorito = false
                     Toast.makeText(context, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
                 } else {
-                    repository.adicionarFavorito(prestadorId)
+                    repository.adicionarFavorito(prestador)
                     binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
                     isFavorito = true
                     Toast.makeText(context, "Prestador adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
