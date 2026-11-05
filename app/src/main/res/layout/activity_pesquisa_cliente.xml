@@ -66,20 +66,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutBarraPesquisa" />
 
-    <TextView
-        android:id="@+id/txtFiltroAtual"
+    <!-- Container com as Opções de Filtro -->
+    <HorizontalScrollView
+        android:id="@+id/layoutOpcoesFiltro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="24dp"
-        android:textColor="@color/azul"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:scrollbars="none"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/btnFiltro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnFiltro"
         app:layout_constraintTop_toTopOf="@id/btnFiltro"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTipoServico"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Tipo de serviço"
+                android:textColor="@color/azul" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMelhorAvaliados"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Melhor avaliados"
+                android:textColor="@color/azul" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDistanciaMaxima"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distância máxima"
+                android:textColor="@color/azul" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtFiltroAtual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/azul"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnFiltro"
         tools:text="Filtro: Encanador"
         tools:visibility="visible" />
 
@@ -88,13 +137,13 @@
         android:id="@+id/rvPrestadores"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFiltro"
+        app:layout_constraintTop_toBottomOf="@id/txtFiltroAtual"
         tools:listitem="@layout/item_prestador_pesquisa" />
 
     <!-- Indicador de Carregamento -->
@@ -106,7 +155,7 @@
         app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFiltro" />
+        app:layout_constraintTop_toBottomOf="@id/txtFiltroAtual" />
 
     <!-- Texto para Lista Vazia -->
     <TextView
@@ -120,7 +169,7 @@
         app:layout_constraintBottom_toTopOf="@id/layoutBarraInferior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFiltro" />
+        app:layout_constraintTop_toBottomOf="@id/txtFiltroAtual" />
 
     <include
         android:id="@+id/layoutBarraInferior"
