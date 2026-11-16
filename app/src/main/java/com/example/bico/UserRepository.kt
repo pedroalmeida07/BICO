@@ -214,6 +214,8 @@ class UserRepository(private val context: Context) {
     suspend fun buscarPrestadores(
         username: String? = null,
         tipoServico: String? = null,
+        busca: String? = null,
+        raio: Float? = null,
         inicio: Int? = null,
         limite: Int? = null,
         fim: Int? = null,
@@ -222,7 +224,14 @@ class UserRepository(private val context: Context) {
         val filtro = tipoServico ?: tipos
         val l = limite ?: fim
         return try {
-            val response = api.buscarPrestadores(username, filtro, inicio, l)
+            val response = api.buscarPrestadores(
+                username = username,
+                tipo = filtro,
+                busca = busca,
+                raio = raio,
+                inicio = inicio,
+                limite = l
+            )
             if (response.isSuccessful) response.body() else null
         } catch (e: Exception) { null }
     }
