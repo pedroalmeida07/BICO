@@ -11,7 +11,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite o tipo de serviço..."
+        android:hint="@string/hint_digite_tipo_servico"
         app:startIconDrawable="@drawable/ic_pesquisa"
         app:startIconTint="@color/black"
         app:boxStrokeColor="@color/azul"

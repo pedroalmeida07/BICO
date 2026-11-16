@@ -11,7 +11,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Seu nome de usuário"
+        android:hint="@string/hint_seu_nome_usuario"
         app:boxStrokeColor="@color/azul"
         app:hintTextColor="@color/azul"
         app:counterEnabled="true"

@@ -39,7 +39,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="4dp"
-                android:contentDescription="Estrela"
+                android:contentDescription="@string/label_estrela"
                 android:src="@drawable/ic_estrela_cheia"
                 app:tint="@color/laranja" />
         </LinearLayout>

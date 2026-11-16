@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Configurações"
+        android:text="@string/title_configuracoes"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -83,7 +83,7 @@
             android:layout_marginStart="30dp"
             android:textSize="18sp"
             android:fontFamily="@font/inter"
-            android:text="Privacidade"
+            android:text="@string/title_privacidade"
             android:textColor="@color/azul" />
     </LinearLayout>
 
@@ -122,7 +122,7 @@
             android:layout_marginStart="30dp"
             android:textSize="18sp"
             android:fontFamily="@font/inter"
-            android:text="Editar Perfil"
+            android:text="@string/title_editar_perfil"
             android:textColor="@color/azul" />
     </LinearLayout>
 
@@ -161,7 +161,7 @@
             android:layout_marginStart="30dp"
             android:textSize="18sp"
             android:fontFamily="@font/inter"
-            android:text="Ajuda"
+            android:text="@string/title_ajuda"
             android:textColor="@color/azul" />
     </LinearLayout>
 
@@ -200,7 +200,7 @@
             android:layout_marginStart="30dp"
             android:textSize="18sp"
             android:fontFamily="@font/inter"
-            android:text="Impulsionar Perfil"
+            android:text="@string/title_impulsionar_perfil"
             android:textColor="@color/azul" />
     </LinearLayout>
 

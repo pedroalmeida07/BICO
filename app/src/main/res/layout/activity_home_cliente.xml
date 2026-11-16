@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Olá,"
+                android:text="@string/label_ola"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintTop_toTopOf="@id/barraSuperior"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Usuário"
+                android:text="@string/label_usuario"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/inter"
-                android:text="Melhor Avaliados"
+                android:text="@string/label_melhor_avaliados"
                 android:textColor="@color/azul"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -166,7 +166,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Hugo Neves"
+                                    android:text="@string/label_hugo_neves"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
@@ -174,19 +174,19 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Pedreiro"
+                                    android:text="@string/label_pedreiro"
                                     android:textSize="12sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Serra-ES"
+                                    android:text="@string/label_serra_es"
                                     android:textSize="12sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="5,0 ★ (59)"
+                                    android:text="@string/label_rating_hugo"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -227,7 +227,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Takamasa N."
+                                    android:text="@string/label_takamasa_n"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
@@ -235,19 +235,19 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Ajudante"
+                                    android:text="@string/label_ajudante"
                                     android:textSize="12sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Vitória-ES"
+                                    android:text="@string/label_vitoria_es"
                                     android:textSize="12sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="4,9 ★ (112)"
+                                    android:text="@string/label_rating_takamasa"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -282,7 +282,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="Favoritos"
+                android:text="@string/title_favoritos"
                 android:textColor="@color/azul"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -311,7 +311,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
                 android:padding="12dp"
-                android:text="Ver Todos"
+                android:text="@string/btn_ver_todos"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:backgroundTint="@color/laranja"

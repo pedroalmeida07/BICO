@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginStart="0dp"
-        android:text="Onde você mora?"
+        android:text="@string/title_onde_voce_mora"
         android:textColor="@color/azul"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
-        android:text="Nos informe o seu CEP, número da residência e complemento. Assim nossos prestadores poderão te encontrar com mais facilidade."
+        android:text="@string/label_informe_cep_numero_complemento"
         android:textColor="@color/cinza"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/subtexto"
-        android:hint="CEP"/>
+        android:hint="@string/hint_cep"/>
 
     <EditText
         android:id="@+id/editTextNumero"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/editTextCEP"
         android:inputType="number"
-        android:hint="Número"
+        android:hint="@string/hint_numero"
         />
     <EditText
         android:id="@+id/editTextComplemento"
@@ -109,7 +109,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/editTextNumero"
         android:inputType="text"
-        android:hint="Complemento"
+        android:hint="@string/hint_complemento"
         />
 
 
@@ -121,7 +121,7 @@
         android:layout_height="54dp"
         android:backgroundTint="@color/azul"
         android:layout_marginTop="30dp"
-        android:text="Avançar"
+        android:text="@string/btn_avancar"
         android:fontFamily="@font/roboto_bold"
         android:textSize="20sp"
         app:cornerRadius="8dp"

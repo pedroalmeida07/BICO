@@ -11,7 +11,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cidade e Estado"
+        android:hint="@string/hint_cidade_estado"
         app:boxStrokeColor="@color/azul"
         app:hintTextColor="@color/azul">
 

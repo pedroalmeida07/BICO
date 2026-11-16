@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginStart="0dp"
-        android:text="Nos diga seu serviço e onde trabalha"
+        android:text="@string/title_nos_diga_servico_onde_trabalha"
         android:textColor="@color/azul"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
-        android:text="Agora, selecione sua área de atuação e o local onde trabalha, para que nossos clientes saibam o serviço que você oferece e o local que você atua."
+        android:text="@string/label_selecione_area_atuacao_local"
         android:textColor="@color/cinza"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -83,7 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
-        android:hint="Tipo de Serviço"
+        android:hint="@string/hint_tipo_servico"
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@id/autoCompleteServico"
         android:inputType="number"
         android:maxLength="9"
-        android:hint="CEP"
+        android:hint="@string/hint_cep"
         />
 
     <AutoCompleteTextView
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@id/editTextCEP"
         android:inputType="text"
         android:enabled="false"
-        android:hint="Local de Atuação"
+        android:hint="@string/hint_local_atuacao"
         />
 
 
@@ -123,7 +123,7 @@
         android:layout_height="54dp"
         android:backgroundTint="@color/azul"
         android:layout_marginTop="30dp"
-        android:text="Avançar"
+        android:text="@string/btn_avancar"
         android:fontFamily="@font/roboto_bold"
         android:textSize="20sp"
         app:cornerRadius="8dp"

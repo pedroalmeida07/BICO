@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="Nome"
+                android:text="@string/label_nome"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -126,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_lapis"
-                    android:hint="Nome do Usuário"
+                    android:hint="@string/hint_nome_do_usuario"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="E-Mail"
+                android:text="@string/label_email"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_lapis"
-                    android:hint="Ex.: seuemail@email.com"
+                    android:hint="@string/hint_ex_seuemail"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="CEP"
+                android:text="@string/label_cep"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -200,7 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_lapis"
-                    android:hint="Ex.: 06767-000"
+                    android:hint="@string/hint_ex_cep"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="Número"
+                android:text="@string/label_numero"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -237,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_lapis"
-                    android:hint="Ex.: 99"
+                    android:hint="@string/hint_ex_numero"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -247,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter"
-                android:text="Complemento"
+                android:text="@string/label_complemento"
                 android:textColor="@color/azul"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -274,7 +274,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_lapis"
-                    android:hint="Ex.: Apt. 100 "
+                    android:hint="@string/hint_ex_complemento"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -285,7 +285,7 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="28dp"
                 android:backgroundTint="@color/azul"
-                android:text="Salvar"
+                android:text="@string/btn_salvar"
                 android:textSize="16sp"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -301,7 +301,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnSalvar"
                 app:layout_constraintStart_toEndOf="@id/guideline1"
                 app:layout_constraintEnd_toStartOf="@id/guideline2"
-                android:text="Excluir Conta"
+                android:text="@string/btn_excluir_conta"
                 android:textSize="16sp"
                 android:backgroundTint="@color/vermelho"
                 android:layout_marginTop="28dp"

@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/azul"
-        android:text="Denúncias e violações"
+        android:text="@string/title_denuncias_violacoes"
         app:layout_constraintStart_toEndOf="@id/sair"
         app:layout_constraintTop_toTopOf="@id/sair"
         app:layout_constraintBottom_toBottomOf="@id/sair"
@@ -102,7 +102,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Denúncias"
+                    android:text="@string/label_denuncias"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:fontFamily="@font/roboto_medium"
@@ -111,7 +111,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Acompanhe aqui suas denúncias enviadas no BICO."
+                    android:text="@string/label_acompanhe_denuncias"
                     android:textColor="@color/cinza"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"/>
@@ -163,7 +163,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enviar uma Denúncia"
+                    android:text="@string/btn_enviar_denuncia"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:fontFamily="@font/roboto_medium"
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toque para registrar uma nova denúncia."
+                    android:text="@string/label_toque_registrar_denuncia"
                     android:textColor="@color/cinza"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"/>
@@ -224,7 +224,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Violações"
+                    android:text="@string/label_violacoes"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:fontFamily="@font/roboto_medium"
@@ -233,7 +233,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Histórico de conteúdos que não cumprem as diretrizes do BICO."
+                    android:text="@string/label_historico_conteudos_diretrizes"
                     android:textColor="@color/cinza"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"/>
