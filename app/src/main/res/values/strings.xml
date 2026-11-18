@@ -72,6 +72,7 @@
     <string name="hint_senha_min_6">Senha (Mín. 6 dígitos)</string>
     <string name="hint_seu_nome_usuario">Seu nome de usuário</string>
     <string name="hint_sua_descricao">Sua descrição</string>
+    <string name="hint_telefone">Telefone</string>
     <string name="hint_tipo_servico">Tipo de Serviço</string>
 
     <!-- Labels -->
@@ -80,7 +81,7 @@
     <string name="label_adicione_email_senha">Adicione seu E-Mail e crie uma senha para sua conta</string>
     <string name="label_adicione_informacoes_sobre_voce">Adicione mais informações sobre você e seus serviços.</string>
     <string name="label_adicione_nome_cpf">Adicione seu nome completo e CPF. Fique tranquilo, o CPF não será compartilhado</string>
-    <string name="label_adicione_nome_cpf_ponto">Adicione seu nome completo e CPF. Fique tranquilo, o CPF não será compartilhado.</string>
+    <string name="label_adicione_nome_cpf_ponto">Adicione seu nome completo, CPF e telefone. Fique tranquilo, o CPF não será compartilhado.</string>
     <string name="label_agenda">Agenda</string>
     <string name="label_ajudante">Ajudante</string>
     <string name="label_avaliacao">Avaliação</string>
@@ -147,6 +148,8 @@
     <string name="label_violacoes">Violações</string>
     <string name="label_vitoria_es">Vitória-ES</string>
     <string name="label_zero">0</string>
+    <string name="label_telefone">Telefone</string>
+    <string name="placeholder_telefone">(XX) XXXXX-XXXX</string>
 
     <string-array name="servicos">
         <item>Advogado</item>

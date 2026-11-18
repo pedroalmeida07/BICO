@@ -33,13 +33,15 @@ class CadastroPrestadorNome : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.editTextCPF.addTextChangedListener(CpfMaskWatcher(binding.editTextCPF))
+        binding.editTextTelefone.addTextChangedListener(com.example.bico.utils.MaskWatcher("(##) #####-####", binding.editTextTelefone))
 
         binding.buttonAvancar.setOnClickListener {
             val nome = binding.editTextNome.text.toString()
             val cpf = binding.editTextCPF.text.toString()
+            val telefone = binding.editTextTelefone.text.toString()
 
-            if (nome.isEmpty() || cpf.isEmpty()) {
-                Toast.makeText(this, "Por favor, preencha o nome e o CPF", Toast.LENGTH_SHORT).show()
+            if (nome.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
+                Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -51,7 +53,8 @@ class CadastroPrestadorNome : AppCompatActivity() {
             // Salva no objeto temporário
             UserRepository.tempPrestador = UserRepository.tempPrestador.copy(
                 nome = nome,
-                cpf = CpfMaskWatcher.unmask(cpf)
+                cpf = CpfMaskWatcher.unmask(cpf),
+                telefone = telefone
             )
 
             val intent = Intent(this, CadastroPrestadorUsuario::class.java)

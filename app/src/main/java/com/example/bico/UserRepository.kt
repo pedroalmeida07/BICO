@@ -246,7 +246,10 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    private val PREF_FAVORITOS = "bico_favoritos_cache"
+    private fun getPrefFavoritos(): String {
+        val uid = auth.currentUser?.uid ?: "default"
+        return "bico_favoritos_cache_$uid"
+    }
 
     suspend fun adicionarFavorito(prestador: Prestador): Boolean {
         salvarFavoritoLocal(prestador)
@@ -314,7 +317,7 @@ class UserRepository(private val context: Context) {
     }
 
     private fun salvarFavoritoLocal(prestador: Prestador) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
         val idOrUser = prestador.id?.takeIf { it.isNotEmpty() } ?: prestador.usuario ?: ""
         if (idOrUser.isNotEmpty()) {
             val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
@@ -334,14 +337,14 @@ class UserRepository(private val context: Context) {
     }
 
     private fun salvarFavoritoLocal(idOrUser: String) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
         val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
         ids.add(idOrUser)
         prefs.edit().putStringSet("ids_favoritos", ids).apply()
     }
 
     private fun removerFavoritoLocal(idOrUser: String) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
         val ids = prefs.getStringSet("ids_favoritos", emptySet())?.toMutableSet() ?: mutableSetOf()
         ids.remove(idOrUser)
         prefs.edit().putStringSet("ids_favoritos", ids).apply()
@@ -353,13 +356,13 @@ class UserRepository(private val context: Context) {
     }
 
     private fun salvarListaFavoritosLocal(lista: List<Prestador>) {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
         val json = gson.toJson(lista)
         prefs.edit().putString("json_favoritos", json).apply()
     }
 
     private fun getFavoritosLocal(): List<Prestador> {
-        val prefs = context.getSharedPreferences(PREF_FAVORITOS, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPrefFavoritos(), Context.MODE_PRIVATE)
         val json = prefs.getString("json_favoritos", null)
         if (json != null) {
             try {

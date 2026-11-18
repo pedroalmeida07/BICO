@@ -67,6 +67,9 @@ class VerPrestadorCliente : AppCompatActivity() {
         // Sobre
         binding.txtDesc.text = (prestador.descricao ?: "").ifEmpty { "Nenhuma descrição informada." }
 
+        // Telefone
+        binding.txtDescTelefone.text = (prestador.telefone ?: "").ifEmpty { "Nenhum telefone informado." }
+
         // Local de Atuação
         binding.txtCidade.text = (prestador.local ?: "").ifEmpty { "Local" }
 

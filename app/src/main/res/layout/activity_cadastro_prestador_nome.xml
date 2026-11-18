@@ -101,6 +101,19 @@
         android:hint="@string/hint_cpf"
         />
 
+    <EditText
+        android:id="@+id/editTextTelefone"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/editTextCPF"
+        android:inputType="number"
+        android:maxLength="14"
+        android:hint="@string/hint_telefone"
+        />
+
     <!--Avançar-->
     <Button
         android:id="@+id/buttonAvancar"
@@ -114,7 +127,7 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCPF" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelefone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
