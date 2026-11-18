@@ -188,6 +188,7 @@ class EditarPrestador : AppCompatActivity() {
         binding.icLapisServicos.setOnClickListener { showDialogAdicionarServico() }
         binding.icLapisLocal.setOnClickListener { showDialogEditarLocal() }
         binding.icLapisNome.setOnClickListener { showDialogEditarUsername() }
+        binding.icLapisTelefone.setOnClickListener { showDialogEditarTelefone() }
 
         binding.icLapisFotos.setOnClickListener {
             isEditModeFotos = !isEditModeFotos
@@ -293,6 +294,7 @@ class EditarPrestador : AppCompatActivity() {
             binding.txtNomePrestador.text = (user.usuario ?: "").ifEmpty { "UserName" }
             binding.txtCidade.text = (user.local ?: "").ifEmpty { "Local" }
             binding.txtDesc.text = (user.descricao ?: "").ifEmpty { "Adicione mais informações sobre você e seus serviços." }
+            binding.txtTelefone.text = (user.telefone ?: "").ifEmpty { "Nenhum telefone informado." }
 
             if (!user.fotoPerfil.isNullOrEmpty()) {
                 binding.fotoPerfil.load(user.fotoPerfil) {
@@ -307,6 +309,32 @@ class EditarPrestador : AppCompatActivity() {
             setupRecyclerView(user.servicos ?: emptyList())
             atualizarVisibilidadeFotos()
         }
+    }
+
+    private fun showDialogEditarTelefone() {
+        val view = layoutInflater.inflate(R.layout.dialog_editar_telefone, null)
+        val input = view.findViewById<TextInputEditText>(R.id.editTelefone)
+        input.setText(currentUser?.telefone ?: "")
+        input.addTextChangedListener(com.example.bico.utils.MaskWatcher("(##) #####-####", input))
+
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setTitle("Editar Telefone")
+            .setView(view)
+            .setPositiveButton("Salvar") { _, _ ->
+                val novoTelefone = input.text.toString()
+                if (novoTelefone.isEmpty()) {
+                    Toast.makeText(this@EditarPrestador, "O telefone não pode estar vazio", Toast.LENGTH_SHORT).show()
+                } else {
+                    currentUser?.let { u ->
+                        val userAtualizado = u.copy(telefone = novoTelefone)
+                        lifecycleScope.launch {
+                            repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
+                        }
+                        currentUser = userAtualizado
+                        binding.txtTelefone.text = currentUser?.telefone
+                    }
+                }
+            }.setNegativeButton("Cancelar", null).show()
     }
 
     private fun setupRecyclerView(servicos: List<String>) {

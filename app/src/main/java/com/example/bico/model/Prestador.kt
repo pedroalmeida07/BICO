@@ -9,6 +9,8 @@ data class Prestador(
     @SerializedName(value = "nome", alternate = ["name", "nomeCompleto"])
     override val nome: String? = null,
     override val cpf: String? = null,
+    @SerializedName("telefone")
+    val telefone: String? = null,
     override val email: String? = null,
     override val senha: String? = null,
     @SerializedName(value = "fotoPerfil", alternate = ["foto", "avatar"])

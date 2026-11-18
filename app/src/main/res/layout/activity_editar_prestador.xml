@@ -155,6 +155,40 @@
                 app:layout_constraintTop_toBottomOf="@id/txtTituloDesc" />
 
             <TextView
+                android:id="@+id/txtTituloTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/label_telefone"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtDesc" />
+
+            <ImageView
+                android:id="@+id/ic_lapisTelefone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_lapis"
+                app:layout_constraintStart_toEndOf="@id/txtTituloTelefone"
+                app:layout_constraintTop_toTopOf="@id/txtTituloTelefone" />
+
+            <TextView
+                android:id="@+id/txtTelefone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/placeholder_telefone"
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloTelefone" />
+
+            <TextView
                 android:id="@+id/txtTituloServicos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +198,7 @@
                 android:textColor="@color/azul"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/txtDesc" />
+                app:layout_constraintTop_toBottomOf="@id/txtTelefone" />
 
             <ImageView
                 android:id="@+id/ic_lapisServicos"
