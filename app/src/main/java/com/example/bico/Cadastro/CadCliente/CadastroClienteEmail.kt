@@ -57,8 +57,8 @@ class CadastroClienteEmail : AppCompatActivity() {
             val repository = UserRepository(this)
             
             lifecycleScope.launch {
-                val sucesso = repository.salvarCliente(UserRepository.tempCliente)
-                if (sucesso) {
+                val erro = repository.salvarCliente(UserRepository.tempCliente)
+                if (erro == null) {
                     Toast.makeText(this@CadastroClienteEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
                     // Vai para a tela inicial e limpa as telas anteriores
@@ -66,7 +66,7 @@ class CadastroClienteEmail : AppCompatActivity() {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@CadastroClienteEmail, "Erro ao realizar cadastro", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroClienteEmail, erro, Toast.LENGTH_LONG).show()
                 }
             }
         }

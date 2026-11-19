@@ -110,7 +110,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/editTextCPF"
         android:inputType="number"
-        android:maxLength="14"
+        android:maxLength="15"
         android:hint="@string/hint_telefone"
         />
 
