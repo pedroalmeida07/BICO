@@ -55,7 +55,7 @@ interface BicoApiService {
 
     @GET("prestadores/busca")
     suspend fun buscarPrestadores(
-        @Query("username") username: String? = null,
+        @Query("termo") username: String? = null,
         @Query("tipo") tipo: String? = null,
         @Query("busca") busca: String? = null,
         @Query("raio") raio: Float? = null,

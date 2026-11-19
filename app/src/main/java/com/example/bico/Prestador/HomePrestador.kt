@@ -3,7 +3,6 @@ package com.example.bico.Prestador
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +14,8 @@ import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityHomePrestadorBinding
+import com.example.bico.model.Prestador
+import com.example.bico.utils.setupBottomNavPrestador
 import kotlinx.coroutines.launch
 
 class HomePrestador : AppCompatActivity() {
@@ -38,23 +39,13 @@ class HomePrestador : AppCompatActivity() {
 
         carregarDadosUsuario()
 
-        val temServicos = false
-
-        if (temServicos) {
-            binding.cardProximoServico.visibility = View.VISIBLE
-            binding.txtSemServicos.visibility = View.GONE
-        } else {
-            binding.cardProximoServico.visibility = View.GONE
-            binding.txtSemServicos.visibility = View.VISIBLE
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
-        setupBottomNavigation()
+        setupBottomNavPrestador(binding.layoutBarraInferior.navPrestador, R.id.nav_home_prestador)
 
         binding.imgUser.setOnClickListener {
             val intent = Intent(this, EditarPrestador::class.java)
@@ -62,31 +53,9 @@ class HomePrestador : AppCompatActivity() {
         }
     }
 
-    private fun setupBottomNavigation() {
-        val nav = binding.layoutBarraInferior.root
-        nav.setOnItemSelectedListener(null)
-        nav.selectedItemId = R.id.nav_home_prestador
-        nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home_prestador -> true
-                R.id.nav_chat_prestador -> true
-                R.id.nav_config_prestador -> {
-                    startActivity(Intent(this, ConfiguracoesPrestador::class.java))
-                    true
-                }
-                R.id.nav_perfil_prestador -> {
-                    startActivity(Intent(this, EditarPrestador::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         carregarDadosUsuario()
-        binding.layoutBarraInferior.root.selectedItemId = R.id.nav_home_prestador
     }
 
     private fun carregarDadosUsuario() {
@@ -103,6 +72,14 @@ class HomePrestador : AppCompatActivity() {
                     }
                 } else {
                     binding.imgUser.setImageResource(R.drawable.user)
+                }
+
+                if (it is Prestador) {
+                    val nota = it.notaMedia ?: 0.0
+                    val total = it.totalAvaliacoes ?: 0
+
+                    binding.txtNotaMedia.text = if (nota > 0) String.format("%.1f ★", nota) else "0.0 ★"
+                    binding.txtTotalAvaliacoes.text = "$total"
                 }
             }
         }
