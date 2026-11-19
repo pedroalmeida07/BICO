@@ -116,7 +116,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Nota Média"
+                    android:text="@string/label_nota_media"
                     android:textColor="@color/saborBranco"
                     android:textSize="18sp" />
 
@@ -157,7 +157,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Total de Avaliações"
+                    android:text="@string/label_total_de_avaliacoes"
                     android:textColor="@color/saborBranco"
                     android:textSize="18sp" />
 

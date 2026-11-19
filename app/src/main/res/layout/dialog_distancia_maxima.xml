@@ -11,7 +11,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Raio máximo (em km)"
+        android:hint="@string/hint_raio_maximo_km"
         app:startIconDrawable="@drawable/ic_localizacao"
         app:startIconTint="@color/black"
         app:boxStrokeColor="@color/azul"

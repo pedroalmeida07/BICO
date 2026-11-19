@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Tipo de serviço"
+                android:text="@string/chip_tipo_servico"
                 android:textColor="@color/azul" />
 
             <com.google.android.material.chip.Chip
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Melhor avaliados"
+                android:text="@string/chip_melhor_avaliados"
                 android:textColor="@color/azul" />
 
             <com.google.android.material.chip.Chip
@@ -109,7 +109,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Distância máxima"
+                android:text="@string/chip_distancia_maxima"
                 android:textColor="@color/azul" />
 
         </LinearLayout>

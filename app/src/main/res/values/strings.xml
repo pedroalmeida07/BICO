@@ -68,6 +68,7 @@
     <string name="hint_nome_usuario">Nome de Usuário</string>
     <string name="hint_novo_email">Novo E-Mail</string>
     <string name="hint_numero">Número</string>
+    <string name="hint_raio_maximo_km">Raio máximo (em km)</string>
     <string name="hint_senha">Senha</string>
     <string name="hint_senha_min_6">Senha (Mín. 6 dígitos)</string>
     <string name="hint_seu_nome_usuario">Seu nome de usuário</string>
@@ -120,6 +121,7 @@
     <string name="label_nenhum_prestador_favoritado">Nenhum prestador favoritado.</string>
     <string name="label_nenhum_servico_marcado">Nenhum serviço marcado</string>
     <string name="label_nome">Nome</string>
+    <string name="label_nota_media">Nota Média</string>
     <string name="label_nota_placeholder">X.X</string>
     <string name="label_numero">Número</string>
     <string name="label_ola">Olá,</string>
@@ -143,6 +145,12 @@
     <string name="label_texto_politica_privacidade">Sua privacidade é importante para nós. Consulte nossa Política de Privacidade para entender como coletamos, utilizamos e protegemos suas informações.</string>
     <string name="label_toque_registrar_denuncia">Toque para registrar uma nova denúncia.</string>
     <string name="label_topo_pesquisas">✓ Conta no topo das pesquisas</string>
+    <string name="label_total_de_avaliacoes">Total de Avaliações</string>
+
+    <!-- Chips -->
+    <string name="chip_tipo_servico">Tipo de serviço</string>
+    <string name="chip_melhor_avaliados">Melhor avaliados</string>
+    <string name="chip_distancia_maxima">Distância máxima</string>
     <string name="label_username">UserName</string>
     <string name="label_usuario">Usuário</string>
     <string name="label_violacoes">Violações</string>
