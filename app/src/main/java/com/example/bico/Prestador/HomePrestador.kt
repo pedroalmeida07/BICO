@@ -3,7 +3,6 @@ package com.example.bico.Prestador
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,24 +35,13 @@ class HomePrestador : AppCompatActivity() {
         binding = ActivityHomePrestadorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        carregarDadosUsuario()
-
-        val temServicos = false
-
-        if (temServicos) {
-            binding.cardProximoServico.visibility = View.VISIBLE
-            binding.txtSemServicos.visibility = View.GONE
-        } else {
-            binding.cardProximoServico.visibility = View.GONE
-            binding.txtSemServicos.visibility = View.VISIBLE
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
+        carregarDadosUsuario()
         setupBottomNavigation()
 
         binding.imgUser.setOnClickListener {
