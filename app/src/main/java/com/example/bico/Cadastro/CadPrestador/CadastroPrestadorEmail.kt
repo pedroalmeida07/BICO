@@ -57,15 +57,15 @@ class CadastroPrestadorEmail : AppCompatActivity() {
             val repository = UserRepository(this)
             
             lifecycleScope.launch {
-                val sucesso = repository.salvarPrestador(UserRepository.tempPrestador)
-                if (sucesso) {
+                val erro = repository.salvarPrestador(UserRepository.tempPrestador)
+                if (erro == null) {
                     Toast.makeText(this@CadastroPrestadorEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
                     // Vai para a Home e limpa as telas anteriores
                     val intent = Intent(this@CadastroPrestadorEmail, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@CadastroPrestadorEmail, "Erro ao realizar cadastro", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroPrestadorEmail, erro, Toast.LENGTH_LONG).show()
                 }
             }
         }

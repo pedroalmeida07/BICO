@@ -8,7 +8,9 @@ import com.example.bico.model.UserBase
 import com.example.bico.network.RetrofitClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class UserRepository(private val context: Context) {
     private val auth = FirebaseAuth.getInstance()
@@ -25,33 +27,57 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    suspend fun salvarPrestador(prestador: Prestador): Boolean {
-        return try {
-            val response = api.cadastrarPrestador(prestador)
-            if (response.isSuccessful) {
-                true
-            } else {
-                Log.e("UserRepository", "Erro no Backend: ${response.code()} - ${response.errorBody()?.string()}")
-                false
+    suspend fun salvarPrestador(prestador: Prestador): String? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.cadastrarPrestador(prestador)
+                if (response.isSuccessful) {
+                    null
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: ""
+                    Log.e("UserRepository", "Erro no Backend: ${response.code()} - $errorBody")
+                    if (response.code() == 409 || response.code() == 400 || errorBody.contains("email", ignoreCase = true) || errorBody.contains("cadastrado", ignoreCase = true) || errorBody.contains("existe", ignoreCase = true)) {
+                        "E-mail já cadastrado."
+                    } else {
+                        "Erro ao realizar cadastro"
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
+                val msg = e.message ?: ""
+                if (msg.contains("email", ignoreCase = true) || msg.contains("cadastrado", ignoreCase = true) || msg.contains("existe", ignoreCase = true) || msg.contains("already in use", ignoreCase = true)) {
+                    "E-mail já cadastrado."
+                } else {
+                    "Erro ao realizar cadastro"
+                }
             }
-        } catch (e: Exception) {
-            Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
-            false
         }
     }
 
-    suspend fun salvarCliente(cliente: Cliente): Boolean {
-        return try {
-            val response = api.cadastrarCliente(cliente)
-            if (response.isSuccessful) {
-                true
-            } else {
-                Log.e("UserRepository", "Erro no Backend: ${response.code()} - ${response.errorBody()?.string()}")
-                false
+    suspend fun salvarCliente(cliente: Cliente): String? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.cadastrarCliente(cliente)
+                if (response.isSuccessful) {
+                    null
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: ""
+                    Log.e("UserRepository", "Erro no Backend: ${response.code()} - $errorBody")
+                    if (response.code() == 409 || response.code() == 400 || errorBody.contains("email", ignoreCase = true) || errorBody.contains("cadastrado", ignoreCase = true) || errorBody.contains("existe", ignoreCase = true)) {
+                        "E-mail já cadastrado."
+                    } else {
+                        "Erro ao realizar cadastro"
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
+                val msg = e.message ?: ""
+                if (msg.contains("email", ignoreCase = true) || msg.contains("cadastrado", ignoreCase = true) || msg.contains("existe", ignoreCase = true) || msg.contains("already in use", ignoreCase = true)) {
+                    "E-mail já cadastrado."
+                } else {
+                    "Erro ao realizar cadastro"
+                }
             }
-        } catch (e: Exception) {
-            Log.e("UserRepository", "Falha na requisição: ${e.message}", e)
-            false
         }
     }
 

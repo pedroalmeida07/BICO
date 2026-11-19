@@ -38,16 +38,6 @@ class HomePrestador : AppCompatActivity() {
 
         carregarDadosUsuario()
 
-        val temServicos = false
-
-        if (temServicos) {
-            binding.cardProximoServico.visibility = View.VISIBLE
-            binding.txtSemServicos.visibility = View.GONE
-        } else {
-            binding.cardProximoServico.visibility = View.GONE
-            binding.txtSemServicos.visibility = View.VISIBLE
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
