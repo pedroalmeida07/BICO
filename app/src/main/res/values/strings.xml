@@ -150,6 +150,7 @@
     <string name="label_zero">0</string>
     <string name="label_telefone">Telefone</string>
     <string name="placeholder_telefone">(XX) XXXXX-XXXX</string>
+    <string name="btn_sair_conta">Sair da Conta</string>
 
     <string-array name="servicos">
         <item>Advogado</item>
