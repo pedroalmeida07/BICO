@@ -1,6 +1,7 @@
 package com.example.bico
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import com.example.bico.model.Cliente
 import com.example.bico.model.Prestador
@@ -11,6 +12,9 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class UserRepository(private val context: Context) {
     private val auth = FirebaseAuth.getInstance()
@@ -186,6 +190,33 @@ class UserRepository(private val context: Context) {
     }
 
     suspend fun atualizarPrestador(id: String, prestador: Prestador): Boolean = atualizarPrestador(prestador)
+
+    suspend fun enviarImagem(uri: Uri): String? = withContext(Dispatchers.IO) {
+        try {
+            val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+                ?: return@withContext null
+
+            if (bytes.isEmpty()) return@withContext null
+            if (bytes.size > 8 * 1024 * 1024) {
+                Log.e("UserRepository", "Imagem acima do limite de 8 MB: ${bytes.size} bytes")
+                return@withContext null
+            }
+
+            val corpo = bytes.toRequestBody("image/jpeg".toMediaTypeOrNull())
+            val parte = MultipartBody.Part.createFormData("file", "foto.jpg", corpo)
+
+            val response = api.enviarImagem(parte)
+            if (response.isSuccessful) {
+                response.body()?.url
+            } else {
+                Log.e("UserRepository", "Upload falhou: ${response.code()} - ${response.errorBody()?.string()}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("UserRepository", "Erro ao enviar imagem: ${e.message}", e)
+            null
+        }
+    }
 
     suspend fun atualizarEmailPrestador(emailNovo: String): Boolean {
         return try {

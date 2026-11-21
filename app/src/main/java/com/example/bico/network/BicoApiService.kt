@@ -4,6 +4,8 @@ import com.example.bico.model.Avaliacao
 import com.example.bico.model.AvaliacaoResponse
 import com.example.bico.model.Cliente
 import com.example.bico.model.Prestador
+import com.example.bico.model.UploadResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -52,6 +54,10 @@ interface BicoApiService {
 
     @DELETE("prestadores")
     suspend fun deletarPrestador(): Response<Unit>
+
+    @Multipart
+    @POST("uploads")
+    suspend fun enviarImagem(@Part file: MultipartBody.Part): Response<UploadResponse>
 
     @GET("prestadores/busca")
     suspend fun buscarPrestadores(

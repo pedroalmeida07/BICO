@@ -28,7 +28,6 @@ import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.Prestador
-import com.example.bico.utils.ImageUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import androidx.lifecycle.lifecycleScope
@@ -89,30 +88,47 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun salvarImagemAtualizada(uri: Uri) {
-        val uriPersistente = ImageUtils.persistirImagem(this, uri) ?: return
+        val alvo = fotoAlvo // captura antes da coroutine, pois pode mudar durante o upload
+        lifecycleScope.launch {
+            val url = repository.enviarImagem(uri)
+            if (url == null) {
+                Toast.makeText(this@EditarPrestador, "Erro ao enviar imagem", Toast.LENGTH_SHORT).show()
+                return@launch
+            }
 
-        currentUser?.let { u ->
-            val userAtualizado = when (fotoAlvo) {
-                -1 -> {
-                    binding.fotoPerfil.load(uriPersistente)
-                    u.copy(fotoPerfil = uriPersistente.toString())
+            val u = currentUser ?: return@launch
+
+            val userAtualizado = if (alvo == -1) {
+                u.copy(fotoPerfil = url)
+            } else {
+                val fotosAtuais = (u.fotosServico ?: emptyList()).filter { it.isNotEmpty() }.toMutableList()
+                val index = alvo - 1
+                if (index < fotosAtuais.size) {
+                    fotosAtuais[index] = url
+                } else {
+                    fotosAtuais.add(url)
                 }
-                else -> {
-                    val fotosAtuais = (u.fotosServico ?: emptyList()).filter { it.isNotEmpty() }.toMutableList()
-                    val index = fotoAlvo - 1
-                    if (index < fotosAtuais.size) {
-                        fotosAtuais[index] = uriPersistente.toString()
-                    } else {
-                        fotosAtuais.add(uriPersistente.toString())
+                u.copy(fotosServico = fotosAtuais)
+            }
+
+            if (repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)) {
+                currentUser = userAtualizado
+                if (alvo == -1) {
+                    binding.fotoPerfil.load(url) {
+                        crossfade(true)
+                        placeholder(R.drawable.user)
+                        error(R.drawable.user)
                     }
-                    u.copy(fotosServico = fotosAtuais)
+                } else {
+                    atualizarVisibilidadeFotos()
                 }
+            } else {
+                Toast.makeText(
+                    this@EditarPrestador,
+                    "Imagem enviada, mas não foi possível salvar no perfil",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            lifecycleScope.launch {
-                repository.atualizarPrestador(userAtualizado.id ?: "", userAtualizado)
-            }
-            currentUser = userAtualizado
-            atualizarVisibilidadeFotos()
         }
     }
 
@@ -381,7 +397,7 @@ class EditarPrestador : AppCompatActivity() {
             when {
                 index < fotos.size -> {
                     imageView.visibility = View.VISIBLE
-                    imageView.load(fotos[index].toUri())
+                    imageView.load(fotos[index])
                     imageView.alpha = 1.0f
                 }
                 isEditModeFotos && index == fotos.size && index < 4 -> {
