@@ -60,6 +60,20 @@ class VerPrestadorCliente : AppCompatActivity() {
         // Nome e UserName
         binding.txtNomePrestador.text = prestador.nomeExibicao
 
+        // Foto de perfil no destaque superior
+        if (!prestador.fotoPerfil.isNullOrEmpty()) {
+            binding.imgFotoPagina.visibility = View.VISIBLE
+            binding.txtNenhumaImagem.visibility = View.GONE
+            binding.imgFotoPagina.load(prestador.fotoPerfil) {
+                crossfade(true)
+                placeholder(R.drawable.user)
+                error(R.drawable.user)
+            }
+        } else {
+            binding.imgFotoPagina.visibility = View.GONE
+            binding.txtNenhumaImagem.visibility = View.VISIBLE
+        }
+
         // Nota e Avaliações
         binding.txtNotaPrestador.text = String.format(java.util.Locale.getDefault(), "%.1f", prestador.notaMedia ?: 5.0)
         binding.txtTotalAvaliacoes.text = String.format(java.util.Locale.getDefault(), " (%d Avaliações)", prestador.totalAvaliacoes ?: 0)
@@ -79,6 +93,9 @@ class VerPrestadorCliente : AppCompatActivity() {
             // Modo leitura para clientes (sem ação de exclusão no long click)
         }
         binding.rvServicos.adapter = adapter
+
+        // Fotos do prestador
+        carregarFotos(prestador)
 
         // Exibir avaliações recebidas
         val avaliacoes = prestador.avaliacoes
@@ -150,6 +167,44 @@ class VerPrestadorCliente : AppCompatActivity() {
         binding.btnAvaliar.setOnClickListener {
             showDialogAvaliacao(prestador)
         }
+    }
+
+    private fun carregarFotos(prestador: Prestador) {
+        val fotos = prestador.fotosServico?.filter { it.isNotBlank() } ?: emptyList()
+        val imageViews = listOf(binding.imgFoto1, binding.imgFoto2, binding.imgFoto3, binding.imgFoto4)
+
+        imageViews.forEachIndexed { index, imageView ->
+            val foto = fotos.getOrNull(index)
+            if (foto != null) {
+                imageView.visibility = View.VISIBLE
+                imageView.load(foto) {
+                    crossfade(true)
+                    placeholder(R.drawable.nenuma_imagem_selecionada)
+                    error(R.drawable.nenuma_imagem_selecionada)
+                }
+                imageView.setOnClickListener { expandirFoto(foto) }
+            } else {
+                imageView.visibility = View.GONE
+                imageView.setOnClickListener(null)
+            }
+        }
+
+        binding.txtSemFotos.visibility = if (fotos.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun expandirFoto(foto: String) {
+        val view = layoutInflater.inflate(R.layout.dialog_expandir_foto, null)
+        val imageView = view.findViewById<android.widget.ImageView>(R.id.imgExpandida)
+
+        imageView.load(foto.toUri()) {
+            placeholder(R.drawable.nenuma_imagem_selecionada)
+            error(R.drawable.nenuma_imagem_selecionada)
+        }
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
+            .setView(view)
+            .setPositiveButton("Fechar", null)
+            .show()
     }
 
     private fun showDialogAvaliacao(prestador: Prestador) {

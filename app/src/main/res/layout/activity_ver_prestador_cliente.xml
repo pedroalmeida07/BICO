@@ -58,6 +58,13 @@
                 app:layout_constraintStart_toEndOf="@id/guideline1"
                 app:layout_constraintEnd_toStartOf="@id/guideline2">
 
+                <ImageView
+                    android:id="@+id/imgFotoPagina"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/txtNenhumaImagem"
                     android:layout_width="wrap_content"
@@ -292,9 +299,67 @@
                 android:text="@string/sem_fotos_adicionadas"
                 android:textColor="@color/cinza"
                 android:textSize="15sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toBottomOf="@id/txtTituloFotos" />
+
+            <ImageView
+                android:id="@+id/imgFoto1"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:background="@color/cinzaClaro"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloFotos" />
+
+            <ImageView
+                android:id="@+id/imgFoto2"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:background="@color/cinzaClaro"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto1"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@id/imgFoto1"
+                app:layout_constraintTop_toTopOf="@id/imgFoto1" />
+
+            <ImageView
+                android:id="@+id/imgFoto3"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:background="@color/cinzaClaro"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/imgFoto4"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/imgFoto1" />
+
+            <ImageView
+                android:id="@+id/imgFoto4"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:background="@color/cinzaClaro"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/imgFoto3"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@id/imgFoto3"
+                app:layout_constraintTop_toTopOf="@id/imgFoto3" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierFotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="imgFoto1,imgFoto2,imgFoto3,imgFoto4,txtSemFotos" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnviarMsg"
@@ -312,7 +377,7 @@
                 app:strokeWidth="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/txtSemFotos" />
+                app:layout_constraintTop_toBottomOf="@+id/barrierFotos" />
 
             <TextView
                 android:id="@+id/txtTituloAvaliacoes"

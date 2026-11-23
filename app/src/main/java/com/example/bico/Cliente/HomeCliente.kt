@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.bico.R
 import com.example.bico.UserRepository
@@ -24,6 +25,7 @@ class HomeCliente : AppCompatActivity() {
 
     private lateinit var repository: UserRepository
     private lateinit var favoritosAdapter: PrestadorAdapter
+    private lateinit var melhoresAdapter: PrestadorDestaqueAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +59,16 @@ class HomeCliente : AppCompatActivity() {
         }
         binding.rvFavoritos.adapter = favoritosAdapter
 
+        melhoresAdapter = PrestadorDestaqueAdapter { prestador ->
+            val intent = Intent(this, VerPrestadorCliente::class.java).apply {
+                putExtra("prestador", prestador)
+            }
+            startActivity(intent)
+        }
+        binding.rvMelhoresAvaliados.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvMelhoresAvaliados.adapter = melhoresAdapter
+
         carregarDadosUsuario()
 
         setupBottomNavCliente(binding.layoutBarraInferior.navCliente, R.id.nav_home)
@@ -70,66 +82,31 @@ class HomeCliente : AppCompatActivity() {
             val intent = Intent(this, FavoritosCliente::class.java)
             startActivity(intent)
         }
-
-        binding.pagPrestador1.setOnClickListener {
-            lifecycleScope.launch {
-                val usuarioBuscado = "hugoneves"
-                val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
-
-                val prestadorDoBanco = listaPrestadores?.find {
-                    it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
-                    it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
-                } ?: listaPrestadores?.firstOrNull() ?: Prestador(
-                    id = "hugoneves",
-                    nome = "Hugo Neves",
-                    usuario = "hugoneves",
-                    email = "hugoneves@email.com",
-                    descricao = "Pedreiro profissional com anos de experiência.",
-                    local = "Serra-ES",
-                    servicos = listOf("Pedreiro"),
-                    notaMedia = 5.0,
-                    totalAvaliacoes = 59
-                )
-
-                val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
-                    putExtra("prestador", prestadorDoBanco)
-                }
-                startActivity(intent)
-            }
-        }
-
-        binding.pagPrestador2.setOnClickListener {
-            lifecycleScope.launch {
-                val usuarioBuscado = "takamasa"
-                val listaPrestadores = repository.buscarPrestadores(username = usuarioBuscado)
-
-                val prestadorDoBanco = listaPrestadores?.find {
-                    it.usuario?.equals(usuarioBuscado, ignoreCase = true) == true ||
-                    it.nome?.contains(usuarioBuscado, ignoreCase = true) == true
-                } ?: listaPrestadores?.firstOrNull() ?: Prestador(
-                    id = "takamasa",
-                    nome = "Takamasa N.",
-                    usuario = "takamasa",
-                    email = "takamasa@email.com",
-                    descricao = "Ajudante geral e serviços de reforma.",
-                    local = "Vitória-ES",
-                    servicos = listOf("Ajudante"),
-                    notaMedia = 4.9,
-                    totalAvaliacoes = 112
-                )
-
-                val intent = Intent(this@HomeCliente, VerPrestadorCliente::class.java).apply {
-                    putExtra("prestador", prestadorDoBanco)
-                }
-                startActivity(intent)
-            }
-        }
     }
 
     override fun onResume() {
         super.onResume()
         carregarDadosUsuario()
         carregarFavoritos()
+        carregarMelhoresAvaliados()
+    }
+
+    private fun carregarMelhoresAvaliados() {
+        lifecycleScope.launch {
+            val prestadores = repository.buscarPrestadores(inicio = 0, limite = 50)
+                .orEmpty()
+                .sortedWith(
+                    compareByDescending<Prestador> { it.notaMedia ?: 0.0 }
+                        .thenByDescending { it.totalAvaliacoes ?: 0 }
+                )
+                .take(10)
+
+            melhoresAdapter.submitList(prestadores)
+            binding.rvMelhoresAvaliados.visibility =
+                if (prestadores.isEmpty()) View.GONE else View.VISIBLE
+            binding.txtSemMelhores.visibility =
+                if (prestadores.isEmpty()) View.VISIBLE else View.GONE
+        }
     }
 
     private fun carregarFavoritos() {
