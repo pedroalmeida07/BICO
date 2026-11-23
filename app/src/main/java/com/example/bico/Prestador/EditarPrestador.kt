@@ -28,6 +28,8 @@ import com.example.bico.ServicoAdapter
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarPrestadorBinding
 import com.example.bico.model.Prestador
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import androidx.lifecycle.lifecycleScope
@@ -292,26 +294,33 @@ class EditarPrestador : AppCompatActivity() {
     }
 
     private fun excluirConta() {
-        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Excluir Conta")
-            .setMessage("Tem certeza de que deseja excluir sua conta? Esta ação não poderá ser desfeita.")
-            .setPositiveButton("Excluir") { _, _ ->
-                lifecycleScope.launch {
-                    val sucesso = repository.deletarPrestador()
-                    if (sucesso) {
-                        Toast.makeText(this@EditarPrestador, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@EditarPrestador, MainActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        }
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this@EditarPrestador, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_alerta, null)
+
+        val txtMessage = view.findViewById<android.widget.TextView>(R.id.textviewMessage)
+        val btnOk = view.findViewById<MaterialButton>(R.id.buttonOk)
+
+        txtMessage.text = "Você tem certeza? Essa decisão não pode ser revertida."
+
+        btnOk.setOnClickListener {
+            bottomSheetDialog.dismiss()
+            lifecycleScope.launch {
+                val sucesso = repository.deletarPrestador()
+                if (sucesso) {
+                    Toast.makeText(this@EditarPrestador, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@EditarPrestador, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this@EditarPrestador, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
                 }
             }
-            .setNegativeButton("Cancelar", null)
-            .show()
+        }
+
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.show()
     }
 
     private fun loadUserData() {

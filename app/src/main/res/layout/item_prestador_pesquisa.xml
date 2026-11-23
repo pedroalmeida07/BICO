@@ -7,7 +7,7 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="12dp"
-    android:paddingBottom="12dp"
+    android:paddingBottom="0dp"
     android:background="@android:color/white">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -18,9 +18,7 @@
         android:src="@drawable/user"
         app:shapeAppearanceOverlay="@style/RoundedSquareShape"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtNomeEProfissao"
@@ -97,13 +95,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutRatingEFavorito" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierConteudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="imgFotoPerfil,txtLocal" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:background="#E5E5E5"
-        app:layout_constraintTop_toBottomOf="@id/txtLocal"
+        app:layout_constraintTop_toBottomOf="@id/barrierConteudo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

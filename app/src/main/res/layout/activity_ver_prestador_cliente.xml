@@ -361,23 +361,6 @@
                 app:barrierDirection="bottom"
                 app:constraint_referenced_ids="imgFoto1,imgFoto2,imgFoto3,imgFoto4,txtSemFotos" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEnviarMsg"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:backgroundTint="@color/saborBranco"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/btn_enviar_mensagem"
-                android:textColor="@color/laranja"
-                android:fontFamily="@font/inter"
-                android:textSize="16sp"
-                app:cornerRadius="8dp"
-                app:strokeColor="@color/laranja"
-                app:strokeWidth="2dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/barrierFotos" />
 
             <TextView
                 android:id="@+id/txtTituloAvaliacoes"
@@ -389,7 +372,7 @@
                 android:textColor="@color/azul"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/btnEnviarMsg" />
+                app:layout_constraintTop_toBottomOf="@id/barrierFotos" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAvaliacoes"
@@ -442,27 +425,9 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/barrierAvaliacoes" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDenunciar"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:backgroundTint="@color/saborBranco"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/btn_enviar_denuncia_prestador"
-                android:textColor="@color/azul"
-                android:drawableLeft="@drawable/ic_flag"
-                android:fontFamily="@font/inter"
-                android:textSize="16sp"
-                app:cornerRadius="8dp"
-                app:strokeColor="@color/azul"
-                app:strokeWidth="2dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/btnAvaliar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        
+
 
     </ScrollView>
 
