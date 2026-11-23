@@ -9,6 +9,7 @@ import com.example.bico.databinding.ActivityConfiguracoesPrestadorBinding
 
 class ConfiguracoesPrestador : AppCompatActivity() {
     private lateinit var binding: ActivityConfiguracoesPrestadorBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,16 +17,6 @@ class ConfiguracoesPrestador : AppCompatActivity() {
         setContentView(binding.root)
 
         setupBottomNavigation()
-
-        binding.layoutPrivacidade.setOnClickListener {
-            val intent = Intent(this, PrivacidadePrestador::class.java)
-            startActivity(intent)
-        }
-
-        binding.layoutAjuda.setOnClickListener {
-            val intent = Intent(this, AjudaPrestador::class.java)
-            startActivity(intent)
-        }
 
         binding.layoutEditarPerfil.setOnClickListener {
             val intent = Intent(this, EditarPrestador::class.java)

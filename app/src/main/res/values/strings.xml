@@ -160,6 +160,15 @@
     <string name="placeholder_telefone">(XX) XXXXX-XXXX</string>
     <string name="btn_sair_conta">Sair da Conta</string>
 
+    <!-- Validation Messages -->
+    <string name="msg_erro_senha_tamanho_minimo">A senha deve ter no mínimo 8 caracteres.</string>
+    <string name="msg_erro_senha_maiuscula">A senha deve conter pelo menos uma letra maiúscula.</string>
+    <string name="msg_erro_senha_minuscula">A senha deve conter pelo menos uma letra minúscula.</string>
+    <string name="msg_erro_senha_caractere_especial">A senha deve conter pelo menos um caractere especial (ex: @, #, $, !).</string>
+    <string name="msg_preencha_todos_campos">Preencha todos os campos</string>
+    <string name="msg_senhas_nao_coincidem">As senhas não coincidem</string>
+    <string name="msg_cadastro_sucesso">Cadastro realizado com sucesso!</string>
+
     <string-array name="servicos">
         <item>Advogado</item>
         <item>Agente de viagens</item>

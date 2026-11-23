@@ -32,11 +32,6 @@ class ConfiguracaoCliente : AppCompatActivity() {
 
         setupBottomNavCliente(binding.layoutBarraInferior.navCliente, R.id.nav_config)
 
-        binding.layoutPrivacidade.setOnClickListener {
-            val intent = Intent(this, PrivacidadeCliente::class.java)
-            startActivity(intent)
-        }
-
         binding.layoutEditarPerfil.setOnClickListener {
             val intent = Intent(this, EditarCliente::class.java)
             startActivity(intent)
@@ -44,11 +39,6 @@ class ConfiguracaoCliente : AppCompatActivity() {
 
         binding.layoutFavoritos.setOnClickListener {
             val intent = Intent(this, FavoritosCliente::class.java)
-            startActivity(intent)
-        }
-
-        binding.layoutAjuda.setOnClickListener {
-            val intent = Intent(this, AjudaCliente::class.java)
             startActivity(intent)
         }
     }

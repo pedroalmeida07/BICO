@@ -121,11 +121,11 @@ class UserRepository(private val context: Context) {
         }
     }
 
-    suspend fun usuarioLogado(): UserBase? {
+    suspend fun usuarioLogado(forceRefresh: Boolean = false): UserBase? {
         val uid = auth.currentUser?.uid ?: return null
 
         val localUser = getLocalUser()
-        if (localUser != null && localUser.id == uid) {
+        if (!forceRefresh && localUser != null && localUser.id == uid) {
             return localUser
         }
 
@@ -145,7 +145,7 @@ class UserRepository(private val context: Context) {
                 prestador?.let { saveLocalUser(it, "prestador") }
                 return prestador
             }
-            null
+            localUser
         } catch (e: Exception) {
             Log.e("UserRepository", "Erro ao buscar usuário logado: ${e.message}", e)
             localUser

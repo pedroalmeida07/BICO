@@ -61,7 +61,7 @@ class HomePrestador : AppCompatActivity() {
     private fun carregarDadosUsuario() {
         val repository = UserRepository(this)
         lifecycleScope.launch {
-            val usuario = repository.usuarioLogado()
+            val usuario = repository.usuarioLogado(forceRefresh = true)
             usuario?.let { 
                 binding.txtNomeUsuario.text = it.primeiroNome.ifEmpty { "Usuário" }
                 if (!it.fotoPerfil.isNullOrEmpty()) {

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Cliente.ConfiguracaoCliente">
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
@@ -21,6 +20,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9"/>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="match_parent"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1"/>
+
     <!--Barra Superior-->
     <View
         android:id="@+id/barraSuperior"
@@ -57,45 +58,6 @@
         app:layout_constraintBottom_toBottomOf="@id/barraSuperior"/>
 
     <LinearLayout
-        android:id="@+id/layoutPrivacidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/barraSuperior">
-
-        <ImageView
-            android:id="@+id/ic_privacy"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_privacy" />
-
-        <TextView
-            android:id="@+id/txtPrivacidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/inter"
-            android:text="@string/title_privacidade"
-            android:textColor="@color/azul" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/linha1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/cinzaClaro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutPrivacidade" />
-
-    <LinearLayout
         android:id="@+id/layoutEditarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +68,7 @@
         android:focusable="true"
         android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha1">
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior">
 
         <ImageView
             android:id="@+id/ic_user"
@@ -126,7 +88,7 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/linha2"
+        android:id="@+id/linha1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
@@ -145,16 +107,14 @@
         android:focusable="true"
         android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha2">
+        app:layout_constraintTop_toBottomOf="@id/linha1">
 
         <ImageView
             android:id="@+id/ic_star"
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:tint="@color/azul"
-            android:src="@drawable/ic_estrela_vazia"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/linha2" />
+            android:src="@drawable/ic_estrela_vazia" />
 
         <TextView
             android:id="@+id/txtFavoritos"
@@ -164,17 +124,12 @@
             android:textSize="18sp"
             android:fontFamily="@font/inter"
             android:text="@string/title_favoritos"
-            android:textColor="@color/azul"
-            app:layout_constraintStart_toEndOf="@id/ic_star"
-            app:layout_constraintTop_toBottomOf="@id/linha2"
-            app:layout_constraintBottom_toBottomOf="@id/linha3"/>
+            android:textColor="@color/azul" />
 
     </LinearLayout>
 
-
-
     <View
-        android:id="@+id/linha3"
+        android:id="@+id/linha2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
@@ -182,44 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutFavoritos" />
 
-    <LinearLayout
-        android:id="@+id/layoutAjuda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/linha3">
-
-        <ImageView
-            android:id="@+id/ic_help"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_help" />
-
-        <TextView
-            android:id="@+id/txtAjuda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/inter"
-            android:text="@string/title_ajuda"
-            android:textColor="@color/azul" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/linha4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/cinzaClaro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutAjuda" />
     <include
         android:id="@+id/layoutBarraInferior"
         layout="@layout/barra_inferior_cliente"

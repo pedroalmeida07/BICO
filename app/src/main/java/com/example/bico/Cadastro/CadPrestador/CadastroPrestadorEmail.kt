@@ -9,8 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.bico.MainActivity
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorEmailBinding
+import com.example.bico.utils.PasswordUtils
 import kotlinx.coroutines.launch
 
 class CadastroPrestadorEmail : AppCompatActivity() {
@@ -33,17 +35,26 @@ class CadastroPrestadorEmail : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonAvancar.setOnClickListener {
-            val email = binding.editTextEmail.text.toString()
+            binding.tilSenha.error = null
+            binding.tilConfirmarSenha.error = null
+
+            val email = binding.editTextEmail.text.toString().trim()
             val senha = binding.editTextSenha.text.toString()
             val confirmarSenha = binding.editTextConfirmarSenha.text.toString()
 
             if (email.isEmpty() || senha.isEmpty()) {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_preencha_todos_campos), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val erroSenhaResId = PasswordUtils.validarSenha(senha)
+            if (erroSenhaResId != null) {
+                binding.tilSenha.error = getString(erroSenhaResId)
                 return@setOnClickListener
             }
 
             if (senha != confirmarSenha) {
-                Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show()
+                binding.tilConfirmarSenha.error = getString(R.string.msg_senhas_nao_coincidem)
                 return@setOnClickListener
             }
 
@@ -59,7 +70,7 @@ class CadastroPrestadorEmail : AppCompatActivity() {
             lifecycleScope.launch {
                 val erro = repository.salvarPrestador(UserRepository.tempPrestador)
                 if (erro == null) {
-                    Toast.makeText(this@CadastroPrestadorEmail, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroPrestadorEmail, getString(R.string.msg_cadastro_sucesso), Toast.LENGTH_SHORT).show()
                     // Vai para a Home e limpa as telas anteriores
                     val intent = Intent(this@CadastroPrestadorEmail, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
