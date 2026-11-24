@@ -1,14 +1,12 @@
 package com.example.bico.Prestador
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bico.R
 import com.example.bico.databinding.ActivityPlanosPrestadorBinding
-import com.example.bico.utils.avisarChatEmBreve
+import com.example.bico.utils.setupBottomNavPrestador
 
 class PlanosPrestador : AppCompatActivity() {
 
@@ -29,42 +27,6 @@ class PlanosPrestador : AppCompatActivity() {
         binding.sair.setOnClickListener {
             finish()
         }
-
-        setupBottomNavigation()
-    }
-
-    private fun setupBottomNavigation() {
-        val nav = binding.layoutBarraInferior.root
-        nav.setOnItemSelectedListener(null)
-        nav.selectedItemId = R.id.nav_config_prestador
-        nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home_prestador -> {
-                    startActivity(Intent(this, HomePrestador::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_chat_prestador -> {
-                    avisarChatEmBreve()
-                    true
-                }
-                R.id.nav_config_prestador -> {
-                    startActivity(Intent(this, ConfiguracoesPrestador::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_perfil_prestador -> {
-                    startActivity(Intent(this, EditarPrestador::class.java))
-                    finish()
-                    true
-                }
-                else -> false
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.layoutBarraInferior.root.selectedItemId = R.id.nav_config_prestador
+        setupBottomNavPrestador(binding.layoutBarraInferior.navPrestador,0)
     }
 }

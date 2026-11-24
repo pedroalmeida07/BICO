@@ -36,6 +36,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.bico.utils.IbgeClient
 import com.example.bico.utils.NoAccentsAdapter
 import com.example.bico.utils.avisarChatEmBreve
+import com.example.bico.utils.setupBottomNavPrestador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -152,38 +153,7 @@ class EditarPrestador : AppCompatActivity() {
 
         setupEdgeToEdge()
         setupListeners()
-        setupBottomNavigation()
-    }
-
-    private fun setupBottomNavigation() {
-        val nav = binding.layoutBarraInferior.root
-        nav.setOnItemSelectedListener(null)
-        nav.selectedItemId = R.id.nav_perfil_prestador
-        nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home_prestador -> {
-                    startActivity(Intent(this, HomePrestador::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_chat_prestador -> {
-                    avisarChatEmBreve()
-                    true
-                }
-                R.id.nav_config_prestador -> {
-                    startActivity(Intent(this, ConfiguracoesPrestador::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_perfil_prestador -> true
-                else -> false
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.layoutBarraInferior.root.selectedItemId = R.id.nav_perfil_prestador
+        setupBottomNavPrestador(binding.layoutBarraInferior.navPrestador, R.id.nav_perfil_prestador)
     }
 
     private fun setupEdgeToEdge() {
