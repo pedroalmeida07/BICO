@@ -7,6 +7,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityRecuperacaoSenhaEmailBinding
 import kotlinx.coroutines.launch
@@ -45,20 +46,20 @@ class RecuperacaoSenhaEmail : AppCompatActivity() {
                     if (sucesso) {
                         Toast.makeText(
                             this@RecuperacaoSenhaEmail,
-                            "E-mail de redefinição de senha enviado com sucesso!",
+                            getString(R.string.msg_email_redefinicao_enviado),
                             Toast.LENGTH_LONG
                         ).show()
                         finish()
                     } else {
                         Toast.makeText(
                             this@RecuperacaoSenhaEmail,
-                            "Erro ao enviar e-mail. Verifique o endereço e tente novamente.",
+                            getString(R.string.msg_erro_enviar_email),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
             } else {
-                binding.edtEmail.error = "Por favor, insira seu e-mail"
+                binding.edtEmail.error = getString(R.string.err_insira_seu_email)
             }
         }
     }

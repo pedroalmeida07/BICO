@@ -79,10 +79,10 @@ class VerPrestadorCliente : AppCompatActivity() {
         binding.txtTotalAvaliacoes.text = String.format(java.util.Locale.getDefault(), " (%d Avaliações)", prestador.totalAvaliacoes ?: 0)
 
         // Sobre
-        binding.txtDesc.text = (prestador.descricao ?: "").ifEmpty { "Nenhuma descrição informada." }
+        binding.txtDesc.text = (prestador.descricao ?: "").ifEmpty { getString(R.string.label_sem_descricao_informada) }
 
         // Telefone
-        binding.txtDescTelefone.text = (prestador.telefone ?: "").ifEmpty { "Nenhum telefone informado." }
+        binding.txtDescTelefone.text = (prestador.telefone ?: "").ifEmpty { getString(R.string.label_nenhum_telefone_informado) }
 
         // Local de Atuação
         binding.txtCidade.text = (prestador.local ?: "").ifEmpty { "Local" }
@@ -113,7 +113,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                     binding.rvAvaliacoes.visibility = View.VISIBLE
                     binding.txtSemAvaliacoes.visibility = View.GONE
                     binding.txtNotaPrestador.text = String.format(java.util.Locale.getDefault(), "%.1f", pEncontrado.notaMedia ?: 5.0)
-                    binding.txtTotalAvaliacoes.text = String.format(java.util.Locale.getDefault(), " (%d Avaliações)", pEncontrado.totalAvaliacoes ?: listaAtualizada.size)
+                    binding.txtTotalAvaliacoes.text = getString(R.string.label_total_avaliacoes_format, pEncontrado.totalAvaliacoes ?: listaAtualizada.size)
                 } else {
                     binding.rvAvaliacoes.visibility = View.GONE
                     binding.txtSemAvaliacoes.visibility = View.VISIBLE
@@ -147,18 +147,18 @@ class VerPrestadorCliente : AppCompatActivity() {
                     if (sucesso) {
                         isFavorito = false
                         binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
-                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Removido dos favoritos", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_removido_favoritos), android.widget.Toast.LENGTH_SHORT).show()
                     } else {
-                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao desfavoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_erro_desfavoritar_prestador), android.widget.Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     val sucesso = repository.adicionarFavorito(prestador)
                     if (sucesso) {
                         isFavorito = true
                         binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
-                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Prestador adicionado aos favoritos!", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_adicionado_favoritos), android.widget.Toast.LENGTH_SHORT).show()
                     } else {
-                        android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao favoritar prestador", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_erro_favoritar_prestador), android.widget.Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -203,7 +203,7 @@ class VerPrestadorCliente : AppCompatActivity() {
 
         com.google.android.material.dialog.MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
             .setView(view)
-            .setPositiveButton("Fechar", null)
+            .setPositiveButton(getString(R.string.btn_fechar), null)
             .show()
     }
 
@@ -238,7 +238,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                 ?: ""
 
             if (prestadorId.isEmpty()) {
-                android.widget.Toast.makeText(this, "ID do prestador inválido", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(this, getString(R.string.msg_id_prestador_invalido), android.widget.Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -248,7 +248,7 @@ class VerPrestadorCliente : AppCompatActivity() {
             lifecycleScope.launch {
                 val sucesso = repository.adicionarAvaliacao(prestadorId, nota, comentario)
                 if (sucesso) {
-                    android.widget.Toast.makeText(this@VerPrestadorCliente, "Avaliação enviada com sucesso!", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_avaliacao_sucesso), android.widget.Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
 
                     // Recarrega os dados do prestador para atualizar a lista de avaliações e nota média
@@ -260,7 +260,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                             prestadorID = prestadorId,
                             nota = nota,
                             comentario = comentario,
-                            nomeAvaliador = "Você"
+                            nomeAvaliador = getString(R.string.label_voce)
                         )
                         val pAtualizado = prestador.copy(
                             avaliacoes = novaLista,
@@ -269,7 +269,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                         carregarDadosPrestador(pAtualizado)
                     }
                 } else {
-                    android.widget.Toast.makeText(this@VerPrestadorCliente, "Erro ao enviar avaliação", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_erro_enviar_avaliacao), android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
         }

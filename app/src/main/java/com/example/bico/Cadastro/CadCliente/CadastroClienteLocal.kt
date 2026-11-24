@@ -10,6 +10,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroClienteLocalBinding
 import com.example.bico.utils.MaskWatcher
@@ -66,15 +67,15 @@ class CadastroClienteLocal : AppCompatActivity() {
                 val response = ViaCepClient.apiService.getEndereco(cep)
                 withContext(Dispatchers.Main) {
                     if (response.erro == true || response.localidade.isNullOrEmpty()) {
-                        Toast.makeText(this@CadastroClienteLocal, "CEP não encontrado", Toast.LENGTH_SHORT).show()
-                        binding.editTextCEP.error = "CEP inválido ou não encontrado"
+                        Toast.makeText(this@CadastroClienteLocal, getString(R.string.msg_cep_nao_encontrado), Toast.LENGTH_SHORT).show()
+                        binding.editTextCEP.error = getString(R.string.err_cep_invalido_ou_nao_encontrado)
                     } else {
                         binding.editTextCEP.error = null
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@CadastroClienteLocal, "Erro ao buscar CEP", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroClienteLocal, getString(R.string.msg_erro_buscar_cep), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -88,17 +89,17 @@ class CadastroClienteLocal : AppCompatActivity() {
             val cepLimpo = MaskWatcher.unmask(cep)
 
             if (cep.isEmpty() || numero.isEmpty()) {
-                Toast.makeText(this, "Por favor, preencha o CEP e o número", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_preencha_cep_numero), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (cepLimpo.length != 8) {
-                binding.editTextCEP.error = "Digite um CEP válido"
+                binding.editTextCEP.error = getString(R.string.err_cep_invalido)
                 return@setOnClickListener
             }
 
             if (binding.editTextCEP.error != null) {
-                Toast.makeText(this, "Por favor, informe um CEP válido antes de prosseguir", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_informe_cep_valido), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

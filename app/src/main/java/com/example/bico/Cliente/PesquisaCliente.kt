@@ -128,16 +128,16 @@ class PesquisaCliente : AppCompatActivity() {
         val listaFiltros = mutableListOf<String>()
 
         tipoServicoSelecionado?.let {
-            listaFiltros.add("Serviço: $it")
+            listaFiltros.add(getString(R.string.label_filtro_servico, it))
         }
 
         if (modoBusca == "proximos" && raioMaximo != null) {
             val raioStr = if (raioMaximo!! % 1f == 0f) raioMaximo!!.toInt().toString() else raioMaximo.toString()
-            listaFiltros.add("Distância: até ${raioStr} km")
+            listaFiltros.add(getString(R.string.label_filtro_distancia, raioStr))
         }
 
         if (listaFiltros.isNotEmpty()) {
-            binding.txtFiltroAtual.text = "Filtros: " + listaFiltros.joinToString(" • ")
+            binding.txtFiltroAtual.text = getString(R.string.label_filtros_format, listaFiltros.joinToString(" • "))
             binding.txtFiltroAtual.visibility = View.VISIBLE
         } else {
             binding.txtFiltroAtual.text = ""
@@ -152,11 +152,11 @@ class PesquisaCliente : AppCompatActivity() {
         if (tipoServicoSelecionado != null) {
             binding.chipTipoServico.setChipBackgroundColorResource(R.color.azul)
             binding.chipTipoServico.setTextColor(ContextCompat.getColor(this, R.color.white))
-            binding.chipTipoServico.text = "Tipo: $tipoServicoSelecionado"
+            binding.chipTipoServico.text = getString(R.string.chip_tipo_format, tipoServicoSelecionado)
         } else {
             binding.chipTipoServico.setChipBackgroundColorResource(R.color.cinzaClaro)
             binding.chipTipoServico.setTextColor(ContextCompat.getColor(this, R.color.azul))
-            binding.chipTipoServico.text = "Tipo de serviço"
+            binding.chipTipoServico.text = getString(R.string.chip_tipo_servico)
         }
 
         // 2. Chip Melhor Avaliados
@@ -173,11 +173,11 @@ class PesquisaCliente : AppCompatActivity() {
             val raioStr = if (raioMaximo!! % 1f == 0f) raioMaximo!!.toInt().toString() else raioMaximo.toString()
             binding.chipDistanciaMaxima.setChipBackgroundColorResource(R.color.azul)
             binding.chipDistanciaMaxima.setTextColor(ContextCompat.getColor(this, R.color.white))
-            binding.chipDistanciaMaxima.text = "Até ${raioStr} km"
+            binding.chipDistanciaMaxima.text = getString(R.string.chip_ate_km, raioStr)
         } else {
             binding.chipDistanciaMaxima.setChipBackgroundColorResource(R.color.cinzaClaro)
             binding.chipDistanciaMaxima.setTextColor(ContextCompat.getColor(this, R.color.azul))
-            binding.chipDistanciaMaxima.text = "Distância máxima"
+            binding.chipDistanciaMaxima.text = getString(R.string.chip_distancia_maxima)
         }
     }
 
@@ -187,16 +187,16 @@ class PesquisaCliente : AppCompatActivity() {
         val listViewServicos = view.findViewById<ListView>(R.id.listViewServicos)
 
         val servicosArray = resources.getStringArray(R.array.servicos)
-        val todosOpcao = "Todos os serviços (Limpar filtro)"
+        val todosOpcao = getString(R.string.opcao_todos_servicos)
         val listaCompleta = listOf(todosOpcao) + servicosArray.toList()
 
         val adapterServicos = NoAccentsAdapter(this, android.R.layout.simple_list_item_1, listaCompleta)
         listViewServicos.adapter = adapterServicos
 
         val dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Filtrar por Tipo de Serviço")
+            .setTitle(getString(R.string.dialog_filtrar_tipo_servico_title))
             .setView(view)
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(getString(R.string.btn_cancelar), null)
             .create()
 
         editBuscaServico.doAfterTextChanged { text ->
@@ -228,10 +228,10 @@ class PesquisaCliente : AppCompatActivity() {
         }
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Distância Máxima")
-            .setMessage("Digite o raio máximo em quilômetros:")
+            .setTitle(getString(R.string.dialog_distancia_maxima_title))
+            .setMessage(getString(R.string.dialog_distancia_maxima_msg))
             .setView(view)
-            .setPositiveButton("Aplicar") { dialog, _ ->
+            .setPositiveButton(getString(R.string.btn_aplicar)) { dialog, _ ->
                 val texto = editRaio.text?.toString()?.trim()
                 val valor = texto?.toFloatOrNull()
                 if (valor != null && valor > 0) {
@@ -245,8 +245,8 @@ class PesquisaCliente : AppCompatActivity() {
                 realizarBusca()
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancelar", null)
-            .setNeutralButton("Limpar") { dialog, _ ->
+            .setNegativeButton(getString(R.string.btn_cancelar), null)
+            .setNeutralButton(getString(R.string.btn_limpar)) { dialog, _ ->
                 modoBusca = null
                 raioMaximo = null
                 atualizarTextoFiltros()

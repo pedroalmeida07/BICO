@@ -82,8 +82,8 @@ class EditarPrestador : AppCompatActivity() {
                 }
                 guidelines = CropImageView.Guidelines.ON
                 backgroundColor = Color.BLACK
-                activityTitle = "Recortar Foto"
-                cropMenuCropButtonTitle = "Concluir"
+                activityTitle = getString(R.string.title_recortar_foto)
+                cropMenuCropButtonTitle = getString(R.string.btn_concluir)
             }
             cropImage.launch(CropImageContractOptions(uri, options))
         }
@@ -94,7 +94,7 @@ class EditarPrestador : AppCompatActivity() {
         lifecycleScope.launch {
             val url = repository.enviarImagem(uri)
             if (url == null) {
-                Toast.makeText(this@EditarPrestador, "Erro ao enviar imagem", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditarPrestador, getString(R.string.msg_erro_enviar_imagem), Toast.LENGTH_SHORT).show()
                 return@launch
             }
 
@@ -127,7 +127,7 @@ class EditarPrestador : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this@EditarPrestador,
-                    "Imagem enviada, mas não foi possível salvar no perfil",
+                    getString(R.string.msg_erro_salvar_imagem_perfil),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -246,10 +246,10 @@ class EditarPrestador : AppCompatActivity() {
         input.setText(currentUser?.email ?: "")
 
         val dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Editar E-Mail")
+            .setTitle(getString(R.string.dialog_editar_email_title))
             .setView(view)
-            .setPositiveButton("Salvar E-Mail", null)
-            .setNegativeButton("Cancelar", null)
+            .setPositiveButton(getString(R.string.btn_salvar_email), null)
+            .setNegativeButton(getString(R.string.btn_cancelar), null)
             .create()
 
         dialog.setOnShowListener {
@@ -258,7 +258,7 @@ class EditarPrestador : AppCompatActivity() {
                 val novoEmail = input.text.toString().trim()
 
                 if (novoEmail.isEmpty()) {
-                    layout.error = "E-mail não pode ser vazio"
+                    layout.error = getString(R.string.err_email_vazio)
                     return@setOnClickListener
                 }
 
@@ -275,7 +275,7 @@ class EditarPrestador : AppCompatActivity() {
                     if (sucesso) {
                         Toast.makeText(
                             this@EditarPrestador,
-                            "E-mail alterado com sucesso! Por favor, faça login novamente.",
+                            getString(R.string.msg_email_alterado_sucesso),
                             Toast.LENGTH_LONG
                         ).show()
                         val intent = Intent(this@EditarPrestador, PaginaLogin::class.java).apply {
@@ -284,7 +284,7 @@ class EditarPrestador : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@EditarPrestador, "Erro ao salvar o E-Mail", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EditarPrestador, getString(R.string.msg_erro_salvar_email), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -300,21 +300,21 @@ class EditarPrestador : AppCompatActivity() {
         val txtMessage = view.findViewById<android.widget.TextView>(R.id.textviewMessage)
         val btnOk = view.findViewById<MaterialButton>(R.id.buttonOk)
 
-        txtMessage.text = "Você tem certeza? Essa decisão não pode ser revertida."
+        txtMessage.text = getString(R.string.dialog_confirmar_exclusao_conta_msg)
 
         btnOk.setOnClickListener {
             bottomSheetDialog.dismiss()
             lifecycleScope.launch {
                 val sucesso = repository.deletarPrestador()
                 if (sucesso) {
-                    Toast.makeText(this@EditarPrestador, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarPrestador, getString(R.string.msg_conta_excluida_sucesso), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@EditarPrestador, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@EditarPrestador, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarPrestador, getString(R.string.msg_erro_excluir_conta), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -325,10 +325,10 @@ class EditarPrestador : AppCompatActivity() {
 
     private fun loadUserData() {
         currentUser?.let { user ->
-            binding.txtNomePrestador.text = (user.usuario ?: "").ifEmpty { "UserName" }
-            binding.txtCidade.text = (user.local ?: "").ifEmpty { "Local" }
-            binding.txtDesc.text = (user.descricao ?: "").ifEmpty { "Adicione mais informações sobre você e seus serviços." }
-            binding.txtTelefone.text = (user.telefone ?: "").ifEmpty { "Nenhum telefone informado." }
+            binding.txtNomePrestador.text = (user.usuario ?: "").ifEmpty { getString(R.string.label_username) }
+            binding.txtCidade.text = (user.local ?: "").ifEmpty { getString(R.string.label_local) }
+            binding.txtDesc.text = (user.descricao ?: "").ifEmpty { getString(R.string.label_adicione_informacoes_sobre_voce) }
+            binding.txtTelefone.text = (user.telefone ?: "").ifEmpty { getString(R.string.label_nenhum_telefone_informado) }
 
             if (!user.fotoPerfil.isNullOrEmpty()) {
                 binding.fotoPerfil.load(user.fotoPerfil) {
@@ -352,12 +352,12 @@ class EditarPrestador : AppCompatActivity() {
         input.addTextChangedListener(com.example.bico.utils.MaskWatcher("(##) #####-####", input))
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Editar Telefone")
+            .setTitle(getString(R.string.dialog_editar_telefone_title))
             .setView(view)
-            .setPositiveButton("Salvar") { _, _ ->
+            .setPositiveButton(getString(R.string.btn_salvar)) { _, _ ->
                 val novoTelefone = input.text.toString()
                 if (novoTelefone.isEmpty()) {
-                    Toast.makeText(this@EditarPrestador, "O telefone não pode estar vazio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarPrestador, getString(R.string.msg_telefone_vazio), Toast.LENGTH_SHORT).show()
                 } else {
                     currentUser?.let { u ->
                         val userAtualizado = u.copy(telefone = novoTelefone)
@@ -368,20 +368,20 @@ class EditarPrestador : AppCompatActivity() {
                         binding.txtTelefone.text = currentUser?.telefone
                     }
                 }
-            }.setNegativeButton("Cancelar", null).show()
+            }.setNegativeButton(getString(R.string.btn_cancelar), null).show()
     }
 
     private fun setupRecyclerView(servicos: List<String>) {
         val listaServicos = servicos.toMutableList()
         val adapter = ServicoAdapter(listaServicos) { position ->
             MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-                .setTitle("Remover Serviço")
-                .setMessage("Deseja remover \"${listaServicos[position]}\"?")
-                .setPositiveButton("Remover") { _, _ ->
+                .setTitle(getString(R.string.dialog_remover_servico_title))
+                .setMessage(getString(R.string.dialog_remover_servico_msg, listaServicos[position]))
+                .setPositiveButton(getString(R.string.btn_remover)) { _, _ ->
                     listaServicos.removeAt(position)
                     updateUserServices(listaServicos)
                 }
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(getString(R.string.btn_cancelar), null)
                 .show()
         }
         binding.rvServicos.adapter = adapter
@@ -426,8 +426,8 @@ class EditarPrestador : AppCompatActivity() {
             if (isEditModeFotos) {
                 if (index < fotos.size) {
                     MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-                        .setTitle("Opções da Foto")
-                        .setItems(arrayOf("Alterar Foto", "Remover Foto")) { _, which ->
+                        .setTitle(getString(R.string.dialog_opcoes_foto_title))
+                        .setItems(arrayOf(getString(R.string.dialog_opcoes_foto_alterar), getString(R.string.dialog_opcoes_foto_remover))) { _, which ->
                             if (which == 0) {
                                 fotoAlvo = index + 1
                                 pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -462,11 +462,11 @@ class EditarPrestador : AppCompatActivity() {
         input.setText(currentUser?.descricao ?: "")
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Editar Sobre")
+            .setTitle(getString(R.string.dialog_editar_sobre_title))
             .setView(view)
-            .setPositiveButton("Salvar") { _, _ ->
+            .setPositiveButton(getString(R.string.btn_salvar)) { _, _ ->
                 val novaDesc = input.text.toString()
-                binding.txtDesc.text = novaDesc.ifEmpty { "Adicione mais informações..." }
+                binding.txtDesc.text = novaDesc.ifEmpty { getString(R.string.label_adicione_mais_informacoes) }
                 currentUser?.let { u ->
                     val userAtualizado = u.copy(descricao = novaDesc)
                     lifecycleScope.launch {
@@ -474,7 +474,7 @@ class EditarPrestador : AppCompatActivity() {
                     }
                     currentUser = userAtualizado
                 }
-            }.setNegativeButton("Cancelar", null).show()
+            }.setNegativeButton(getString(R.string.btn_cancelar), null).show()
     }
 
     private fun showDialogEditarUsername() {
@@ -483,12 +483,12 @@ class EditarPrestador : AppCompatActivity() {
         input.setText(currentUser?.usuario ?: "")
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Editar Usuário")
+            .setTitle(getString(R.string.dialog_editar_usuario_title))
             .setView(view)
-            .setPositiveButton("Salvar") { _, _ ->
+            .setPositiveButton(getString(R.string.btn_salvar)) { _, _ ->
                 val newUsername = input.text.toString()
                 if (newUsername.isEmpty()) {
-                    Toast.makeText(this@EditarPrestador, "O nome de Usuário não pode estar vazio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarPrestador, getString(R.string.msg_usuario_vazio), Toast.LENGTH_SHORT).show()
                     showDialogEditarUsername()
                 } else {
                     currentUser?.let { u ->
@@ -500,7 +500,7 @@ class EditarPrestador : AppCompatActivity() {
                         binding.txtNomePrestador.text = currentUser?.usuario
                     }
                 }
-            }.setNegativeButton("Cancelar", null).show()
+            }.setNegativeButton(getString(R.string.btn_cancelar), null).show()
     }
 
     private fun showDialogAdicionarServico() {
@@ -508,16 +508,16 @@ class EditarPrestador : AppCompatActivity() {
         val input = view.findViewById<TextInputEditText>(R.id.editServico)
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Adicionar Serviço")
+            .setTitle(getString(R.string.dialog_adicionar_servico_title))
             .setView(view)
-            .setPositiveButton("Adicionar") { _, _ ->
+            .setPositiveButton(getString(R.string.btn_adicionar)) { _, _ ->
                 val novo = input.text.toString()
                 if (novo.isNotEmpty()) {
                     val lista = currentUser?.servicos?.toMutableList() ?: mutableListOf()
                     lista.add(novo)
                     updateUserServices(lista)
                 }
-            }.setNegativeButton("Cancelar", null).show()
+            }.setNegativeButton(getString(R.string.btn_cancelar), null).show()
     }
 
     private fun showDialogEditarLocal() {
@@ -531,10 +531,10 @@ class EditarPrestador : AppCompatActivity() {
         input.setAdapter(adapterCidades)
 
         val dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
-            .setTitle("Editar local de atuação")
+            .setTitle(getString(R.string.dialog_editar_local_title))
             .setView(view)
-            .setPositiveButton("Confirmar", null)
-            .setNegativeButton("Cancelar", null)
+            .setPositiveButton(getString(R.string.btn_confirmar), null)
+            .setNegativeButton(getString(R.string.btn_cancelar), null)
             .create()
 
         dialog.setOnShowListener {
@@ -543,9 +543,9 @@ class EditarPrestador : AppCompatActivity() {
                 val novoLocal = input.text.toString().trim()
                 
                 if (novoLocal.isEmpty()) {
-                    layout.error = "O local não pode estar vazio"
+                    layout.error = getString(R.string.err_local_vazio)
                 } else if (listaCidadesFormatadas.isNotEmpty() && !listaCidadesFormatadas.contains(novoLocal)) {
-                    layout.error = "Selecione uma cidade válida da lista"
+                    layout.error = getString(R.string.err_selecione_cidade_valida)
                 } else {
                     binding.txtCidade.text = novoLocal
                     currentUser?.let { u ->
@@ -573,7 +573,7 @@ class EditarPrestador : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@EditarPrestador, "Erro ao carregar lista de cidades", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarPrestador, getString(R.string.msg_erro_carregar_cidades), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -590,7 +590,7 @@ class EditarPrestador : AppCompatActivity() {
 
         MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Bico_MaterialAlertDialog)
             .setView(view)
-            .setPositiveButton("Fechar", null)
+            .setPositiveButton(getString(R.string.btn_fechar), null)
             .show()
     }
 

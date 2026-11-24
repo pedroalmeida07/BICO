@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.bico.Cadastro.CadCliente.CadastroClienteNome
 import com.example.bico.Cliente.HomeCliente
 import com.example.bico.Prestador.HomePrestador
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityPaginaLoginBinding
 import com.example.bico.model.Cliente
@@ -54,14 +55,14 @@ class PaginaLogin : AppCompatActivity() {
             val senha = binding.edtSenha.text.toString()
 
             if (email.isEmpty() || senha.isEmpty()) {
-                Toast.makeText(this, "Preencha email e senha", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_preencha_email_senha), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch {
                 val usuario = repository.realizarLogin(email, senha)
                 if (usuario != null) {
-                    Toast.makeText(this@PaginaLogin, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PaginaLogin, getString(R.string.msg_login_sucesso), Toast.LENGTH_SHORT).show()
                     val intent = if (usuario is Cliente) {
                         Intent(this@PaginaLogin, HomeCliente::class.java)
                     } else {
@@ -70,7 +71,7 @@ class PaginaLogin : AppCompatActivity() {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@PaginaLogin, "Email ou senha incorretos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PaginaLogin, getString(R.string.msg_email_senha_incorretos), Toast.LENGTH_SHORT).show()
                 }
             }
         }

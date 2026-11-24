@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="textPassword"
-            android:hint="@string/hint_senha"
+            android:hint="@string/hint_senha_min_8"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
             android:paddingTop="12dp"

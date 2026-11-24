@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorUsuarioBinding
 
@@ -33,7 +34,7 @@ class CadastroPrestadorUsuario : AppCompatActivity() {
             val usuario = binding.editTextNome.text.toString()
 
             if (usuario.isEmpty()) {
-                Toast.makeText(this, "Por favor, informe um nome de usuário", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_informe_nome_usuario), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

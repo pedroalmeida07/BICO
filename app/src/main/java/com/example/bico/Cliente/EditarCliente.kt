@@ -56,8 +56,8 @@ class EditarCliente : AppCompatActivity() {
                 fixAspectRatio = true
                 guidelines = CropImageView.Guidelines.ON
                 backgroundColor = Color.BLACK
-                activityTitle = "Recortar Foto"
-                cropMenuCropButtonTitle = "Concluir"
+                activityTitle = getString(R.string.title_recortar_foto)
+                cropMenuCropButtonTitle = getString(R.string.btn_concluir)
             }
             cropImage.launch(CropImageContractOptions(uri, options))
         }
@@ -102,12 +102,6 @@ class EditarCliente : AppCompatActivity() {
                 binding.editTextCep.setText(user.cep)
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
-
-                // Nota: Cliente herdado de UserBase não tem fotoPerfil por padrão?
-                // Ops, eu esqueci de colocar fotoPerfil em Cliente ou UserBase se for comum.
-                // Vou checar se o Prestador tem e o Cliente não.
-                // No User.kt antigo, fotoPerfil era exclusivo prestador?
-                // Vamos verificar User.kt novamente.
             }
         }
     }
@@ -143,21 +137,21 @@ class EditarCliente : AppCompatActivity() {
         val txtMessage = view.findViewById<TextView>(R.id.textviewMessage)
         val btnOk = view.findViewById<MaterialButton>(R.id.buttonOk)
 
-        txtMessage.text = "Você tem certeza? Essa decisão não pode ser revertida."
+        txtMessage.text = getString(R.string.dialog_confirmar_exclusao_conta_msg)
 
         btnOk.setOnClickListener {
             bottomSheetDialog.dismiss()
             lifecycleScope.launch {
                 val sucesso = repository.deletarCliente()
                 if (sucesso) {
-                    Toast.makeText(this@EditarCliente, "Conta excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarCliente, getString(R.string.msg_conta_excluida_sucesso), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@EditarCliente, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@EditarCliente, "Erro ao excluir conta", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarCliente, getString(R.string.msg_erro_excluir_conta), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -173,7 +167,7 @@ class EditarCliente : AppCompatActivity() {
             // currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString())
             // Se Cliente não tiver fotoPerfil, precisamos adicionar.
         } else {
-            Toast.makeText(this, "Erro ao processar imagem", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.msg_erro_processar_imagem), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -185,12 +179,12 @@ class EditarCliente : AppCompatActivity() {
         val complemento = binding.editTextComplemento.text.toString()
 
         if (nome.isEmpty()) {
-            binding.editTextNome.error = "Nome não pode ser vazio"
+            binding.editTextNome.error = getString(R.string.err_nome_vazio)
             return
         }
 
         if (email.isEmpty()) {
-            binding.editTextEmail.error = "E-mail não pode ser vazio"
+            binding.editTextEmail.error = getString(R.string.err_email_vazio)
             return
         }
 
@@ -212,7 +206,7 @@ class EditarCliente : AppCompatActivity() {
                     if (emailAtualizado) {
                         Toast.makeText(
                             this@EditarCliente,
-                            "E-mail alterado com sucesso! Por favor, faça login novamente.",
+                            getString(R.string.msg_email_alterado_sucesso),
                             Toast.LENGTH_LONG
                         ).show()
                         val intent = Intent(this@EditarCliente, PaginaLogin::class.java).apply {
@@ -222,7 +216,7 @@ class EditarCliente : AppCompatActivity() {
                         finish()
                         return@launch
                     } else {
-                        Toast.makeText(this@EditarCliente, "Erro ao salvar o E-Mail", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EditarCliente, getString(R.string.msg_erro_salvar_email), Toast.LENGTH_SHORT).show()
                         return@launch
                     }
                 }
@@ -230,10 +224,10 @@ class EditarCliente : AppCompatActivity() {
                 val sucesso = repository.atualizarCliente(userAtualizado.id ?: "", userAtualizado)
                 if (sucesso) {
                     currentUser = userAtualizado
-                    Toast.makeText(this@EditarCliente, "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarCliente, getString(R.string.msg_dados_atualizados_sucesso), Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Toast.makeText(this@EditarCliente, "Erro ao salvar alterações", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EditarCliente, getString(R.string.msg_erro_salvar_alteracoes), Toast.LENGTH_SHORT).show()
                 }
             }
         }

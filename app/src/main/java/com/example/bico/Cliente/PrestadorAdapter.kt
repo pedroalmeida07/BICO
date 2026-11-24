@@ -51,7 +51,7 @@ class PrestadorAdapter(
 
         // Descrição / Sobre
         val desc = prestador.descricao ?: ""
-        binding.txtDescricao.text = desc.ifEmpty { "Sem descrição informada." }
+        binding.txtDescricao.text = desc.ifEmpty { context.getString(R.string.label_sem_descricao_informada) }
 
         // Local
         binding.txtLocal.text = prestador.local ?: ""
@@ -125,12 +125,12 @@ class PrestadorAdapter(
                     repository.removerFavorito(prestadorId)
                     binding.btnFavorito.setImageResource(R.drawable.ic_estrela_vazia)
                     isFavorito = false
-                    Toast.makeText(context, "Removido dos favoritos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.msg_removido_favoritos), Toast.LENGTH_SHORT).show()
                 } else {
                     repository.adicionarFavorito(prestador)
                     binding.btnFavorito.setImageResource(R.drawable.ic_estrela_cheia)
                     isFavorito = true
-                    Toast.makeText(context, "Prestador adicionado aos favoritos!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.msg_adicionado_favoritos), Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -25,8 +25,9 @@ class AvaliacaoAdapter(
 
     override fun onBindViewHolder(holder: AvaliacaoViewHolder, position: Int) {
         val item = avaliacoes[position]
+        val context = holder.itemView.context
         
-        holder.txtNome.text = item.nomeAvaliador?.takeIf { it.isNotBlank() } ?: "Cliente"
+        holder.txtNome.text = item.nomeAvaliador?.takeIf { it.isNotBlank() } ?: context.getString(R.string.label_cliente_default)
         holder.txtNota.text = item.nota.toString()
 
         val comentario = item.comentario

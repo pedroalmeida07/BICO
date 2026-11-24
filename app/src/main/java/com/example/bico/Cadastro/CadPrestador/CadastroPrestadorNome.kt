@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityCadastroPrestadorNomeBinding
 import com.example.bico.utils.CpfMaskWatcher
@@ -41,12 +42,12 @@ class CadastroPrestadorNome : AppCompatActivity() {
             val telefone = binding.editTextTelefone.text.toString()
 
             if (nome.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
-                Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_preencha_todos_campos_favor), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (!CpfValidator.isValid(cpf)) {
-                Toast.makeText(this, "CPF inválido", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_cpf_invalido), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

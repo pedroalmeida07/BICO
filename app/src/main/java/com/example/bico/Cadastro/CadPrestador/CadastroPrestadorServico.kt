@@ -74,7 +74,7 @@ class CadastroPrestadorServico : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@CadastroPrestadorServico, "Erro ao carregar cidades", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroPrestadorServico, getString(R.string.msg_erro_carregar_cidades), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -103,9 +103,9 @@ class CadastroPrestadorServico : AppCompatActivity() {
                 val response = ViaCepClient.apiService.getEndereco(cep)
                 withContext(Dispatchers.Main) {
                     if (response.erro == true || response.localidade.isNullOrEmpty()) {
-                        Toast.makeText(this@CadastroPrestadorServico, "CEP não encontrado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CadastroPrestadorServico, getString(R.string.msg_cep_nao_encontrado), Toast.LENGTH_SHORT).show()
                         binding.editTextLocal.setText("")
-                        binding.editTextCEP.error = "CEP inválido ou não encontrado"
+                        binding.editTextCEP.error = getString(R.string.err_cep_invalido_ou_nao_encontrado)
                     } else {
                         val cidadeFormatada = if (!response.uf.isNullOrEmpty()) {
                             "${response.localidade}, ${response.uf}"
@@ -118,7 +118,7 @@ class CadastroPrestadorServico : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@CadastroPrestadorServico, "Erro ao buscar CEP", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CadastroPrestadorServico, getString(R.string.msg_erro_buscar_cep), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -133,19 +133,19 @@ class CadastroPrestadorServico : AppCompatActivity() {
 
             // Validação 1: Campos vazios
             if (tipo.isEmpty() || cep.isEmpty() || local.isEmpty()) {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_preencha_todos_campos), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             // Validação 2: Verificar tamanho do CEP
             if (cepLimpo.length != 8) {
-                binding.editTextCEP.error = "Digite um CEP válido"
+                binding.editTextCEP.error = getString(R.string.err_cep_invalido)
                 return@setOnClickListener
             }
 
             // Validação 3: Verificar se o serviço está na lista
             if (!listaServicos.contains(tipo)) {
-                binding.autoCompleteServico.error = "Selecione um serviço válido da lista"
+                binding.autoCompleteServico.error = getString(R.string.err_selecione_servico_valido)
                 return@setOnClickListener
             }
 
