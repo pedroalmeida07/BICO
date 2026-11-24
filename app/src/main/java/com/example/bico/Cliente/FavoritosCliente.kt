@@ -7,10 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityFavoritosClienteBinding
 import androidx.lifecycle.lifecycleScope
+import com.example.bico.utils.setupBottomNavCliente
 import kotlinx.coroutines.launch
 
 class FavoritosCliente : AppCompatActivity() {
@@ -33,23 +33,8 @@ class FavoritosCliente : AppCompatActivity() {
 
         repository = UserRepository(this)
 
-        binding.layoutBarraInferior.navCliente.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeCliente::class.java))
-                    true
-                }
-                R.id.nav_pesquisa -> {
-                    startActivity(Intent(this, PesquisaCliente::class.java))
-                    true
-                }
-                R.id.nav_config -> {
-                    startActivity(Intent(this, ConfiguracaoCliente::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
+        // Nenhuma aba fica marcada: Favoritos não é uma das abas principais.
+        setupBottomNavCliente(binding.layoutBarraInferior.navCliente, 0)
 
         adapter = PrestadorAdapter { prestador ->
             val intent = Intent(this, VerPrestadorCliente::class.java).apply {

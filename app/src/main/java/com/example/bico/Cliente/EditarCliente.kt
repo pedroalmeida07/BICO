@@ -24,8 +24,8 @@ import com.example.bico.R
 import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityEditarClienteBinding
 import com.example.bico.model.Cliente
-import com.example.bico.utils.ImageUtils
 import com.example.bico.utils.MaskWatcher
+import com.example.bico.utils.setupBottomNavCliente
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import android.widget.TextView
@@ -74,6 +74,7 @@ class EditarCliente : AppCompatActivity() {
 
         repository = UserRepository(this)
 
+        setupBottomNavCliente(binding.layoutBarraInferior.navCliente, 0)
         setupEdgeToEdge()
         setupMasks()
         loadUserData()
@@ -94,7 +95,7 @@ class EditarCliente : AppCompatActivity() {
 
     private fun loadUserData() {
         lifecycleScope.launch {
-            val user = repository.usuarioLogado()
+            val user = repository.usuarioLogado(forceRefresh = true)
             if (user is Cliente) {
                 currentUser = user
                 binding.editTextNome.setText(user.nome)
@@ -102,6 +103,16 @@ class EditarCliente : AppCompatActivity() {
                 binding.editTextCep.setText(user.cep)
                 binding.editTextNumero.setText(user.numero)
                 binding.editTextComplemento.setText(user.complemento)
+
+                if (!user.fotoPerfil.isNullOrEmpty()) {
+                    binding.fotoPerfil.load(user.fotoPerfil) {
+                        crossfade(true)
+                        placeholder(R.drawable.user)
+                        error(R.drawable.user)
+                    }
+                } else {
+                    binding.fotoPerfil.setImageResource(R.drawable.user)
+                }
             }
         }
     }
@@ -161,13 +172,31 @@ class EditarCliente : AppCompatActivity() {
     }
 
     private fun atualizarFotoPerfil(uri: Uri) {
-        val uriPersistente = ImageUtils.persistirImagem(this, uri)
-        if (uriPersistente != null) {
-            binding.fotoPerfil.load(uriPersistente)
-            // currentUser = currentUser?.copy(fotoPerfil = uriPersistente.toString())
-            // Se Cliente não tiver fotoPerfil, precisamos adicionar.
-        } else {
+        val user = currentUser
+        if (user == null) {
             Toast.makeText(this, getString(R.string.msg_erro_processar_imagem), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        lifecycleScope.launch {
+            val url = repository.enviarImagem(uri)
+            if (url == null) {
+                Toast.makeText(this@EditarCliente, getString(R.string.msg_erro_processar_imagem), Toast.LENGTH_SHORT).show()
+                return@launch
+            }
+
+            val userAtualizado = user.copy(fotoPerfil = url)
+
+            if (repository.atualizarCliente(userAtualizado.id ?: "", userAtualizado)) {
+                currentUser = userAtualizado
+                binding.fotoPerfil.load(url) {
+                    crossfade(true)
+                    placeholder(R.drawable.user)
+                    error(R.drawable.user)
+                }
+            } else {
+                Toast.makeText(this@EditarCliente, getString(R.string.msg_erro_salvar_alteracoes), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

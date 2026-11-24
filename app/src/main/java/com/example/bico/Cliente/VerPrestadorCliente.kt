@@ -17,6 +17,7 @@ import com.example.bico.UserRepository
 import com.example.bico.databinding.ActivityVerPrestadorClienteBinding
 import com.example.bico.model.Avaliacao
 import com.example.bico.model.Prestador
+import com.example.bico.utils.setupBottomNavCliente
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -33,6 +34,8 @@ class VerPrestadorCliente : AppCompatActivity() {
         setContentView(binding.root)
 
         repository = UserRepository(this)
+
+        setupBottomNavCliente(binding.layoutBarraInferior.navCliente, 0)
 
         // Tenta obter o prestador do Intent, senão busca o usuário logado
         @Suppress("DEPRECATION")

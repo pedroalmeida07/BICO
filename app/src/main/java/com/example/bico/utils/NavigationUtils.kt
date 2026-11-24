@@ -2,6 +2,7 @@ package com.example.bico.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.widget.Toast
 import com.example.bico.Cliente.ConfiguracaoCliente
 import com.example.bico.Cliente.HomeCliente
 import com.example.bico.Cliente.PesquisaCliente
@@ -10,6 +11,10 @@ import com.example.bico.Prestador.EditarPrestador
 import com.example.bico.Prestador.HomePrestador
 import com.example.bico.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
+fun Activity.avisarChatEmBreve() {
+    Toast.makeText(this, R.string.msg_chat_em_breve, Toast.LENGTH_SHORT).show()
+}
 
 fun Activity.setupBottomNavCliente(bottomNav: BottomNavigationView, selectedItemId: Int = 0) {
     if (selectedItemId != 0) {
@@ -38,7 +43,7 @@ fun Activity.setupBottomNavCliente(bottomNav: BottomNavigationView, selectedItem
                 true
             }
             R.id.nav_chat -> {
-                // Ainda não ligado a nenhuma página
+                avisarChatEmBreve()
                 true
             }
             R.id.nav_config -> {
@@ -73,7 +78,7 @@ fun Activity.setupBottomNavPrestador(bottomNav: BottomNavigationView, selectedIt
                 true
             }
             R.id.nav_chat_prestador -> {
-                // Ainda não ligado a nenhuma página
+                avisarChatEmBreve()
                 true
             }
             R.id.nav_config_prestador -> {

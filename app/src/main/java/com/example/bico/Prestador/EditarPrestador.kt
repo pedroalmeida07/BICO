@@ -35,6 +35,7 @@ import com.google.android.material.textfield.TextInputEditText
 import androidx.lifecycle.lifecycleScope
 import com.example.bico.utils.IbgeClient
 import com.example.bico.utils.NoAccentsAdapter
+import com.example.bico.utils.avisarChatEmBreve
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -165,7 +166,10 @@ class EditarPrestador : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_chat_prestador -> true
+                R.id.nav_chat_prestador -> {
+                    avisarChatEmBreve()
+                    true
+                }
                 R.id.nav_config_prestador -> {
                     startActivity(Intent(this, ConfiguracoesPrestador::class.java))
                     finish()

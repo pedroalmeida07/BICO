@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bico.R
 import com.example.bico.databinding.ActivityConfiguracoesPrestadorBinding
+import com.example.bico.utils.avisarChatEmBreve
 
 class ConfiguracoesPrestador : AppCompatActivity() {
     private lateinit var binding: ActivityConfiguracoesPrestadorBinding
@@ -40,7 +41,10 @@ class ConfiguracoesPrestador : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_chat_prestador -> true
+                R.id.nav_chat_prestador -> {
+                    avisarChatEmBreve()
+                    true
+                }
                 R.id.nav_config_prestador -> true
                 R.id.nav_perfil_prestador -> {
                     startActivity(Intent(this, EditarPrestador::class.java))

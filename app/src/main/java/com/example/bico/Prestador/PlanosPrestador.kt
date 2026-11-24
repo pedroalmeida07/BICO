@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bico.R
 import com.example.bico.databinding.ActivityPlanosPrestadorBinding
+import com.example.bico.utils.avisarChatEmBreve
 
 class PlanosPrestador : AppCompatActivity() {
 
@@ -43,7 +44,10 @@ class PlanosPrestador : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_chat_prestador -> true
+                R.id.nav_chat_prestador -> {
+                    avisarChatEmBreve()
+                    true
+                }
                 R.id.nav_config_prestador -> {
                     startActivity(Intent(this, ConfiguracoesPrestador::class.java))
                     finish()
