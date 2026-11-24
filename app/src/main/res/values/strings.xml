@@ -146,6 +146,7 @@
     <string name="label_toque_registrar_denuncia">Toque para registrar uma nova denúncia.</string>
     <string name="label_topo_pesquisas">✓ Conta no topo das pesquisas</string>
     <string name="label_total_de_avaliacoes">Total de Avaliações</string>
+    <string name="label_ver_avaliacoes">Ver avaliações</string>
 
     <!-- Chips -->
     <string name="chip_tipo_servico">Tipo de serviço</string>
