@@ -8,9 +8,16 @@
     <color name="saborBranco">#F8F6F7</color>
     <color name="cinza">#686968</color>
     <color name="cinzaClaro">#ECECEC</color>
+    <color name="cinzaTextoHint">#888888</color>
+    <color name="cinzaTextoEscuro">#555555</color>
+    <color name="cinzaDivisor">#E0E0E0</color>
+    <color name="cinzaFundoItem">#E5E5E5</color>
     <color name="laranjaClaro">#F8B769</color>
     <color name="laranjaEscuro">#C45F00</color>
     <color name="laranja">#F89F4B</color>
+    <color name="laranjaModoEdicao">#FF8C00</color>
+    <color name="laranjaTranslucido">#33F89F4B</color>
     <color name="sombra">#80A8C0FF</color>
     <color name="vermelho">#80D30909</color>
+    <color name="azulHelp">#080341</color>
 </resources>

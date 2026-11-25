@@ -75,7 +75,7 @@
                 app:icon="@drawable/ic_seta_esquerda_branco"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
-                app:iconTint="#FFFFFF"
+                app:iconTint="@color/white"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="@id/guideline4" />
 

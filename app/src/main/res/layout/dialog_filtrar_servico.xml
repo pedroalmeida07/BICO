@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_marginTop="12dp"
-        android:divider="#E0E0E0"
+        android:divider="@color/cinzaDivisor"
         android:dividerHeight="1dp" />
 
 </LinearLayout>

@@ -184,7 +184,7 @@ class EditarPrestador : AppCompatActivity() {
 
         binding.icLapisFotos.setOnClickListener {
             isEditModeFotos = !isEditModeFotos
-            val color = if (isEditModeFotos) "#FF8C00".toColorInt() else Color.BLACK
+            val color = if (isEditModeFotos) androidx.core.content.ContextCompat.getColor(this, R.color.laranjaModoEdicao) else Color.BLACK
             binding.icLapisFotos.setColorFilter(color)
             atualizarVisibilidadeFotos()
         }

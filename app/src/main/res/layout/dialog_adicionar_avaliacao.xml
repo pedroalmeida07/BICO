@@ -16,7 +16,7 @@
         android:stepSize="1.0"
         android:progressTint="@color/laranja"
         android:secondaryProgressTint="@color/laranja"
-        android:progressBackgroundTint="#33F89F4B"
+        android:progressBackgroundTint="@color/laranjaTranslucido"
         android:layout_gravity="start" />
 
     <com.google.android.material.textfield.TextInputLayout

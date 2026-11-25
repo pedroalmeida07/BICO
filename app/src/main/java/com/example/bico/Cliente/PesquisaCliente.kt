@@ -131,8 +131,9 @@ class PesquisaCliente : AppCompatActivity() {
             listaFiltros.add(getString(R.string.label_filtro_servico, it))
         }
 
-        if (modoBusca == "proximos" && raioMaximo != null) {
-            val raioStr = if (raioMaximo!! % 1f == 0f) raioMaximo!!.toInt().toString() else raioMaximo.toString()
+        val raio = raioMaximo
+        if (modoBusca == "proximos" && raio != null) {
+            val raioStr = if (raio % 1f == 0f) raio.toInt().toString() else raio.toString()
             listaFiltros.add(getString(R.string.label_filtro_distancia, raioStr))
         }
 
@@ -169,8 +170,9 @@ class PesquisaCliente : AppCompatActivity() {
         }
 
         // 3. Chip Distância Máxima
-        if (modoBusca == "proximos" && raioMaximo != null) {
-            val raioStr = if (raioMaximo!! % 1f == 0f) raioMaximo!!.toInt().toString() else raioMaximo.toString()
+        val raio = raioMaximo
+        if (modoBusca == "proximos" && raio != null) {
+            val raioStr = if (raio % 1f == 0f) raio.toInt().toString() else raio.toString()
             binding.chipDistanciaMaxima.setChipBackgroundColorResource(R.color.azul)
             binding.chipDistanciaMaxima.setTextColor(ContextCompat.getColor(this, R.color.white))
             binding.chipDistanciaMaxima.text = getString(R.string.chip_ate_km, raioStr)
