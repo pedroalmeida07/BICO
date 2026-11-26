@@ -357,19 +357,52 @@ class UserRepository(private val context: Context) {
             null
         }
 
-        if (!remoteFavoritos.isNullOrEmpty()) {
-            val listaLimpa = remoteFavoritos.map { p ->
-                val nomeLimpo = p.nomeExibicao
-                p.copy(nome = nomeLimpo)
-            }
-            salvarListaFavoritosLocal(listaLimpa)
-            return listaLimpa
+        val listaBruta = if (!remoteFavoritos.isNullOrEmpty()) {
+            remoteFavoritos
+        } else {
+            getFavoritosLocal()
         }
 
-        val locais = getFavoritosLocal()
-        return locais.map { p ->
-            val nomeLimpo = p.nomeExibicao
-            p.copy(nome = nomeLimpo)
+        val listaAtualizada = listaBruta.map { p ->
+            val usernameOuId = p.usuario?.takeIf { it.isNotBlank() } ?: p.id ?: ""
+            val busca = if (usernameOuId.isNotEmpty()) buscarPrestadores(username = usernameOuId) else null
+            val pMaisRecente = busca?.firstOrNull { it.id == p.id || it.usuario == p.usuario } ?: busca?.firstOrNull() ?: p
+
+            pMaisRecente.copy(
+                id = p.id ?: pMaisRecente.id,
+                nome = pMaisRecente.nomeExibicao,
+                notaMedia = pMaisRecente.notaMedia ?: p.notaMedia,
+                totalAvaliacoes = pMaisRecente.totalAvaliacoes ?: p.totalAvaliacoes,
+                servicos = pMaisRecente.servicos ?: p.servicos,
+                local = pMaisRecente.local ?: p.local,
+                fotoPerfil = pMaisRecente.fotoPerfil ?: p.fotoPerfil,
+                descricao = pMaisRecente.descricao ?: p.descricao
+            )
+        }
+
+        if (listaAtualizada.isNotEmpty()) {
+            salvarListaFavoritosLocal(listaAtualizada)
+        }
+
+        return listaAtualizada
+    }
+
+    fun atualizarFavoritoSeExistir(prestador: Prestador) {
+        val lista = getFavoritosLocal().toMutableList()
+        val index = lista.indexOfFirst { 
+            (prestador.id != null && it.id == prestador.id) || 
+            (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) 
+        }
+        if (index != -1) {
+            val antigo = lista[index]
+            lista[index] = antigo.copy(
+                nome = prestador.nomeExibicao,
+                notaMedia = prestador.notaMedia ?: antigo.notaMedia,
+                totalAvaliacoes = prestador.totalAvaliacoes ?: antigo.totalAvaliacoes,
+                servicos = prestador.servicos ?: antigo.servicos,
+                avaliacoes = prestador.avaliacoes ?: antigo.avaliacoes
+            )
+            salvarListaFavoritosLocal(lista)
         }
     }
 
@@ -388,7 +421,11 @@ class UserRepository(private val context: Context) {
             (!prestador.usuario.isNullOrEmpty() && it.usuario.equals(prestador.usuario, ignoreCase = true)) ||
             (it.nome != null && it.nome == it.id)
         }
-        val prestadorFormatado = prestador.copy(nome = prestador.nomeExibicao)
+        val prestadorFormatado = prestador.copy(
+            nome = prestador.nomeExibicao,
+            notaMedia = prestador.notaMedia,
+            totalAvaliacoes = prestador.totalAvaliacoes
+        )
         listaAtual.add(0, prestadorFormatado)
         salvarListaFavoritosLocal(listaAtual)
     }

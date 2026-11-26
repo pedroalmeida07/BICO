@@ -258,6 +258,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                     val pBusca = repository.buscarPrestadores(username = prestador.usuario ?: prestador.nome)?.firstOrNull()
                     if (pBusca != null) {
                         carregarDadosPrestador(pBusca)
+                        repository.atualizarFavoritoSeExistir(pBusca)
                     } else {
                         val novaLista = (prestador.avaliacoes ?: emptyList()) + Avaliacao(
                             prestadorID = prestadorId,
@@ -270,6 +271,7 @@ class VerPrestadorCliente : AppCompatActivity() {
                             totalAvaliacoes = (prestador.totalAvaliacoes ?: 0) + 1
                         )
                         carregarDadosPrestador(pAtualizado)
+                        repository.atualizarFavoritoSeExistir(pAtualizado)
                     }
                 } else {
                     android.widget.Toast.makeText(this@VerPrestadorCliente, getString(R.string.msg_erro_enviar_avaliacao), android.widget.Toast.LENGTH_SHORT).show()
